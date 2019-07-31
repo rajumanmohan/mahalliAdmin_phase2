@@ -1,0 +1,230 @@
+<div class="animated fadeIn">
+    <div class="row mt-5">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Add Product</strong>
+                    <small>Form</small>
+                    <button (click)="backtoproduct()" class="btn  btn-primary text-right float-right ">Back</button>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="addProductFrom">
+                        <div class="row">
+                            <div class="form-group col-sm-4">
+                                <label for="company">Category</label>
+                                <!-- <select class="form-control" placeholder="Enter Title">
+                                <option selected>Select Category</option>
+                                <option>Dry fruits</option>
+                                <option>Bakery</option>
+                                <option>Fruits</option>
+                                <option  *ngFor="let cat of category"
+                                value="{{cat.category_name}}">
+                                {{cat.category_name}}</option>
+                            </select> -->
+                                <select required class="form-control border-primary" id="exampleSelectPrimary"
+                                    [ngClass]="{'is-invalid':submitted&&f.category_id.errors}"
+                                    formControlName="category_id" name="category_id"
+                                    (change)="changeCat($event.target.value)">
+                                    <option value="" disabled>Select Category</option>
+                                    <option *ngFor="let cat of category" value="{{cat.category_name}}">
+                                        {{cat.category_name}}</option>
+                                </select>
+                                <div class="invalid-feedback" *ngIf="submitted&&f.category_id.errors">
+                                    <div *ngIf="f.category_id.errors">Category name is required
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="company">Sub Category</label>
+                                <!-- <select class="form-control" placeholder="Enter Title">
+                                <option selected>Select Sub Category</option>
+                                <option>Dry fruits</option>
+                                <option>Bakery</option>
+                                <option>Fruits</option>
+                            </select> -->
+                                <select class="form-control border-primary" id="exampleSelectPrimary"
+                                    [ngClass]="{'is-invalid':submitted&&f.subcategory_id.errors}"
+                                    formControlName="subcategory_id" name="subcategoryName"
+                                    (change)="changeSub1($event.target.value)">
+                                    <option value="" disabled>Select Sub Category</option>
+                                    <option *ngFor="let subCat of subArr" value="{{subCat.sub_category_name}}">
+                                        {{subCat.sub_category_name}}</option>
+                                </select>
+                                <div class="invalid-feedback" *ngIf="submitted&&f.subcategory_id.errors">
+                                    <div *ngIf="f.subcategory_id.errors">Subcategory name is
+                                        required
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="company">Sub Sub Category name</label>
+                                <!-- <select class="form-control" placeholder="Enter Title">
+                                <option selected>Select Sub Sub Category</option>
+                                <option>test</option>
+                                <option>test</option>
+                                <option>test</option>
+                            </select> -->
+                                <select class="form-control border-primary" id="exampleSelectPrimary"
+                                    [ngClass]="{'is-invalid':submitted&&f.subsubcategory_id.errors}"
+                                    formControlName="subsubcategory_id" name="subsubcategory_id"
+                                    (change)="changeSubSub($event.target.value)">
+                                    <option value="" disabled>Select Sub Category</option>
+                                    <option *ngFor="let subsub of subSubdata" value="{{subsub.id}}">
+                                        {{subsub.subsubcat_name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Product Name</label>
+                                    <input class="form-control" type="text" formControlName="product_name"
+                                        [ngClass]="{'is-invalid':submitted && f.product_name.errors}">
+                                    <div class="invalid-feedback" *ngIf="submitted&&f.product_name.errors">
+                                        <div *ngIf="f.product_name.errors"> Product name is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Brand Name</label>
+                                    <input class="form-control" type="text" formControlName="brand"
+                                        [ngClass]="{'is-invalid':submitted && f.brand.errors}">
+                                    <div class="invalid-feedback" *ngIf="submitted&&f.brand.errors">
+                                        <div *ngIf="f.brand.errors"> Brand name is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4" *ngIf="wholeType=='grocery'">
+                                <div class="form-group">
+                                    <label for="firstname">Country</label>
+                                    <!-- <input id="category" class="form-control" type="text"
+                                            [(ngModel)]="formdata.country" name="country" /> -->
+                                    <input type="text" formControlName="country"
+                                        [ngClass]="{'is-invalid':submitted && f.country.errors}"
+                                        class="google-place-input form-control gps orange-border" google-place
+                                        (onSelect)="setAreaAddress($event)" placeholder="Enter Country">
+                                    <div class="invalid-feedback" *ngIf="submitted&&f.country.errors">
+                                        <div *ngIf="f.country.errors"> Country is required</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row" *ngIf="wholeType=='grocery'">
+                            <div class="col-md-6">
+                                <div class="custom-control custom-checkbox ">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                    <label class="custom-control-label" for="customCheck1">Is it organic</label>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="firstname" name="prodName">Sku Images :
+                                    </label>
+                                    <input class="form-control" type='file' (change)="detectFiles($event,i)"
+                                        formControlName="images" multiple
+                                        [ngClass]="{'is-invalid':submitted && f.images.errors}"><br />
+                                    <!-- <div *ngIf="!removeImg">
+                                        <img *ngFor='let url of skuValues?.sku_images'
+                                            [src]="url.sku_image" height="100"
+                                            (click)="updateImage(url.sku_image_id)"
+                                            [ngClass]="{'selected':selectedImage==url.id}"
+                                            width="100"
+                                            style="margin-right: 2%;border: 1px solid;margin-bottom:5%">
+
+                                        <div *ngFor='let url of urls'>
+                                            <img *ngFor="let imgUrl of url.sku_images;let i =index"
+                                                [src]="imgUrl.sku_image" height="100"
+                                                width="100"
+                                                style="margin-right: 2%;border: 1px solid;margin-bottom:5%"
+                                                (click)="updateImage(imgUrl.id)"
+                                                [ngClass]="{'selected':selectedImage==imgUrl.id}">
+                                        </div>
+                                    </div> -->
+                                    <div class="images-list">
+                                        <div *ngFor="let url of urls;let i=index" class="prod-img-list">
+                                            <i style="font-size:24px;float: right;" class="fa"
+                                                (click)="DeleteImg(i)">&#xf00d;</i>
+                                            <img [src]="url" class="rounded mb-3" width="180">
+                                        </div>
+                                    </div>
+
+                                    <div class="invalid-feedback" *ngIf="submitted&&f.images.errors">
+                                        <div *ngIf="f.images.errors"> Images required</div>
+                                    </div>
+                                    <div *ngIf="maxImg=='true'">6 Images required</div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label for="textarea-input">Description</label>
+                                <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control"
+                                    placeholder="Description.." formControlName="description"
+                                    [ngClass]="{'is-invalid':submitted && f.description.errors}"></textarea>
+                                <div class="invalid-feedback" *ngIf="submitted&&f.description.errors">
+                                    <div *ngIf="f.description.errors"> Description is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="row">
+                        
+                        <div class="col-md-6">
+                        <div class="custom-control custom-checkbox col-md-6">
+                        <input type="checkbox" class="custom-control-input" id="customCheck12">
+                        <label class="custom-control-label" for="customCheck12">Mobile Banner</label>
+                        </div>
+                        </div>
+                        </div> -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button class="btn btn-success" *ngIf="!Id" (click)="addProductAdmin()">Add
+                                    Product</button>
+                                <button class="btn btn-success" *ngIf="Id" (click)="update()">Update</button>
+
+                            </div>
+                        </div>
+                    </form>
+
+
+                    <!-- <div class="row">
+                        <div class="form-group col-sm-4">
+                            <label for="company">Product Name</label>
+                            <input type="text" class="form-control" id="city" placeholder="Product Name">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="company">Brand Name</label>
+                            <input type="text" class="form-control" id="city" placeholder="Brand Name">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="company">Country name</label>
+                            <input type="text" class="form-control" id="city" placeholder="Country name">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="file-input">SKU images</label>
+                        <div class="col-md-3">
+                            <input type="file" id="file-input" name="file-input">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="textarea-input">Description</label>
+                            <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control"
+                                placeholder="Description.."></textarea>
+                        </div>
+                    </div> -->
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

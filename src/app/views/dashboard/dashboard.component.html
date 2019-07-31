@@ -1,0 +1,253 @@
+<div class="animated fadeIn">
+  <!--/.row-->
+
+
+
+  <div class="card-group mb-4">
+    <div class="card" *ngIf="role=='Admin'">
+      <div class="card-body" routerLink="/userslist">
+        <div class="h1 text-muted text-right mb-4">
+          <i class="icon-people"></i>
+        </div>
+        <div style="display: block; position: absolute; margin-top: -68px; text-align: center;">
+          <div class="h4 mb-0">{{Count.userscount}}</div>
+          <small class="text-muted text-uppercase font-weight-bold">Users</small>
+        </div>
+
+        <div style="text-align: center;display: inline-block;padding-right: 76px;">
+          <div class="h4 mb-0">{{Count.usersActive}}</div>
+          <small class="text-muted text-uppercase font-weight-bold">Active</small>
+        </div>
+        <div style="text-align: center;display: inline-block;">
+          <div class="h4 mb-0">{{Count.usersInActive}}</div>
+          <small class="text-muted text-uppercase font-weight-bold">Inactive</small>
+        </div>
+
+        <div class="progress progress-xs mt-3 mb-0">
+          <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
+            aria-valuemax="100"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" *ngIf="role=='Admin'">
+      <div class="card-body" routerLink="/vendorslist">
+        <div class="h1 text-muted text-right mb-4">
+          <i class="icon-people"></i>
+          <div class="h4 mb-0"></div>
+        </div>
+
+        <div style="display: block; position: absolute; margin-top: -68px; text-align: center;">
+          <div class="h4 mb-0">{{Count.venders}}</div>
+          <small class="text-muted text-uppercase font-weight-bold">Vendors</small>
+        </div>
+
+        <div style="text-align: center;display: inline-block;padding-right: 76px;">
+          <div class="h4 mb-0">{{Count.activevenders}}</div>
+          <small class="text-muted text-uppercase font-weight-bold">Active</small>
+        </div>
+        <div style="text-align: center;display: inline-block;">
+          <div class="h4 mb-0">{{Count.inactivevenders}}</div>
+          <small class="text-muted text-uppercase font-weight-bold">Inactive</small>
+        </div>
+        <div class="progress progress-xs mt-3 mb-0">
+          <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25"
+            aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" *ngIf="role=='Admin'">
+      <div class="card-body" routerLink="/wholeseller">
+        <div class="h1 text-muted text-right mb-4">
+          <i class="icon-people"></i>
+          <div class="h4 mb-0"></div>
+        </div>
+        <div style="display: block; position: absolute; margin-top: -68px; text-align: center;">
+          <div class="h4 mb-0">{{Count.wholeseller}}</div>
+          <small class="text-muted text-uppercase font-weight-bold">Wholesellers</small>
+        </div>
+
+        <div style="text-align: center;display: inline-block;padding-right: 76px;">
+          <div class="h4 mb-0">{{Count.activewholesallers}}</div>
+          <small class="text-muted text-uppercase font-weight-bold">Active</small>
+        </div>
+        <div style="text-align: center;display: inline-block;">
+          <div class="h4 mb-0">{{Count.inactivewholesallers}}</div>
+          <small class="text-muted text-uppercase font-weight-bold">Inactive</small>
+        </div>
+        <div class="progress progress-xs mt-3 mb-0">
+          <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25"
+            aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" *ngIf="role=='Admin'">
+      <div class="card-body" routerLink="/userslist/userorders">
+        <div class="h1 text-muted text-right mb-4">
+          <i class="icon-basket-loaded"></i>
+        </div>
+        <div class="h4 mb-0">{{Count.userorders}} <span style="float:right;" class="h4 mb-0"> BD:
+            {{Count.usercarttotal}}</span></div>
+        <small class="text-muted text-uppercase font-weight-bold">User Orders</small>
+        <div class="progress progress-xs mt-3 mb-0">
+          <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
+            aria-valuemax="100"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" *ngIf="role=='Admin'">
+      <div class="card-body" routerLink="/vendorslist/vendororders">
+        <div class="h1 text-muted text-right mb-4">
+          <i class="icon-basket-loaded"></i>
+
+        </div>
+        <div class="h4 mb-0">{{Count.venderorders}}<span style="float:right;" class="h4 mb-0"> BD:
+            {{Count.vendorcarttotal}}</span></div>
+        <small class="text-muted text-uppercase font-weight-bold">Vendor Orders</small>
+        <div class="progress progress-xs mt-3 mb-0">
+          <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
+            aria-valuemax="100"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" *ngIf="role=='vendor'" routerLink="/vendorproducts">
+      <div class="card-body">
+        <div class="h1 text-muted text-right mb-4">
+          <i class="icon-basket-loaded"></i>
+        </div>
+        <div class="h4 mb-0">{{venCount?.approvedproductcount}}</div>
+        <small class="text-muted text-uppercase font-weight-bold">Vendor Products</small>
+        <div class="progress progress-xs mt-3 mb-0">
+          <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
+            aria-valuemax="100"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" *ngIf="role=='vendor'" routerLink="/vendorslist/vendororders">
+      <div class="card-body">
+        <div class="h1 text-muted text-right mb-4">
+          <i class="icon-basket-loaded"></i>
+        </div>
+        <div class="h4 mb-0">{{venCount?.ordercount}}</div>
+        <small class="text-muted text-uppercase font-weight-bold">Vendor Orders</small>
+        <div class="progress progress-xs mt-3 mb-0">
+          <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
+            aria-valuemax="100"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" *ngIf="role=='wholesaler'" routerLink="/vendorslist/vendororders">
+      <div class="card-body">
+        <div class="h1 text-muted text-right mb-4">
+          <i class="icon-basket-loaded"></i>
+
+        </div>
+        <div class="h4 mb-0">{{wholeCount.ordersdata}}<span style="float:right;" class="h4 mb-0"> BD:
+            {{wholeCount.total}}</span></div>
+        <small class="text-muted text-uppercase font-weight-bold">Vendor Orders</small>
+        <div class="progress progress-xs mt-3 mb-0">
+          <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
+            aria-valuemax="100"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" *ngIf="role=='wholesaler'" routerLink="/wholesellerproducts">
+      <div class="card-body">
+        <div class="h1 text-muted text-right mb-4">
+          <i class="icon-basket-loaded"></i>
+        </div>
+        <div class="h4 mb-0">{{wholeCount.products}}</div>
+        <small class="text-muted text-uppercase font-weight-bold">Wholesaler Products</small>
+        <div class="progress progress-xs mt-3 mb-0">
+          <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
+            aria-valuemax="100"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <!-- admin list -->
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-5">
+          <h4 class="card-title mb-0">Orders</h4>
+          <div class="small text-muted">July 2019</div>
+        </div>
+        <div class="col-sm-7 d-none d-md-block">
+          <select style="float: right;height: 32px;margin-top: 1px;" name="years" [value]="year"
+            (change)="refreshByYear(yearVal.value)" #yearVal>
+            <option *ngFor="let year of years" [value]="year">{{year}}</option>
+          </select>
+          <!-- //[ngStyle]="{'background': changeTab==='year' ? '#a7a2a2' : ''}" -->
+          <!-- [ngStyle]="{'background': changeTab==='week' ? '#a7a2a2' : ''}" -->
+          <!-- [ngStyle]="{'background': changeTab==='month' ? '#a7a2a2' : ''}" -->
+          <div class="btn-group float-right mr-3" data-toggle="buttons"><label btnradio="Day"
+              [ngStyle]="{'background': changeTab==='week' ? '#a7a2a2' : '#ffff'}" class="btn btn-outline-secondary"
+              id="option1" (click)="refresh('week')">Week</label><label btnradio="Month"
+              [ngStyle]="{'background': changeTab==='month' ? '#a7a2a2' : '#ffff'}" class="btn btn-outline-secondary"
+              id="option2" (click)="refresh('month')">Month</label><label
+              [ngStyle]="{'background': changeTab==='year' ? '#a7a2a2' : '#ffff'}" btnradio="Year"
+              class="btn btn-outline-secondary" id="option3" (click)="refresh('year')">Year</label>
+          </div>
+        </div>
+      </div>
+      <!--/.row-->
+      <!-- admin orders graph -->
+      <div class="chart-wrapper" style="height:300px;margin-top:40px;">
+        <canvas baseChart class="chart" [datasets]="mainChartData" [labels]="mainChartLabels"
+          [options]="mainChartOptions" [colors]="mainChartColours" [legend]="mainChartLegend"
+          [chartType]="mainChartType"></canvas>
+      </div>
+
+
+    </div>
+    <div class="card-footer">
+      <div class="row text-center">
+        <div class="col-sm-12 col-md mb-sm-2 mb-0">
+          <div class="text-muted">User Orders</div>
+          <strong>{{userCount}} Orders </strong>
+          <div class="progress progress-xs mt-2">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 40%" aria-valuenow="40"
+              aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md mb-sm-2 mb-0">
+          <div class="text-muted">Vendor Orders</div>
+          <strong>{{vendorCount}} Orders </strong>
+          <div class="progress progress-xs mt-2">
+            <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0"
+              aria-valuemax="100"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+
+<style>
+  .brand-card-header {
+    height: 10rem !important;
+    display: block;
+    text-align: center;
+  }
+
+  .overall-users h1 {
+    color: #ffffff;
+  }
+
+  .overall-users img {
+    margin-bottom: 6px;
+    margin-right: 12px;
+    width: 31px;
+    padding-top: 12%;
+  }
+</style>

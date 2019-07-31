@@ -1,0 +1,117 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header"><i class="fa fa-align-justify"></i>Image Approval</div>
+                <div class="card-body image-details">
+                    <table class="table table-bordered">
+
+                        <tbody>
+                            <tr>
+                                <th>Product Category</th>
+                                <th>Details</th>
+                            </tr>
+                            <tr>
+                                <th>Product Name</th>
+                                <td>{{productData.product_name}}</td>
+                            </tr>
+                            <tr>
+                                <th>Brand Name</th>
+                                <td>{{productData.brand}}</td>
+                            </tr>
+                            <tr>
+                                <th>Country</th>
+                                <td>{{productData.country}}</td>
+                            </tr>
+                            <tr>
+                                <th>Description</th>
+                                <td>{{productData.description}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header"><i class="fa fa-align-justify"></i> Image Approval </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+
+                        <tbody>
+                            <tr>
+                                <th>Sku Category</th>
+                                <th>Details</th>
+                            </tr>
+                            <tr>
+                                <th>Selling Price</th>
+                                <td>{{proddata1.selling_price}}</td>
+                            </tr>
+                            <tr>
+                                <th>Actual Price</th>
+                                <td>{{proddata1.actual_price}}</td>
+                            </tr>
+                            <tr>
+                                <th>Discount</th>
+                                <td>{{proddata1.discount}}</td>
+                            </tr>
+                            <tr>
+                                <th>Quantity</th>
+                                <td>{{proddata1.quantiry}}</td>
+                            </tr>
+                            <tr>
+                                <th>Stock</th>
+                                <td>{{proddata1.stock}}</td>
+                            </tr>
+                            <!-- <tr>
+                                <th>images</th>
+                                <td>5</td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                    <a *ngFor="let skudata of proddata;let i=index" class="btn btn-success sku-btn"
+                    (click)="getSkuData(skudata.skid,i)"
+                    [ngStyle]="{'background-color':clicked ==i?'#76b600':'' }">
+                    {{skudata.size}} {{skudata.unit}}
+                  </a>
+                <div class="card-header"><i class="fa fa-align-justify"></i> Image Approval </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img *ngFor="let img of imgData" src="{{img.sku_image}}" class="product-image">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-2">
+                            <button aria-pressed="true" class="btn btn-block btn-outline-success active"
+                                type="button" (click)="Approve(proddata1.skid)">Approve</button>
+                        </div>
+                        <div class="col-md-2">
+                            <button aria-pressed="true"  (click)="block(proddata1.skid)" class="btn btn-block btn-outline-danger active"
+                                type="button">Disapprove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .image-details {
+        margin-bottom: 18%;
+    }
+
+    .product-image {
+        width: 100%;
+        height: 158px;
+    }
+</style>

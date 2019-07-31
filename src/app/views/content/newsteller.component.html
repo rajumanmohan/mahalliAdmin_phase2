@@ -1,0 +1,34 @@
+<div class="animated fadeIn">
+        <div class="row mt-5">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>News Teller</strong>
+                        <small>Form</small>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                        </form>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label for="company">Title</label>
+                                <input type="text" class="form-control" id="city" placeholder="Enter Title" [(ngModel)]="title">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label for="textarea-input">Description</label>
+                                <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control"
+                                    placeholder="Description.." [(ngModel)]="aboutusData"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button class="btn btn-success" (click)="updateabout()">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

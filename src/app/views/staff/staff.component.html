@@ -1,0 +1,71 @@
+<div class="animated fadeIn">
+
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="card pt-5 mt-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h1>Staff List </h1>
+                        </div>
+                        <div class="col-lg-6 text-right">
+                            <button type="button" class="btn  btn-primary mb-3" (click)="addstaff()">Add Staff</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="ccnumber" placeholder="Search"
+                                    [(ngModel)]="filter">
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.row-->
+                </div>
+
+                <div class="card-body table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>S No</th>
+                                <th (click)="sort('name')">Name <span><i class="fa fa-sort"
+                                            aria-hidden="true"></i></span></th>
+                                <th (click)="sort('email')">Email <span><i class="fa fa-sort"
+                                            aria-hidden="true"></i></span></th>
+                                <th (click)="sort('mobile_number')">Mobile Number <span><i class="fa fa-sort"
+                                            aria-hidden="true"></i></span></th>
+                                <th (click)="sort('role_name')">Role <span><i class="fa fa-sort"
+                                            aria-hidden="true"></i></span></th>
+                                <th (click)="sort('area')">Address <span><i class="fa fa-sort"
+                                            aria-hidden="true"></i></span></th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr
+                                *ngFor="let cat of staffData |orderBy: key : reverse| paginate: { itemsPerPage: 10, currentPage: p }|filter:filter;let i = index">
+                                <td>{{i +1}}</td>
+                                <td>{{cat.name}}</td>
+                                <td>{{cat.email}}</td>
+                                <td>{{cat.mobile_number}}</td>
+                                <td>{{cat.role_name || "-"}}</td>
+                                <td>
+                                    {{cat.area}}
+                                </td>
+                                <td class="edit-buttons">
+                                    <a><i (click)="addstaff(cat.id)" class="fa fa-pencil-square-o fa-lg "></i></a>
+                                    <a><i class="fa fa-trash fa-lg" aria-hidden="true"
+                                            (click)="deletestaff(cat.id) "></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination-controls (pageChange)="p = $event" style="float:right; margin-top:15px;">
+                    </pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+<div class="animated fadeIn">
+    <div class="row mt-5">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Add Coupon</strong>
+                    <small>Form</small>
+                    <button (click)="backtocoupon()" class="btn  btn-primary text-right float-right ">Back</button>
+                </div>
+                <div class="card-body">
+                    <form>
+
+                    </form>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="company">Coupon Code</label>
+                            <input type="text" class="form-control" id="city" placeholder="coupon code"
+                                [(ngModel)]="coupon" name="coupon">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <select class="form-control border-primary" id="sel1" [(ngModel)]="userId" name="disType">
+                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                <option value="" disabled>Select User</option>
+                                <option *ngFor="let item of DisType" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="company">Discount Type</label>
+                            <!-- <select class="form-control">
+                                <option selected> select Discount type</option>
+                                <option>Percentage</option>
+                                <option>Flat</option>
+                            </select> -->
+                            <!-- [(ngModel)]="data.discountType" -->
+                            <select class="form-control border-primary" id="sel1"
+                                (change)="discount($event.target.value)" [(ngModel)]="disType" name="disType">
+                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                <option value="" disabled>Select Discount type</option>
+                                <option *ngFor="let item of DisType" value="{{item.id}}">{{item.name}}</option>
+                                <!-- <option value="1">Flat</option>
+                                                <option value="2">Percentage</option> -->
+                                <!-- <option value="3">Free Delivery</option> -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group " *ngIf="amount">
+                                <label for="firstname">Discount amount</label>
+                                <input id="category" class="form-control" name="disAmt" type="text"
+                                    [(ngModel)]="disAmt" />
+                            </div>
+                            <div class="form-group" *ngIf="percentage">
+                                <label for="firstname">Discount Percentage</label>
+                                <input id="category" class="form-control" name="disPer" type="text"
+                                    [(ngModel)]="disPer" />
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.row-->
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="company">Minimum Usage Count</label>
+                            <input type="text" class="form-control" id="city" placeholder="coupon code"
+                                [(ngModel)]="total" name="total">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="company">Minimum Amount</label>
+                            <input type="text" class="form-control" id="city" [(ngModel)]="upto" name="upto">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="company">Start Date</label>
+                            <!-- <input type="text" class="form-control" id="city"> -->
+                            <my-date-picker name="model" [options]="myDatePickerOptions" [selDate]="selDate"
+                                (dateChanged)="onDateChanged($event)" required></my-date-picker>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="company">End Date</label>
+                            <my-date-picker name="model1" [selDate]="selDate1" (dateChanged)="onDateChanged1($event)"
+                                [options]="myDatePickerOptions" required></my-date-picker>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-success" *ngIf="!offerId" (click)="addOffer()">Add coupon</button>
+                            <button class="btn btn-success " *ngIf="offerId" (click)="updateOfferById()">
+                                Update Coupon
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

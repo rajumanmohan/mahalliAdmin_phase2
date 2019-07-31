@@ -1,0 +1,166 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card pt-5 mt-5">
+                <div class="container">
+                    <div class="row align-items-center mb-3">
+                        <div class="col-md-3  mb-3 mb-xl-0">
+                            <button type="button" class="btn btn-block btn-primary" (click)="getGroceryProds()"
+                                [ngStyle]="{'background-color':showGroceryProds===true ? '#1985ac'  :  'white','border':showGroceryProds===true ? ''  :  '1px solid #1985ac','color':showGroceryProds===true ? 'white'  :  '#000000'}">
+                                Grocery</button>
+                        </div>
+                        <div class=" col-md-3  mb-3 mb-xl-0">
+                            <button type="button" class="btn btn-block btn-secondary" (click)="getEcomProds()"
+                                [ngStyle]="{'background-color':showEcomProds===true ? '#1985ac'  :  'white','border':showEcomProds===true ? ''  :  '1px solid #1985ac','color':showEcomProds===true ? 'white'  :  '#000000'}">
+                                Ecommerce</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h1>Products List </h1>
+                        </div>
+                        <div class="col-lg-3 text-right">
+                            <!-- <button type="button" class="btn  btn-primary" (click)="exporttoexcel()">Export To
+                                Excel</button> -->
+                        </div>
+                        <div class="col-lg-3 text-right">
+                            <!-- <button type="button" class="btn  btn-primary" (click)="exporttoexcel()">Import To
+                                Excel</button> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="ccnumber" placeholder="Search"
+                                    [(ngModel)]="filter">
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.row-->
+                </div>
+
+                <div class="card-body table-responsive" *ngIf="showGroceryProds">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>S No</th>
+                                <th (click)="sort(category_name)">Category Name <span><i class="fa fa-sort"
+                                            aria-hidden="true"></i></span></th>
+                                <th (click)="sort(sub_category_name)">Sub Category Name <span><i class="fa fa-sort"
+                                            aria-hidden="true"></i></span></th>
+                                <th (click)="sort(product_name)">Product Name <span><i class="fa fa-sort"
+                                            aria-hidden="true"></i></span></th>
+                                <th (click)="sort(sku_row)">Sku Imgae <span><i class="fa fa-sort"
+                                            aria-hidden="true"></i></span></th>
+                                <th (click)="sort(value)">Product Status <span><i class="fa fa-sort"
+                                            aria-hidden="true"></i></span></th>
+                                <!-- <th>Action</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                *ngFor="let prod of product|orderBy: key : reverse| paginate: { itemsPerPage: 10, currentPage: p }|filter:filter;let i = index">
+                                <!-- | paginate: { itemsPerPage: 10, currentPage: p } -->
+                                <td>{{i+1}}</td>
+                                <td>{{prod.category_name}}</td>
+                                <td>{{prod.sub_category_name}} </td>
+                                <td><a class="prod-name" (click)="showProdDetails(prod.product_id)">
+                                        {{prod.product_name}}</a></td>
+                                <td>
+                                    <img [src]="prod?.sku_row[0]?.sku_images[0]?.sku_image" />
+                                </td>
+                                <td>
+                                    <button class="btn remove btn-outline-primary" [value]="prod.approval" #btn
+                                        (click)="status(btn,prod.product_id,prod.approval)">{{btn.value}}</button>
+                                </td>
+                                <!-- <td><a (click)="showimageapproval()"> <button type="button"
+                                            class="btn btn-block btn-outline-success active"
+                                            aria-pressed="true">View</button></a></td> -->
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <pagination-controls (pageChange)="p = $event" style="float:right; margin-top:15px;">
+                    </pagination-controls>
+                </div>
+                <div class="card-body table-responsive" *ngIf="showEcomProds">
+                    <table id="order-listing" class="table " style="text-align: center">
+                        <thead>
+                            <tr>
+                                <th>S.no</th>
+                                <th (click)="sort(category_name)">Category Name </th>
+                                <th (click)="sort(category_name)">Sub Category Name </th>
+                                <th (click)="sort(category_name)">Product Name </th>
+                                <th>Sku Images </th>
+                                <th (click)="sort(category_name)">Product Status </th>
+                                <th (click)="sort(category_name)">Deals of the day </th>
+                                <th (click)="sort(category_name)"> Top Offers </th>
+                                <!-- <th>Actions </th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="todo-list" *ngFor="let prod of product;let i = index">
+                                <!-- | paginate: { itemsPerPage: 10, currentPage: p } -->
+                                <td>{{i+1}}</td>
+                                <td>{{prod.category_name}}</td>
+                                <td>{{prod.sub_category_name}} </td>
+                                <td><a (click)="showProdDetails(prod.product_id)"
+                                        class="prod-name">{{prod.product_name}}</a>
+                                </td>
+                                <td>
+                                    <img [src]="prod.sku_row[0]?.sku_images[0]?.sku_image" />
+                                </td>
+                                <td>
+                                    <button class="btn remove btn-outline-primary" [value]="prod.approval" #btn
+                                        (click)="status(btn,prod.product_id,prod.approval)">{{btn.value}}</button>
+                                </td>
+
+                                <td *ngIf="showEcomProds">
+                                    <!-- <div class="col-sm-3" *ngIf="wholeType=='grocery'"> -->
+                                    <div class="form-group cust-check">
+                                        <!-- <label for="exampleInputEmail1"> Is it organic?</label> -->
+                                        <input type="checkbox" id="check1" [checked]="prod.dealsoftheday=='true'"
+                                            (change)="toggleVisibility($event,prod.product_id)" />
+                                    </div>
+                                    <!-- </div> -->
+                                </td>
+                                <td *ngIf="showEcomProds">
+                                    <!-- <div class="col-sm-3" *ngIf="wholeType=='grocery'"> -->
+                                    <div class="form-group cust-check">
+                                        <!-- <label for="exampleInputEmail1"> Is it organic?</label> -->
+                                        <input type="checkbox" id="check2" [checked]="prod.topoffers=='true'"
+                                            (change)="toggleVisibility1($event,prod.product_id)" />
+                                    </div>
+                                    <!-- </div> -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="noRecords text-center" *ngIf="noRecords1">
+                        <h4>No Records Found</h4>
+                    </div>
+                    <!-- <pagination-controls (pageChange)="p = $event"
+                            style="float:right; margin-top:15px;"></pagination-controls> -->
+                    <!-- <pagination-controls (pageChange)="p=$event" (click)="changePage(p)" style="float:right; margin-top:15px;"></pagination-controls> -->
+                    <!-- <div class="pagination" style="float:right">
+                            <a href="#">&laquo;</a>
+                            <a href="#">1</a>
+                            <a href="#" class="active">2</a>
+                            <a href="#">3</a>
+                            <a href="#">4</a>
+                            <a href="#">5</a>
+                            <a href="#">6</a>
+                            <a href="#">&raquo;</a>
+                        </div> -->
+                    <!-- <div class="pagination" style="float:right">
+                            <a>&laquo;</a>
+                            <a *ngFor="let page of pagination;let i =index" (click)="changePage(page,i)" [ngClass]="{'active' : selectedpage === i }">{{page}}</a>
+                            <a>&raquo;</a>
+                        </div> -->
+                    <!-- <label *ngFor="let page of pagination" (click)="changePage(page)">{{page}} &nbsp;&nbsp;</label> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

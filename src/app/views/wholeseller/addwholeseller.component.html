@@ -1,0 +1,348 @@
+<div class="animated fadeIn">
+    <div class="row mt-5">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Add Wholeseller</strong>
+                    <small>Form</small>
+                    <button (click)="backtowholeseller()" class="btn  btn-primary text-right float-right ">Back</button>
+                </div>
+                <div class="card-body">
+                    <form>
+
+                    </form>
+                    <!-- <div class="row"> -->
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="firstname">First Name :</label>
+                                <input class="form-control" type="text" [(ngModel)]="first_name" name="first_name" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="firstname">Last Name :</label>
+                                <input class="form-control" type="text" [(ngModel)]="last_name" name="last_name" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="firstname">Phone Number :</label>
+                                <input myNumberOnly class="form-control" type="text" [(ngModel)]="mobile"
+                                    name="mobile" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="firstname">Email :</label>
+                                <input class="form-control" type="email" [(ngModel)]="email" name="email" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 2 -->
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="firstname">Password :</label>
+                                <input class="form-control" type="password" [(ngModel)]="password" name="password" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="firstname">Bussiness Name :</label>
+                                <input class="form-control" type="text" [(ngModel)]="bussiness_name"
+                                    name="business_name" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="firstname">Building/Shop/Office Number :</label>
+                                <input class="form-control" type="text" [(ngModel)]="bussiness_houseno"
+                                    name="business_houseno" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="firstname">Road Number :</label>
+                                <input class="form-control" type="text" [(ngModel)]="bussiness_address"
+                                    name="business_address" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 3 -->
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="firstname"> Area :</label>
+                                <input class="form-control" type="text" [(ngModel)]="bussiness_area"
+                                    name="bussiness_area" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="firstname">Bussiness Country :</label>
+                                <input class="form-control" type="text" [(ngModel)]="bussiness_country"
+                                    name="business_country" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="firstname">Bussiness City :</label>
+                                <input class="form-control" type="text" [(ngModel)]="bussiness_city"
+                                    name="bussiness_city" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="firstname">Po Box Number :</label>
+                                <input class="form-control" type="text" [(ngModel)]="bussiness_pincode"
+                                    name="bussiness_pincode" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="firstname">Account Holder Name :</label>
+                                <input class="form-control" type="text" [(ngModel)]="account_holder_name"
+                                    name="account_holder_name" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="firstname">Account Number :</label>
+                                <input myNumberOnly class="form-control" type="text" [(ngModel)]="account_number"
+                                    name="account_number" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="firstname">Bank Name :</label>
+                                <input class="form-control" type="text" [(ngModel)]="bank_name" name="bank_name" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="firstname">Branch Name :</label>
+                                <input class="form-control" type="text" [(ngModel)]="bank_branch" name="bank_branch" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="firstname">IBAN Code :</label>
+                                <input myNumberOnly class="form-control" type="text" [(ngModel)]="ifsc_code"
+                                    name="ifsc_code" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="firstname">Commision :</label>
+                                <input myNumberOnly class="form-control" type="text" [(ngModel)]="commission_to_admin"
+                                    name="commission_to_admin" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="firstname">Open Time :</label>
+                                <!-- <kendo-timepicker [(value)]="from_date" name="from_date"
+                                                [(ngModel)]="from_date">
+                                            </kendo-timepicker> -->
+                                <input type="time" class="form-control" name="Enter open Time" [(ngModel)]="from_date"
+                                    (change)="valuechange($event)">
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="firstname1">To Date :</label>
+                                            <kendo-timepicker [(value)]="to_date" [min]="from_date"
+                                                [ngModel]="to_date">
+                                            </kendo-timepicker>
+                                        </div>
+                                    </div> -->
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="firstname">&nbsp;&nbsp;Close Time :</label>
+                                <!-- <kendo-timepicker [min]="from_date" [(value)]="to_date"
+                                                                        [(ngModel)]="to_date" name="to_date">
+                                                                    </kendo-timepicker> -->
+                                <input type="time" class="form-control" name="Enter Close Time" [(ngModel)]="to_date"
+                                    name="to_date" (change)="close()">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="firstname">VAT Number :</label>
+                                <input myNumberOnly class="form-control" type="text" [(ngModel)]="vat_number"
+                                    name="ifsc_code" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="firstname">CR Number :</label>
+                                <input myNumberOnly class="form-control" type="text" [(ngModel)]="cr_number"
+                                    name="ifsc_code" />
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="firstname1">To Date :</label>
+                                                <kendo-timepicker [(value)]="to_date" [min]="from_date"
+                                                    [ngModel]="to_date">
+                                                </kendo-timepicker>
+                                            </div>
+                                        </div> -->
+
+                    </div>
+                    <!-- <div class="row">
+                        
+                    </div> -->
+                    <div class="form-group">
+                        <label for="firstname" name="prodName">Wholeseller Images :
+                        </label>
+                        <!-- <input class="form-control" type='file' (change)="onSelectFile($event,i)" multiple><br/>
+                                    <div *ngIf="!removeImg">
+                                        <img *ngFor='let url of skuValues.sku_images' [src]="url.sku_image" height="100" (click)="updateImage(url.id,url.sku_id,url.sku_image)"
+                                            [ngClass]="{'selected':selectedImage==url.id}" width="100" style="margin-right: 2%;border: 1px solid;margin-bottom:5%">
+
+                                        <div *ngFor='let url of skuValues'>
+                                            <img *ngFor="let imgUrl of url.sku_images;let i =index" [src]="imgUrl.sku_image" height="100" width="100" style="margin-right: 2%;border: 1px solid;margin-bottom:5%"
+                                                (click)="updateImage(imgUrl.id)" [ngClass]="{'selected':selectedImage==imgUrl.id}">
+                                        </div>
+                                    </div> -->
+                        <input class="form-control" type="file" multiple (change)="detectFiles($event)">
+                        <div>
+                            <img *ngFor="let url of urls" [src]="url" class="rounded mb-3" width="180">
+                        </div>
+                    </div>
+                    <p>Please select 4 images</p>
+                    <!-- <div class="form-group col-sm-3">
+
+                            <label for="city">First Name</label>
+                            <input type="text" class="form-control" id="city" placeholder="Enter First Name"
+                                [(ngModel)]="first_name" name="first_name">
+
+                        </div>
+
+                        <div class="form-group col-sm-3">
+                            <label for="city">Last Name</label>
+                            <input type="text" class="form-control" id="city" placeholder="Enter Last Name"
+                                [(ngModel)]="last_name" name="last_name">
+                        </div>
+
+
+                        <div class="form-group col-sm-3">
+                            <label for="city">Mobile Number</label>
+                            <input type="text" class="form-control" id="city" placeholder="Enter Mobile Number"
+                                [(ngModel)]="mobile" name="mobile">
+                        </div>
+
+                        <div class="form-group col-sm-3">
+                            <label for="city">Email</label>
+                            <input type="email" class="form-control" id="city" placeholder="Enter email"
+                                [(ngModel)]="email" name="email">
+                        </div>
+                        <div class="form-group col-sm-3">
+
+                            <label for="city">Password</label>
+                            <input type="password" class="form-control" id="city" placeholder="Enter Password"
+                                [(ngModel)]="password" name="password">
+
+                        </div>
+
+                        <div class="form-group col-sm-3">
+                            <label for="city">Business Name</label>
+                            <input type="text" class="form-control" id="city" placeholder="Enter Business Name"
+                                [(ngModel)]="bussiness_name" name="business_name">
+                        </div>
+
+
+                        <div class="form-group col-sm-3">
+                            <label for="city">Business House Number</label>
+                            <input type="text" class="form-control" id="city" placeholder="Enter Business House Number"
+                                [(ngModel)]="bussiness_houseno" name="business_houseno">
+                        </div>
+
+                        <div class="form-group col-sm-3">
+                            <label for="city">Business Address</label>
+                            <input type="text" class="form-control" id="city" placeholder="Enter Business Address"
+                                [(ngModel)]="bussiness_address" name="business_address">
+                        </div>
+                        <div class="form-group col-sm-3">
+
+                            <label for="city">Business Country</label>
+                            <input type="password" class="form-control" id="city" placeholder="Enter Business Country"
+                                [(ngModel)]="bussiness_country" name="business_country">
+
+                        </div>
+
+                        <div class="form-group col-sm-3">
+                            <label for="city">Business Area</label>
+                            <input type="text" class="form-control" id="city" placeholder="Enter Business Area"
+                                [(ngModel)]="bussiness_area" name="bussiness_area">
+                        </div>
+
+
+                        <div class="form-group col-sm-3">
+                            <label for="city">Business City</label>
+                            <input type="text" class="form-control" id="city" placeholder="Enter Business City"
+                                [(ngModel)]="bussiness_city" name="bussiness_city">
+                        </div>
+
+                        <div class="form-group col-sm-3">
+                            <label for="city">Business Pincode</label>
+                            <input type="text" class="form-control" id="city" placeholder="Enter Business Pincode"
+                                [(ngModel)]="bussiness_pincode" name="bussiness_pincode">
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <label for="city">Commission</label>
+                            <input type="text" class="form-control" id="city" placeholder="Enter Commission"
+                                [(ngModel)]="commission_to_admin" name="commission_to_admin">
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="firstname">Open Time :</label>
+                                <input type="time" class="form-control" name="Enter open Time" [(ngModel)]="mymodel"
+                                    (change)="valuechange($event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="firstname">&nbsp;&nbsp;Close Time :</label>
+                                <input type="time" class="form-control" name="Enter Close Time" (change)="close()">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3   ">
+                        <div class="col-md-12">
+                            <label class="col-form-label" for="file-input">Wholesaler Images</label>
+
+                            <input type="file" id="file-input" name="file-input" multiple
+                                (change)="detectFiles($event)">
+                            Please choose 4 images
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-success" *ngIf="!sellerId" (click)="addWholeSeller()">Add
+                                Wholeseller</button>
+                            <button class="btn btn-success" *ngIf="sellerId" (click)="updateWholeSeller()">Update
+                                Wholeseller</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

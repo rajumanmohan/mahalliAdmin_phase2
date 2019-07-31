@@ -1,0 +1,75 @@
+<div class="animated fadeIn">
+
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="card pt-5 mt-5">
+                <div class="container">
+                    <div class="row align-items-center mb-3">
+                        <div class=" col-3 mb-3 mb-xl-0">
+                            <button type="button" class="btn btn-block btn-primary" (click)="getGroceryCats()"
+                                [ngStyle]="{'background-color':type == 'grocery' ? '#1985ac'  :  'white','border':type == 'grocery' ? ''  :  '1px solid #1985ac','color':type == 'grocery' ? 'white'  :  '#000000'}">
+                                Grocery</button>
+                        </div>
+                        <div class="col-3 col-md-3  mb-3 mb-xl-0">
+                            <button type="button" class="btn btn-block btn-secondary" (click)="getEcomCats()"
+                                [ngStyle]="{'background-color':type == 'ecommers' ? '#1985ac'  :  'white','border':type == 'ecommers' ? ''  :  '1px solid #1985ac','color':type == 'ecommers' ? 'white'  :  '#000000'}">
+                                Ecommerce</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h1>Category</h1>
+                        </div>
+                        <div class="col-lg-6 text-right">
+                            <button type="button" class="btn  btn-primary" (click)="addCat('','')">Add
+                                Category</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="ccnumber" placeholder="Search"
+                                    [(ngModel)]="filter">
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.row-->
+                </div>
+
+                <div class="card-body table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>S No</th>
+                                <th (click)="sort('category_name')"> Category Name <span><i class="fa fa-sort"
+                                            aria-hidden="true"></i></span></th>
+                                <th>Category Image</th>
+                                <th>Description</th>
+                                <th> Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                *ngFor="let cat of category|orderBy: key : reverse| paginate: { itemsPerPage: 10, currentPage: p }|filter:filter;let i = index">
+                                <td>{{cat.indexValue +1}}</td>
+                                <td>{{cat.category_name}}</td>
+                                <td><img alt="cat.image_url" class="img-avatar" [src]="cat.image_url"></td>
+                                <td>{{cat.description}}</td>
+                                <td class="edit-buttons">
+                                    <a><i (click)=" addCat(cat.category_name,cat.id,cat.image_url,cat.description)"
+                                            class="fa fa-pencil-square-o fa-lg "></i></a>
+                                    <a><i class="fa fa-trash fa-lg" aria-hidden="true"
+                                            (click)="deleteCat(cat.id) "></i></a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <pagination-controls (pageChange)="p = $event" style="float:right; margin-top:15px;">
+                    </pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

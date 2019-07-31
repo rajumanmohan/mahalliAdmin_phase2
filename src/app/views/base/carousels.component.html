@@ -1,0 +1,76 @@
+<div class="animated fadeIn">
+
+  <div class="row">
+
+    <div class="col-lg-12">
+      <div class="card pt-5 mt-5">
+        <div class="container">
+          <div class="row align-items-center mb-3">
+            <div class="col-md-3 mb-3  mb-xl-0">
+              <button type="button" class="btn btn-block btn-primary" (click)="getSubCategory()"
+                [ngStyle]="{'background-color':actionType == 'grocery' ? '#1985ac'  :  'white','border':actionType == 'grocery' ? ''  :  '1px solid #1985ac','color':actionType == 'grocery' ? 'white'  :  '#000000 '}">
+                Grocery</button>
+            </div>
+            <div class="col-md-3  mb-3 mb-xl-0">
+              <button type="button" class="btn btn-block btn-secondary" (click)="getEcomSubCategory()"
+                [ngStyle]="{'background-color':actionType == 'ecom' ? '#1985ac'  :  'white','border':actionType == 'ecom' ? ''  :  '1px solid #1985ac','color':actionType == 'ecom' ? 'white'  :  '#000000 '}">
+                Ecommerce</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <h1>Sub Category </h1>
+            </div>
+            <div class="col-lg-6 text-right">
+              <button type="button" class="btn  btn-primary mb-3" (click)="addSub('','','','','addsub')">Add Sub
+                Category</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <input type="text" class="form-control" id="ccnumber" placeholder="Search" [(ngModel)]="filter">
+              </div>
+            </div>
+          </div>
+          <!--/.row-->
+        </div>
+
+        <div class="card-body table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>S No</th>
+                <th (click)="sort('category_name')">Category Name <span><i class="fa fa-sort"
+                      aria-hidden="true"></i></span></th>
+                <th (click)="sort('sub_category_name')">Sub Category Name <span><i class="fa fa-sort"
+                      aria-hidden="true"></i></span></th>
+                <th>Sub Category Image</th>
+                <th>Description</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let subCat of subCategory|orderBy: key : reverse| paginate: { itemsPerPage: 10, currentPage: p }|filter:filter;let i = index">
+                <td>{{subCat.indexValue +1}}</td>
+                <td>{{subCat.category_name}}</td>
+                <td>{{subCat.sub_category_name}}</td>
+                <td><img alt="admin@bootstrapmaster.com" class="img-avatar" [src]="subCat.image "></td>
+                <td>{{subCat.description}}</td>
+                <td class="edit-buttons">
+                  <a> <i class="fa fa-pencil-square-o fa-lg "
+                      (click)="addSub(subCat.id,subCat.category_name,subCat.sub_category_name,subCat.category_id,'editsub',subCat.image,subCat.description)"></i></a>
+                  <a><i class="fa fa-trash fa-lg" aria-hidden="true" (click)="deleteSubCat(subCat.id)"></i></a>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+          <pagination-controls (pageChange)="p = $event" style="float:right; margin-top:15px;">
+          </pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

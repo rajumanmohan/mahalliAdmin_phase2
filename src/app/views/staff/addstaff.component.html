@@ -1,0 +1,183 @@
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="icon-note"></i><strong>Add Staff</strong> - Form
+                <button (click)="backtostaff()" class="btn  btn-primary text-right float-right ">Back</button>
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+                    <form>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="form-group col-sm-3">
+                                    <label for="city"> Name</label>
+                                    <input type="text" class="form-control" id="city" placeholder="Enter First Name"
+                                        [(ngModel)]="staffData.name" name="name">
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <label for="city">City</label>
+                                    <input type="text" class="form-control" id="city" placeholder="Enter City"
+                                        [(ngModel)]="staffData.select_city" name="select_city">
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <label for="city">Area</label>
+                                    <input type="text" class="form-control" id="city" placeholder="Enter Area"
+                                        [(ngModel)]="staffData.area" name="area">
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <label for="city">Address</label>
+                                    <input type="text" class="form-control" id="city" placeholder="Enter Address"
+                                        [(ngModel)]="staffData.address" name="address">
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <label for="city">Zipcode</label>
+                                    <input type="text" class="form-control" id="city" placeholder="Enter Zipcode"
+                                        [(ngModel)]="staffData.zip_code" name="zip_code">
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <label for="city">Mobile Number</label>
+                                    <input type="text" class="form-control" id="city" placeholder="Enter Mobile Number"
+                                        [(ngModel)]="staffData.mobile_number" name="mobile_number">
+                                </div>
+
+
+                                <div class="form-group col-sm-3">
+                                    <label for="city">Email</label>
+                                    <input type="email" class="form-control" id="city" placeholder="Enter email"
+                                        [(ngModel)]="staffData.email" name="email">
+                                </div>
+
+
+                                <div class="form-group col-sm-3">
+                                    <label for="city">Password</label>
+                                    <input type="password" class="form-control" id="city" placeholder="Enter password"
+                                        [(ngModel)]="staffData.password" name="password">
+                                </div>
+
+                                <div class="form-group col-sm-3">
+                                    <label for="city">Role</label>
+                                    <input type="email" class="form-control" id="city" placeholder="Enter Role"
+                                        [(ngModel)]="staffData.role_name" name="role_name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Permissions</strong>
+                            <div class="row">
+                                <div class="col-md-6 mt-3">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck1"
+                                            [checked]="staffData.Categories === 'true'" data-md-icheck
+                                            (change)="toggleVisibility($event)">
+                                        <label class="custom-control-label" for="customCheck1">Categories</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-3">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck12 "
+                                            [checked]="staffData.SubCategory === 'true'" data-md-icheck
+                                            (change)="toggleVisibility1($event)">
+                                        <label class="custom-control-label" for="customCheck12">Sub
+                                            Categories</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-3">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck13"
+                                            [checked]="staffData.Coupon === 'true'" data-md-icheck
+                                            (change)="toggleVisibility2($event)">
+                                        <label class="custom-control-label" for="customCheck13">Coupon
+                                            Management</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-3">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck14"
+                                            [checked]="staffData.Prodcts === 'true'" data-md-icheck
+                                            (change)="toggleVisibility3($event)">
+                                        <label class="custom-control-label" for="customCheck14">Products</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-3">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck15"
+                                            [checked]="staffData.Banners === 'true'" data-md-icheck
+                                            (change)="toggleVisibility4($event)">
+                                        <label class="custom-control-label" for="customCheck15">Banners</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-3">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck16"
+                                            [checked]="staffData.UserList === 'true'" data-md-icheck
+                                            (change)="toggleVisibility5($event)">
+                                        <label class="custom-control-label" for="customCheck16">User
+                                            List</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-3">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck17"
+                                            [checked]="staffData.notifications === 'true'" data-md-icheck
+                                            (change)="toggleVisibility12($event)">
+                                        <label class="custom-control-label" for="customCheck17">Notifications</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-3">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck18"
+                                            [checked]="staffData.WholeList === 'true'" data-md-icheck
+                                            (change)="toggleVisibility7($event)">
+                                        <label class="custom-control-label" for="customCheck18">Wholeseller
+                                            List</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-3">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck19"
+                                            [checked]="staffData.vendorOrders === 'true'" data-md-icheck
+                                            (change)="toggleVisibility8($event)">
+                                        <label class="custom-control-label" for="customCheck19">Vendor
+                                            Orders</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-3">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck20"
+                                            [checked]="staffData.userOrders === 'true'" data-md-icheck
+                                            (change)="toggleVisibility9($event)">
+                                        <label class="custom-control-label" for="customCheck20">User
+                                            Orders</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-3">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck21"
+                                            [checked]="staffData.Content === 'true'" data-md-icheck
+                                            (change)="toggleVisibility10($event)">
+                                        <label class="custom-control-label" for="customCheck21">Content
+                                            Management</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <button class="btn btn-success" *ngIf="!Id" (click)="addStaff()">Add Staff</button>
+                        <button class="btn btn-success" *ngIf="Id" (click)="updatestaffData()">Update Staff</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

@@ -1,0 +1,617 @@
+<div class="animated fadeIn">
+    <div class="row mt-5">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Add Wholeseller Product</strong>
+                    <small>Form</small>
+                    <button (click)="backtowholeseller()" class="btn  btn-primary text-right float-right ">Back</button>
+                </div>
+                <div class="container">
+                    <div class="row align-items-center mt-3 module-buttons" *ngIf="CatDetails">
+                        <div class=" col-md-3 mb-3 mb-xl-0">
+                            <button type="button" class="btn btn-block btn-primary"  (click)="getGroceryProds()"> Grocery</button>
+                        </div>
+                        <div class=" col-md-3   mb-3 mb-xl-0">
+                            <button type="button" class="btn btn-block btn-secondary" (click)="getEcomProds()"> Ecommerce</button>
+                        </div>
+                        <div class="col-lg-3 text-right">
+                            <!-- <button type="button" class="btn  btn-primary" (click)="addbanner()">Export to Excel
+                                Sheet</button> -->
+                        </div>
+                        <!-- <div class="col-lg-3 text-right">
+                            <button type="button" class="btn  btn-primary" (click)="addproduct()">Add Product</button>
+                        </div> -->
+                    </div>
+                </div>
+              
+                <div class="card-body">
+                    <form class="cmxform" id="signupForm" method="get" action="#" #formCtrl="ngForm">
+                            <div *ngIf="showAddProductsForm1">
+                                    <div class="row">
+                                            <div class="form-group col-sm-3">
+                    
+                                                <label for="city">Category</label>
+                                                <select required class="form-control border-primary"
+                                                        readonly="readonly" disabled="disabled"
+                                                        id="exampleSelectPrimary" [(ngModel)]="formdata.categoryName"
+                                                        name="categoryName" (change)="changeCat($event.target.value)">
+                                                        <option value="" disabled>Select Category</option>
+                                                        <option *ngFor="let cat of category"
+                                                            value="{{cat.category_name}}">
+                                                            {{cat.category_name}}</option>
+                                                    </select>
+                                            </div>
+                    
+                                            <div class="form-group col-sm-3">
+                                                <label for="city">Sub Category</label>
+                                                <select class="form-control border-primary" readonly="readonly"
+                                                disabled="disabled" id="exampleSelectPrimary"
+                                                (change)="changeSub($event.target.value)"
+                                                [(ngModel)]="formdata.subcategoryName" name="subcategoryName">
+                                                <option value="" disabled>Select Sub Category</option>
+                                                <option *ngFor="let subCat of subArr"
+                                                    value="{{subCat.sub_category_name}}">
+                                                    {{subCat.sub_category_name}}</option>
+                                            </select>
+                                            </div>
+                    
+                    
+                                            <div class="form-group col-sm-3">
+                                                    <label for="city">Sub SubCategory</label>
+                                                    <!-- <select class="form-control border-primary" readonly="readonly"
+                                                    disabled="disabled" id="exampleSelectPrimary"
+                                                    (change)="changeSub($event.target.value)"
+                                                    [(ngModel)]="formdata.subcategoryName" name="subcategoryName">
+                                                    <option value="" disabled>Select Sub Category</option>
+                                                    <option *ngFor="let subCat of subArr"
+                                                        value="{{subCat.sub_category_name}}">
+                                                        {{subCat.sub_category_name}}</option>
+                                                </select> -->
+                                                <select class="form-control border-primary" id="exampleSelectPrimary"
+                                                [(ngModel)]="formdata.subsubcategoryName" readonly="readonly"
+                                                disabled="disabled"  name="subsubcategoryName"
+                                                (change)="changeSubSub($event.target.value)">
+                                                <option value="" disabled>Select Sub SubCategory</option>
+                                                <option *ngFor="let subsub of subSubdata" value="{{subsub.subsubcat_name}}"
+                                                    ngControl="formdata.subsubcategoryName" required>
+                                                    {{subsub.subsubcat_name}}</option>
+                                            </select>
+                                                </div>
+                    
+                                            <div class="form-group col-sm-3">
+                                                    <label for="firstname" name="proName">Product Name :</label>
+                                                    <!-- <select class="form-control border-primary" id="exampleSelectPrimary"
+                                                    [(ngModel)]="formdata.proName" name="proName"
+                                                    (change)="changeProd($event.target.value)" readonly="readonly"
+                                                    disabled="disabled" >
+                                                    <option value="" disabled>Select Product Name</option>
+                                                    <option *ngFor="let prod of prodName" value="{{prod.id}}"
+                                                        ngControl="formdata.product_name" required>
+                                                        {{prod.product_name}}</option>
+                                                </select> -->
+                                                <input class="form-control" [(ngModel)]="formdata.proName" name="proName" readonly="readonly"/>
+                                            </div>
+                                            <div class="form-group col-sm-3">
+                    
+                                                <label for="city">Brand</label>
+                                              <input class="form-control" [(ngModel)]="formdata.brand" name="brand"/>
+                    
+                                            </div>
+                    
+                                            <div class="form-group col-sm-3" *ngIf="showGro">
+                                                <label for="city">Country</label>
+                                                <input type="text" class="form-control" id="city" placeholder="Enter Country" [(ngModel)]="country" name="country">
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="row" *ngIf="showGro">
+                                                <div class="col-md-6">
+                                                    <div class="custom-control custom-checkbox ">
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck1"  [checked]="organic">
+                                                        <label class="custom-control-label" for="customCheck1" (change)="toggleVisibility($event)">Is it organic?</label>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="col-md-6">
+                                                    <div class="custom-control custom-checkbox col-md-6">
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck12">
+                                                        <label class="custom-control-label" for="customCheck12">Mobile Banner</label>
+                                                    </div>
+                                                </div> -->
+                                            </div>
+                                        <div class="row">
+                                                <div class="form-group col-sm-6">
+                                                    <label for="textarea-input">Description</label>
+                                                    <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control" [innerHTML]="textarea" [(ngModel)]="textarea"
+                                                    name="textarea"
+                                                        placeholder="Description.."></textarea>
+                                                </div>
+                                            </div>
+                                        <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group" style="margin-top:20px;margin-bottom:25px;">
+                                                        <label for="firstname">Add sku:
+                                                            <button class="btn btn-primary" (click)=sku()>+</button>
+                                                        </label>
+                                                    </div>
+                                                    <div class="" *ngFor="let skuValues of skusData;let i= index"
+                                                        style="margin-bottom:30px;border: solid 2px #eb9809; padding: 25px">
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                <label for="firstname">Size :</label>
+                                                                <div class="form-group">
+                                                                    <input id="category" myNumberOnly class="form-control"
+                                                                        type="text" placeholder="Size"
+                                                                        [(ngModel)]="skuValues.size" name="skuValues.size"
+                                                                        [ngModelOptions]="{standalone:true}"
+                                                                        ngControl="skuValues.size" required name="size"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <label for="firstname">Units :</label>
+                                                                <div class="form-group">
+                                                                    <input id="category" class="form-control" type="text"
+                                                                        placeholder="Units" [(ngModel)]="skuValues.units"
+                                                                        [ngModelOptions]="{standalone:true}" name="units"
+                                                                        ngControl="skuValues.units" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <label for="firstname">Quantity :</label>
+                                                                <div class="form-group">
+                                                                    <input id="category" class="form-control"
+                                                                        onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                                        min='0' max='10' type="number"
+                                                                        placeholder="Quantity value should be 1"
+                                                                        [(ngModel)]="skuValues.quantity"
+                                                                        [ngModelOptions]="{standalone:true}"
+                                                                        ngControl="skuValues.quantity" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <label for="firstname">Actual Price :</label>
+                                                                <div class="form-group">
+                                                                    <input id="category" class="form-control" type="text"
+                                                                        placeholder="Actual Price"
+                                                                        [(ngModel)]="skuValues.actual_price"
+                                                                        [ngModelOptions]="{standalone:true}"
+                                                                        ngControl="skuValues.actual_price" required name="actual_price"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                <label for="firstname">Selling Price :</label>
+                                                                <div class="form-group">
+                                                                    <input id="category" class="form-control" type="text"
+                                                                        placeholder="Selling Price"
+                                                                        [(ngModel)]="skuValues.selling_price"
+                                                                        [ngModelOptions]="{standalone:true}"
+                                                                        ngControl="skuValues.selling_price" required name="selling_price"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <label for="firstname">Discount :</label>
+                                                                <div class="form-group">
+                                                                    <input id="category" class="form-control" type="text"
+                                                                        placeholder="Discount Price"
+                                                                        [(ngModel)]="skuValues.discount"
+                                                                        [ngModelOptions]="{standalone:true}"
+                                                                        ngControl="skuValues.discount" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <label for="firstname">Stock :</label>
+                                                                <div class="form-group">
+                                                                    <input id="category" class="form-control"
+                                                                        onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                                        type="text" placeholder="Stock" min='0' max='20'
+                                                                        type="number" [(ngModel)]="skuValues.stock"
+                                                                        [ngModelOptions]="{standalone:true}"
+                                                                        ngControl="skuValues.stock" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3" *ngIf="showecom">
+                                                                <label for="firstname">Color :</label>
+                                                                <div class="form-group">
+                                                                    <input id="category" class="form-control" type="text"
+                                                                        placeholder="color" [(ngModel)]="skuValues.color"
+                                                                        [ngModelOptions]="{standalone:true}"
+                                                                        ngControl="skuValues.color" required />
+                                                                </div>
+                                                            </div>
+                                                            <!-- <div class="col-sm-3"></div> -->
+                                                        </div>
+                                                      
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label for="firstname" name="prodName">Sku Images :
+                                                                    </label>
+                                                                    <input class="form-control" type='file'
+                                                                        (change)="onSelectFile1($event,i,skuValues.skid)"
+                                                                        multiple><br />
+                                                                    <div *ngIf="!removeImg">
+                                                                        <img *ngFor='let url of urls1' [src]="url.skuImg"
+                                                                            height="100" (click)="updateImage(url.sku_image_id)"
+                                                                            [ngClass]="{'selected':selectedImage==url.id}"
+                                                                            width="100"
+                                                                            style="margin-right: 2%;border: 1px solid;margin-bottom:5%">
+        
+                                                                        <div *ngFor='let url of skuValues'>
+                                                                            fdfdf
+                                                                            <img *ngFor="let imgUrl of url.sku_images;let i =index"
+                                                                                [src]="imgUrl.sku_image" height="100"
+                                                                                width="100"
+                                                                                style="margin-right: 2%;border: 1px solid;margin-bottom:5%"
+                                                                                (click)="updateImage(imgUrl.id)"
+                                                                                [ngClass]="{'selected':selectedImage==imgUrl.id}">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div *ngFor='let url of skuValues'>
+                                                                            fdfdf
+                                                                            <img *ngFor="let imgUrl of url.sku_images;let i =index"
+                                                                                [src]="imgUrl.sku_image" height="100"
+                                                                                width="100"
+                                                                                style="margin-right: 2%;border: 1px solid;margin-bottom:5%"
+                                                                                (click)="updateImage(imgUrl.id)"
+                                                                                [ngClass]="{'selected':selectedImage==imgUrl.id}">
+                                                                        </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label for="exampleInputEmail1">Quality Image</label>
+                                                                    <input class="form-control" type="file" accept="image1/*"
+                                                                        (change)="changeListener($event,i)">
+                                                                    <div>
+                                                                        <img [src]="skuValues.image1" alt="" width="100"
+                                                                            height="100"
+                                                                            style="border: solid 1px;margin-top: 2%;">
+                                                                    </div>
+                                                                </div>
+                                                            </div> -->
+                                                            <!-- <div class="col-sm-3"> -->
+                                                            <!-- <div class="form-group" style="margin-left: 10px;">
+                                                                    <h6 for="exampleInputEmail1" style="font-style:bold">Select Type
+                                                                        of Product :</h6>
+                                                                    <div class="margin" *ngFor="let item of radio">
+                                                                        <label>
+                                                                            <input type="checkbox" name="options" value="{{item.name}}" [checked]="radio.indexOf(item) == 0" [disabled]="radio.indexOf(item) == 0"
+                                                                                (click)="checkboxVeg($event.target.value,item.id,item,i)"
+                                                                            />                                                                    &nbsp;{{item.name}}
+                                                                           
+                                                                        </label>
+                                                                    </div>
+                                                                </div> -->
+                                                            <!-- </div> -->
+                                                            <!-- <div class="col-sm-3">
+                                                                <div class="form-group" style="
+                                                                                margin-left: 13px;">
+                                                                    <h6>Select Delivery Options</h6>
+                                                                    <div class="margin" *ngFor="let item of list">
+                                                                        <label>
+                                                                            <input type="checkbox" name="options" value="{{item.title}}" [checked]="list.indexOf(item) == 0" [disabled]="list.indexOf(item) == 0"
+                                                                                (click)="checkbox($event.target.checked,item.id,item,i)"
+                                                                            />                                                                    &nbsp;{{item.title}}
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div> -->
+                                                        </div>
+                                                        <div class="row" hidden>
+                                                            <!-- <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label for="firstname">Specifications : </label>
+                                                                    <br />
+                                                                    <textarea class="form-control" rows="4" cols="50"
+                                                                        style="width: 100%;border: 1px solid;"
+                                                                        [(ngModel)]="skuValues.specification"
+                                                                        [ngModelOptions]="{standalone:true}"
+                                                                        name="specification">
+                                                                                   </textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label for="firstname">Terms & Conditions</label>
+                                                                    <br />
+                                                                    <textarea class="form-control" rows="4" cols="50"
+                                                                        style="width: 100%;border: 1px solid;"
+                                                                        [(ngModel)]="skuValues.termscnd"
+                                                                        [ngModelOptions]="{standalone:true}" name="terms">
+                                                                                   </textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+        
+                                                            </div> -->
+                                                        </div>
+                                                        <br />
+                                                        <div>
+                                                            <div class="form-group">
+                                                                <button type="submit" class="btn btn-primary"
+                                                                    (click)="deleteSku(i,skuValues.skid,skuValues.product_id)">Delete
+                                                                    Sku
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                       
+        
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary vendor-button"
+                                                    (click)="insertProduct()" 
+                                                    [disabled]="!formCtrl.form.valid" *ngIf="!sellerId">Add
+                                                    Product
+                                                </button>
+                                                <button type="submit" class="btn btn-primary vendor-button"
+                                                (click)="updateProduct()" *ngIf="sellerId" 
+                                                [disabled]="!formCtrl.form.valid">Update
+                                                Product
+                                            </button>
+                                                </div>
+                                            </div>
+                                        <!-- <div class="row">
+                                            <div class="col-md-12">
+                                                <button class="btn btn-success" (click)="addsku()">Add SKU</button>
+                                            </div>
+                                        </div>
+                                        <div class="row sku-details" *ngIf="showSkuDetails">
+                                            <div class="col-md-12">
+                                                <div class="row mt-3">
+                                                    <div class="form-group col-sm-3">
+                    
+                                                        <label for="city">Size</label>
+                                                        <input type="text" class="form-control" id="city" placeholder="Enter Size">
+                    
+                                                    </div>
+                    
+                                                    <div class="form-group col-sm-3">
+                                                        <label for="city">Units</label>
+                                                        <input type="text" class="form-control" id="city" placeholder="Enter Units">
+                    
+                                                    </div>
+                    
+                    
+                                                    <div class="form-group col-sm-3">
+                                                        <label for="city">Quantity</label>
+                                                        <input type="text" class="form-control" id="city" placeholder="Enter Quantity">
+                                                    </div>
+                    
+                                                    <div class="form-group col-sm-3">
+                                                        <label for="city">Actual Price</label>
+                                                        <input type="text" class="form-control" id="city" placeholder="Enter Actual Price">
+                                                    </div>
+                                                    <div class="form-group col-sm-3">
+                                                        <label for="city">Selling Price</label>
+                                                        <input type="text" class="form-control" id="city" placeholder="Enter Selling Price">
+                                                    </div>
+                                                    <div class="form-group col-sm-3">
+                                                        <label for="city">Discount Price</label>
+                                                        <input type="text" class="form-control" id="city"
+                                                            placeholder="Enter Discount Price">
+                                                    </div>
+                                                    <div class="form-group col-sm-3">
+                                                        <label for="city">Stock</label>
+                                                        <input type="text" class="form-control" id="city" placeholder="Enter Stock">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label class="c" for="file-input">Sku Image</label>
+                                                        <input type="file" id="file-input" name="file-input">
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-3">
+                                                    <div class="form-group col-sm-4">
+                    
+                                                        <label for="textarea-input">Product Details</label>
+                                                        <textarea id="textarea-input" name="textarea-input" rows="3" class="form-control"
+                                                            placeholder="Product Details.."></textarea>
+                    
+                                                    </div>
+                    
+                                                    <div class="form-group col-sm-4">
+                                                        <label for="textarea-input">Specifications</label>
+                                                        <textarea id="textarea-input" name="textarea-input" rows="3" class="form-control"
+                                                            placeholder="Specifications.."></textarea>
+                    
+                                                    </div>
+                    
+                    
+                                                    <div class="form-group col-sm-4">
+                                                        <label for="textarea-input">Terms & Conditions</label>
+                                                        <textarea id="textarea-input" name="textarea-input" rows="3" class="form-control"
+                                                            placeholder="Terms & Conditions.."></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <h5>FAQ :</h5>
+                                                    </div>
+                    
+                                                    <div class="form-group col-sm-4">
+                                                        <label for="textarea-input">Question</label>
+                                                        <textarea id="textarea-input" name="textarea-input" rows="3" class="form-control"
+                                                            placeholder="Question.."></textarea>
+                                                    </div>
+                                                    <div class="form-group col-sm-4">
+                                                        <label for="textarea-input">Answer</label>
+                                                        <textarea id="textarea-input" name="textarea-input" rows="3" class="form-control"
+                                                            placeholder="Answer.."></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <button class="btn btn-success" (click)="deletesku()">Delete SKU</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>  -->
+                            </div>
+                    </form>
+                  
+                    
+                    <div class="row" *ngIf="CatDetails">
+                            <div class="col-sm-3">
+                                <div class="cust-adprod">
+                                </div>
+                                <ul class="fruits-list" *ngFor="let item of category">
+                                    <li (click)="showSubcats(item.id)" (mouseenter)="showSubcats(item.id,item.category_name)">
+                                        <p class="cat-hover">{{item.category_name}} <i _ngcontent-c1=""
+                                                _ngcontent-c4="" class="fa
+                                                fa-angle-right sub-cat"></i> </p>
+
+                                    </li>
+                                    <!-- <li>Foodgrains, Oil & Masala</li>
+                                        <li>Bakery cakes & Dairy</li>
+                                        <li>Bevarages</li>
+                                        <li>Buety & Hygeine</li>
+                                        <li>Cleaning & Household</li>
+                                        <li>Kitchen, Garden & pets</li>
+                                        <li>Egg, Meat & fish</li>
+                                        <li>Baby Care</li> -->
+                                </ul>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="cust-adprod">
+                                    <!-- <h6>Fresh Vegatables &nbsp;&nbsp;&nbsp;&nbsp; ></h6> -->
+                                </div>
+                                <ul class="fruits-list" *ngFor="let sub of subArr">
+                                    <li (click)="getsubProd(sub.id)"
+                                        (mouseenter)="changeSub1(sub.sub_category_name)">
+                                        <p class="cat-hover">{{sub.sub_category_name}}<i _ngcontent-c1=""
+                                                _ngcontent-c4="" class="fa
+                                            fa-angle-right sub-cat"></i> </p>
+                                    </li>
+                                    <!-- <li>Foodgrains, Oil & Masala</li>
+                                        <li>Bakery cakes & Dairy</li>
+                                        <li>Bevarages</li>
+                                        <li>Buety & Hygeine</li>
+                                        <li>Cleaning & Household</li>
+                                        <li>Kitchen, Garden & pets</li>
+                                        <li>Egg, Meat & fish</li>
+                                        <li>Baby Care</li> -->
+                                </ul>
+                            </div>
+                            <div class="col-sm-3">
+                                <ul class="fruits-list" *ngFor="let subsub of subSubdata">
+                                    <li (click)="getsubsubProd(subsub.id,subsub.subsubcat_name)">
+                                        <p class="cat-hover">{{subsub.subsubcat_name}}</p>
+                                    </li>
+                                    <!-- <li>Bakery cakes & Dairy</li>
+                                    <li>Bevarages</li>
+                                    <li>Buety & Hygeine</li>
+                                    <li>Cleaning & Household</li>
+                                    <li>Kitchen, Garden & pets</li>
+                                    <li>Egg, Meat & fish</li>
+                                    <li>Baby Care</li> -->
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row resp-table" *ngIf="tableData">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="row justify-content-between">
+                                        <div class="col-lg-4 col-md-5 col-sm-5">
+                                            <h3 class="addprod-clr">Add Products</h3>
+                                        </div>
+                                        <!-- <div class="col-lg-4 col-md-5 col-sm-5">
+                                            <form class="form-inline form-rt">
+                                                <i class="fa fa-search item-search" aria-hidden="true"></i>
+                                                <input class="form-control mr-sm-2 placeholder-padding" type="search"
+                                                    placeholder="Search by item name" aria-label="Search"
+                                                    [(ngModel)]="filter" name="filter1">
+                                            </form>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <div class="table-responsive my-4">
+                                    <table class="table cust-table">
+                                        <thead class="thead-color">
+                                            <tr>
+                                                <th scope="col" >S.No</th>
+                                                <th scope="col" >Item </th>
+                                                <th scope="col" (click)="sort('product_name')">Item Name <span><i class="fa fa-sort"
+                                                    aria-hidden="true"></i></span></th>
+                                                <th scope="col" (click)="sort('brand')">Brand <span><i class="fa fa-sort"
+                                                    aria-hidden="true"></i></span></th>
+                                                <th scope="col" class="text-center">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="cust-tbody">
+                                            <tr *ngFor="let reqProds of reqProds|orderBy: key : reverse| paginate: { itemsPerPage: 10, currentPage: p }|filter:filter;let i = index">
+                                                <th scope="row" class="cust-1">{{i+1}}</th>
+                                                <td class="add-img">
+                                                    <img [src]="reqProds.sku_image[0].sku_image" alt="Potatoes">
+                                                </td>
+                                                <td class="cust-pot">{{reqProds.product_name}}</td>
+                                                <td class="cust-1">{{reqProds.brand}}</td>
+                                                <td class="cust-1 text-center">
+                                                    <button class="btn btn-primary" (click)="showAddProductsForm(reqProds.product_name,reqProds.brand,reqProds.id)">ADD</button>
+                                                </td>
+                                                <!-- <tr> -->
+    
+                                                <!-- </tr> -->
+                                            </tr>
+                                            <td *ngIf="reqProds.length===0">
+                                                No Data Found
+                                            </td>
+                                            <td class="text-centre" *ngIf="reqProds.length===0">
+                                                <div class="row justify-content-center">
+                                                    <div class="cust-calflow">
+                                                        <!-- <p>{{filter}} is not found</p> -->
+                                                        <!-- No Data Found -->
+                                                        <button type="submit" class="btn request-admin" data-dismiss="modal"
+                                                            data-toggle="modal" data-target="#product-name">Request
+                                                            Admin
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <!-- <tr>
+                                                <td *ngIf="reqProds?.length===0">
+                                                    No Data Found
+                                                </td>
+                                            </tr> -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="product-name" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header c-modalheader">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="cust-close">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group row">
+                            <label for="quantity" class="col-sm-4 col-form-label">Product Name</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="quantity" placeholder="Product name"
+                                    [(ngModel)]="reqProduct" name="reqProduct">
+                                <button type=" submit " class="btn btn-success " data-dismiss="modal
+                                    " (click)="reqAdmin() ">SUBMIT</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<style>
+    .sku-details {
+        border: 2px solid #f8a94a;
+        margin-top: 2%;
+        margin-bottom: 2%;
+        padding-bottom: 2%;
+    }
+</style>

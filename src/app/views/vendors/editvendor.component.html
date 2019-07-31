@@ -1,0 +1,200 @@
+<div class="animated fadeIn">
+	<div class="row">
+
+		<div class="col-sm-12">
+			<div class="card">
+				<div class="card-header"><strong>Edit Details
+						<button (click)="backtovendors()" class="btn  btn-primary text-right float-right ">Back</button>
+					</strong>
+
+				</div>
+
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="company">First Name</label>
+								<input class="form-control" id="first_name" placeholder="Enter First name" type="text"
+									[(ngModel)]="vendorData.first_name">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="company">Last Name</label>
+								<input class="form-control" id="company" placeholder="Enter Last name" type="text"
+									[(ngModel)]="vendorData.last_name">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="company">Mobile Number</label>
+								<input class="form-control" id="company" placeholder="Enter Mobile Number" type="text"
+									[(ngModel)]="vendorData.mobile_number">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="company">Email</label>
+								<input class="form-control" id="company" placeholder="Enter Email" type="text"
+									[(ngModel)]="vendorData.email">
+							</div>
+						</div>
+
+
+
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="company">Bussiness Name</label>
+								<input class="form-control" id="company" placeholder="Enter Bussiness Name" type="text"
+									[(ngModel)]="vendorData.bussiness_name">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="company">Bussiness From</label>
+								<input class="form-control" id="company" placeholder="Enter Bussiness From" type="text"
+									[(ngModel)]="vendorData.bussiness_from_time">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="company">Bussiness House No</label>
+								<input class="form-control" id="company" placeholder="Enter Bussiness House No"
+									type="text" [(ngModel)]="vendorData.bussiness_houseno">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="company">Bussiness Address</label>
+								<input class="form-control" id="company" placeholder="Enter Bussiness Address"
+									type="text" [(ngModel)]="vendorData.bussiness_address">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="company">Bussiness To</label>
+								<input class="form-control" id="company" placeholder="Enter Bussiness To" type="text"
+									[(ngModel)]="vendorData.bussiness_end_time">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="company">Bussiness Area</label>
+								<input class="form-control" id="company" placeholder="Enter Bussiness Area" type="text"
+									[(ngModel)]="vendorData.bussiness_area">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="company">Bussiness City</label>
+								<input class="form-control" id="company" placeholder="Enter Bussiness City" type="text"
+									[(ngModel)]="vendorData.bussiness_city">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="company">Bussiness Country</label>
+								<input class="form-control" id="company" placeholder="Enter Bussiness Country"
+									type="text" [(ngModel)]="vendorData.bussiness_country">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="company">Bussiness Pincode</label>
+								<input class="form-control" id="company" placeholder="Enter Bussiness Pincode"
+									type="text" [(ngModel)]="vendorData.bussiness_pincode">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="company">Bank Name</label>
+								<input class="form-control" id="company" placeholder="Enter Bank  Name" type="text"
+									[(ngModel)]="vendorData.bank_name">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="company">Bank Account Holder Name</label>
+								<input class="form-control" id="company" placeholder="Enter Bank Account Holder Name"
+									type="text" [(ngModel)]="vendorData.account_holder_name">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="company">Bank Account Number</label>
+								<input class="form-control" id="company" placeholder="Enter Bank Account Number"
+									type="text" [(ngModel)]="vendorData.account_number">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="company">Bank Area</label>
+								<input class="form-control" id="bank_area" placeholder="Enter Bank Area" type="text"
+									[(ngModel)]="vendorData.bank_area">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="company">Bank Branch</label>
+								<input class="form-control" id="bank_branch" placeholder="Enter Bank Branch" type="text"
+									[(ngModel)]="vendorData.bank_branch">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="company">Bank City </label>
+								<input class="form-control" id="bank_city" placeholder="Enter Bank City" type="text"
+									[(ngModel)]="vendorData.bank_city">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="company">Bank IFSC code</label>
+								<input class="form-control" id="ifsc_code" placeholder="Enter Bank IFSC code"
+									type="text" [(ngModel)]="vendorData.ifsc_code">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="company">Cr Number</label>
+								<input class="form-control" id="cr_number" placeholder="Enter Cr Number" type="text"
+									[(ngModel)]="vendorData.cr_number">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="company">VAT Number</label>
+								<input class="form-control" id="company" placeholder="Enter VAT Number" type="text"
+									name="vat_number" [(ngModel)]="vendorData.vat_number">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="company">Comission</label>
+								<input class="form-control" id="commission_to_admin" placeholder="Enter Commission"
+									type="text" [(ngModel)]="vendorData.commission_to_admin">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<button class="btn btn-success" type="submit" (click)="updateVendorbyId1()">Update Vendor
+							</button>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+</div>
+<style>
+	.sku-details {
+		margin-bottom: 30px;
+		border: solid 2px #eb9809;
+		padding: 25px;
+
+	}
+</style>

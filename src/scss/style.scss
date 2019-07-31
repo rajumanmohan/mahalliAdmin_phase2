@@ -1,0 +1,40 @@
+// If you want to override variables do it here
+@import "variables";
+
+// Import styles
+@import "~@coreui/coreui/scss/coreui";
+
+// If you want to add something do it here
+@import "custom";
+
+.edit {
+    width:26px;
+}
+.delete {
+    width:28px;
+}
+a {
+    cursor:pointer;
+}
+table img{
+width: 50px!important;
+height: 50px!important;
+}
+.card-body {
+    cursor: pointer;
+}
+.file-upload-button 
+{
+margin-bottom: 16px;
+vertical-align: top;
+height: 35px;
+border: 0px;
+border-radius: 4px;
+}
+@media (max-width: 576px) {
+    .file-upload-button 
+    {
+        width:92%;
+        margin:12px;
+    }
+}

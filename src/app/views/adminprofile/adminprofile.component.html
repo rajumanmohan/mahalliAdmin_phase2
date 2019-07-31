@@ -1,0 +1,55 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header"><i class="fa fa-align-justify"></i>My Profile </div>
+            <div class="card-body">
+                <div class="col-lg-12 col-sm-12" *ngIf="profileData">
+                    <table class="table table-clear">
+                        <tbody>
+                            <tr>
+                                <td class="left"><strong>
+                                        Name</strong></td>
+                                <td class="right">{{profile.first_name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>Role</strong></td>
+                                <td class="right">{{profile.role}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>Email</strong></td>
+                                <td class="right">{{profile.email}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>Mobile Number</strong></td>
+                                <td class="right">{{profile.mobile_number}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>Address</strong></td>
+                                <td class="right">
+                                    {{profile.bussiness_address || "-"}},{{profile.bussiness_area}}<br />{{profile.bussiness_city}}-{{profile.bussiness_country}}-{{profile.bussiness_pincode}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>Business Name</strong></td>
+                                <td class="right">{{profile.bussiness_name || "-"}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <button class="btn btn-success" (click)="ShoweditProfile()">Edit Profile</button>
+                    </div>
+                </div>
+                <div *ngIf="editProfile">
+                    <div class="row">
+                        <div class="form-group col-sm-3">
+                            <label for="firstname" name="proName">Product Name :</label>
+                            <input class="form-control" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

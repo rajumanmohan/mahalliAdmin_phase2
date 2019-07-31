@@ -1,0 +1,56 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card pt-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h1>Vendor Commission </h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="ccnumber" placeholder="Search"
+                                    [(ngModel)]="filter">
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.row-->
+                </div>
+
+                <div class="card-body table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>S No</th>
+                                <th (click)="sort(first_name)">Name <span><i class="fa fa-sort"
+                                            aria-hidden="true"></i></span></th>
+                                <th (click)="sort(final_amount)">Final Amount <span><i class="fa fa-sort"
+                                            aria-hidden="true"></i></span></th>
+                                <th (click)="sort(commission_to_admin)">Commission To Admin <span><i class="fa fa-sort"
+                                            aria-hidden="true"></i></span></th>
+                                <th (click)="sort(amount_to_clint)">Amount To Client <span><i class="fa fa-sort"
+                                            aria-hidden="true"></i></span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                *ngFor="let data of commisionData|orderBy: key : reverse| paginate: { itemsPerPage: 10, currentPage: p }|filter:filter;let i = index">
+                                <td>{{data.indexValue+1}}</td>
+                                <td>{{data.first_name}}</td>
+                                <td>{{data.final_amount}}
+                                </td>
+                                <td>{{data.commission_to_admin}}%
+                                </td>
+                                <td>{{data.amount_to_clint}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination-controls (pageChange)="p = $event" style="float:right; margin-top:15px;">
+                    </pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

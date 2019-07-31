@@ -1,0 +1,89 @@
+<div class="animated fadeIn">
+    <div class="row mt-5">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong>{{title}}</strong>
+                    <small>Form</small>
+                    <button (click)="backtosubcat()" class="btn  btn-primary text-right float-right ">Back</button>
+                </div>
+                <div class="card-body">
+                    <form>
+
+                    </form>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="company">Title</label>
+                            <select class="form-control" placeholder="Enter Title" [(ngModel)]="mainCat1"
+                                (change)="changeCat($event.target.value)">
+                                <option value="" selected disabled>Select Category</option>
+                                <option *ngFor="let cat of category" [value]="cat.category_name">{{cat.category_name}}
+                                </option>
+                            </select>
+                            <!-- <select class="form-control"
+                                                    [(ngModel)]="mainCat" name="mainCat"
+                                                    (change)="changeCat($event.target.value)">
+                                                    <option value="" disabled>Select Category</option>
+                                                    <option *ngFor="let cat of category" [value]="cat.category_name"
+                                                        >{{cat.category_name}}
+                                                    </option>
+                                                </select> -->
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="city">Sub category Name</label>
+                            <input type="text" class="form-control" id="city" [(ngModel)]="subCa" name="subCa"
+                                placeholder="Enter Sub category Name">
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="postal-code">Select Type </label>
+                            <select class="form-control" placeholder="Enter Title">
+                                <option selected>Select Type</option>
+                                <option>Categories</option>
+                                <option>Sub Categories</option>
+                            </select>
+                        </div>
+                    </div> -->
+                    <!--/.row-->
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="textarea-input">Description</label>
+                            <textarea id="textarea-input" rows="9" class="form-control" placeholder="Description.."
+                                [(ngModel)]="textarea" name="textarea"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="file-input">Sub Category image</label>
+                        <div class="col-md-3">
+                            <input type="file" id="file-input" name="file-input" (change)="changeListener($event)"
+                                [(ngModel)]="img" name="img">
+                            <div *ngIf="image">
+                                <img src="{{image}}" alt="" width="100" height="100"
+                                    style="border: solid 1px;margin-top: 2%;">
+                            </div>
+                            <div class="form-group">
+                                <img src="{{img}}" alt="" width="100" height="100"
+                                    style="border: solid 1px;margin-top: 2%;">
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-success" *ngIf="!id" (click)="insertSubCat()">Add
+                                Subcategory</button>
+                            <button class="btn btn-success" *ngIf="id" (click)="updateSubCat()">Update
+                                Subcategory</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

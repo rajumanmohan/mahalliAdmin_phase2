@@ -1,0 +1,144 @@
+<div class="animated fadeIn">
+        <div class="row mt-5">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Add Feature Banner</strong>
+                        <small>Form</small>
+                        <button (click)="backtofeature()" class="btn  btn-primary text-right float-right ">Back</button>
+                    </div>
+                    <div class="card-body">
+                        <form>
+    
+                        </form>
+                        <!-- <div class="form-group">
+                            <label for="company">Title</label>
+                            <input type="text" class="form-control" id="city" placeholder="Category Name">
+                        </div> -->
+                        <!-- <div class="row">
+                            <div class="col-md-6">
+                                <div class="custom-control custom-checkbox ">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                    <label class="custom-control-label" for="customCheck1">Website Banner</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="custom-control custom-checkbox col-md-6">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck12">
+                                    <label class="custom-control-label" for="customCheck12">Mobile Banner</label>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label for="city">Name</label>
+                                <input type="text" class="form-control" id="city" placeholder="Banner Name" [(ngModel)]="name" name="name">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="postal-code">Select Type </label>
+                                <!-- <select class="form-control" placeholder="Enter Title">
+                                    <option selected>Select Type</option>
+                                    <option>Categories</option>
+                                    <option>Sub Categories</option>
+                                </select> -->
+                                <select class="form-control border-primary" id="sel1" name="type" [(ngModel)]="type"
+                                    (change)="onChange($event.target.value,i)">
+                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                    <option value="" disabled selected hidden>
+                                        Select
+                                        Type
+                                    </option>
+                                    <option value="Categories">Categories
+                                    </option>
+                                    <option value="Subcategories">Subcategories
+                                    </option>
+                                    <!-- <option value="Product">Product</option> -->
+                                    <!-- <option value="sku">sku</option>
+                                                                                <option value="Brand">Brand</option> -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" *ngIf="category">
+                                    <label for="firstname">Category :</label>
+                                    <div class="form-group">
+                                        <select required class="form-control border-primary" id="exampleSelectPrimary"
+                                            name="categoryName" (change)="changeCat($event.target.value,i,'cat')">
+                                            <option value="" disabled selected hidden>
+                                                Select
+                                                Category
+                                            </option>
+                                            <option *ngFor="let cat of categorydata" value="{{cat.id}}">
+                                                {{cat.category_name}}</option>
+                                        </select>
+                                    </div>
+                                    <!-- <div>
+                                                <label>{{target}} </label>
+                                            </div> -->
+                                </div>
+                                <div class="form-group" *ngIf="subcategory">
+                                    <label for="firstname">Sub Category :</label>
+                                    <div class="form-group">
+                                        <select class="form-control border-primary" id="exampleSelectPrimary"
+                                            [(ngModel)]="subCatName" name="subCatName"
+                                            (change)="changeCat($event.target.value,i,'subcat')">
+                                            <option value="" disabled selected hidden>
+                                                Select
+                                                Sub Category</option>
+                                            <option *ngFor="let subCat of subCategoryName" value="{{subCat.id}}">
+                                                {{subCat.sub_category_name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <!-- <label>{{target}} </label> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-6">
+                                    
+                               </div> -->
+    
+                        </div>
+                        <!--/.row-->
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label" for="file-input">Wesite Banner</label>
+                            <div class="col-md-3">
+                                <input type="file" id="file-input" name="file-input" (change)="changeListener1($event,i)"
+                                [(ngModel)]="webImg" name="webImg">
+                                <!-- <div class="form-group">
+                                        <label for="exampleInputEmail1">Mobile
+                                            Banner</label>
+                                        <input class="form-control" type="file"
+                                            accept="image/*"
+                                            (change)="changeListener($event,i)"
+                                            [(ngModel)]="mobImg" name="mobImg">
+                                        <div *ngIf="image">
+                                            <img src="{{image}}" alt="" width="100"
+                                                height="100"
+                                                style="border: solid 1px;margin-top: 2%;">
+                                        </div>
+                                        <div class="form-group">
+                                            <img src="{{mobImg}}" alt="" width="100"
+                                                height="100"
+                                                style="border: solid 1px;margin-top: 2%;">
+                                        </div>
+                                    </div> -->
+                            </div>
+                            <label class="col-md-3 col-form-label" for="file-input">Mobile Banner</label>
+                            <div class="col-md-3">
+                                <input type="file" id="file-input" name="file-input" (change)="changeListener($event,i)"
+                                [(ngModel)]="mobImg" >
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button class="btn btn-success" (click)="addbanner()">Add Banner</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

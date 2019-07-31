@@ -1,0 +1,89 @@
+<div class="animated fadeIn">
+
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="card pt-5 mt-5">
+                <div class="container">
+                    <div class="row align-items-center mb-3 module-buttons">
+                        <div class=" col-md-3 mb-3 mb-xl-0">
+                            <button type="button" class="btn btn-block btn-primary" (click)="getGroceryProds()">
+                                Grocery</button>
+                        </div>
+                        <div class=" col-md-3   mb-3 mb-xl-0">
+                            <button type="button" class="btn btn-block btn-secondary" (click)="getEcomProds()">
+                                Ecommerce</button>
+                        </div>
+                        <!-- <div class="col-lg-3 text-right"> -->
+                        <!-- <button type="button" class="btn  btn-primary" (click)="addbanner()">Export to Excel
+                                Sheet</button> -->
+                        <!-- </div> -->
+                        <!-- <div class="col-lg-3 text-right">
+                            <button type="button" class="btn  btn-primary" target="_blank"
+                                href="mahalli.com/mahalivendorGrocery">Purchase From
+                                Wholesaler</button>
+                        </div> -->
+                        <div class="col-lg-3 text-right">
+                            <button type="button" class="btn  btn-primary" (click)="addproduct()">Add Product</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h1>Vendor Products </h1>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="ccnumber" placeholder="Search"
+                                    [(ngModel)]="filter">
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.row-->
+                </div>
+
+                <div class="card-body table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>S No</th>
+                                <th (click)="sort('category_name')">Category Name <span><i class="fa fa-sort"
+                                            aria-hidden="true"></i></span></th>
+                                <th (click)="sort('sub_category_name')">Sub Category Name <span><i class="fa fa-sort"
+                                            aria-hidden="true"></i></span></th>
+                                <th (click)="sort('product_name')">Product Name <span><i class="fa fa-sort"
+                                            aria-hidden="true"></i></span></th>
+                                <th>Sku Image</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                *ngFor="let prod of product|orderBy: key : reverse| paginate: { itemsPerPage: 10, currentPage: p }|filter:filter;let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{prod.category_name}}</td>
+                                <td>{{prod.sub_category_name}} </td>
+                                <td><a class="prod-name" (click)="showProdDetails(prod.product_id)">
+                                        {{prod.product_name}}</a></td>
+                                <td>
+                                    <img [src]="prod?.sku_row[0]?.sku_images[0]?.sku_image" />
+                                </td>
+                                <!-- <td><img alt="admin@bootstrapmaster.com" class="img-avatar"
+                                        src="assets/img/avatars/6.jpg"></td> -->
+                                <td class="edit-buttons">
+                                    <!-- <a> <i class="fa fa-pencil-square-o fa-lg " (click)="edit(prod.vendor_product_id)"></i></a> -->
+                                    <a (click)="deleteProductWhole(prod.vendor_product_id) "> <i
+                                            class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+<div class="animated fadeIn">
+    <div class="row mt-5">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong>{{title}}</strong>
+                    <small>Form</small>
+                    <button (click)="backtobanner()" class="btn  btn-primary text-right float-right ">Back</button>
+                </div>
+                <div class="card-body">
+                    <form>
+
+                    </form>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="company">Category name</label>
+                            <input type="text" class="form-control" id="city" placeholder="Category Name"
+                                [(ngModel)]="input" name="input">
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6" *ngIf="type=='grocery'">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1"> To display on User page</label>
+                                <input type="checkbox" id="check1" [(ngModel)]="catmarked" data-md-icheck
+                                    [ngModelOptions]="{standalone: true}" (change)="toggleVisibility($event)" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="file-input">Category Image</label>
+                        <div class="col-md-3">
+                            <input type="file" id="file-input" name="file-input" accept="image/*"
+                                (change)="changeListener($event)" [(ngModel)]="catImg" name="catImg">
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div *ngIf="image">
+                                <img src="{{image}}" alt="" width="100" height="100"
+                                    style="border: solid 1px;margin-top: 2%;">
+                            </div>
+                            <div class="form-group">
+                                <img src="{{catImg}}" alt="" width="100" height="100"
+                                    style="border: solid 1px;margin-top: 2%;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="company">Description</label>
+                            <textarea [(ngModel)]="textarea" name="textarea" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-success" (click)="addCat(input)" *ngIf="!id">Add
+                                category
+                            </button>
+                            <button type="submit" class="btn btn-success" (click)="updateCat(input)" *ngIf="id">Update
+                                category
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<app-header class="main-header" [navbarBrandRouterLink]="['/dashboard']" [fixed]="true"
+	[navbarBrandFull]="{src: 'https://s3.amazonaws.com/mahali2/22_12_43_39_9263o268cepjyessv48.png', width: '90%', height: 46, alt: ' Logo'}"
+	[navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: ' Logo'}"
+	[sidebarToggler]="'lg'" [asideMenuToggler]="false">
+	<ul class="nav navbar-nav ml-auto">
+		<li class="nav-item dropdown" dropdown placement="bottom right">
+			<a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
+				dropdownToggle (click)="false">
+				<i class="fa fa-user-circle-o fa-lg"></i>
+			</a>
+			<div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+				<div class="dropdown-header text-center"><strong>Account</strong></div>
+				<a class="dropdown-item" routerLink="/profile"><i class="fa fa-user"></i> Profile</a>
+				<a class="dropdown-item" (click)="logOut()"><i class="fa fa-lock"></i> Logout</a>
+			</div>
+		</li>
+	</ul>
+</app-header>
+<div class="app-body">
+	<app-sidebar [fixed]="true" [display]="'lg'">
+		<app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized"></app-sidebar-nav>
+		<app-sidebar-minimizer></app-sidebar-minimizer>
+	</app-sidebar>
+	<!-- Main content -->
+	<main class="main">
+		<!-- Breadcrumb -->
+		<!-- breaking change 'cui-breadcrumb' -->
+		<cui-breadcrumb>
+			<!-- Breadcrumb Menu-->
+			<li class="breadcrumb-menu d-md-down-none">
+				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+				</div>
+			</li>
+		</cui-breadcrumb>
+
+		<div class="container-fluid">
+			<router-outlet></router-outlet>
+		</div><!-- /.container-fluid -->
+	</main>
+</div>
+<app-footer>
+	<span><a href="https://coreui.io">Mahalli Mall</a> &copy; 2019 Allrights Reserved.</span>
+	<span class="ml-auto">Powered by <a href="https://versatilemobitech.com" target="_blank">Mahalli</a></span>
+</app-footer>

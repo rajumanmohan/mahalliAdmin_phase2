@@ -1,0 +1,88 @@
+<div class="animated fadeIn">
+    <div class="row mt-5">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Add Sub Sub Category</strong>
+                    <small>Form</small>
+                    <button (click)="backtosubcat()" class="btn  btn-primary text-right float-right ">Back</button>
+                </div>
+                <div class="card-body">
+                    <form>
+
+                    </form>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="firstname">Category</label>
+                            <div class="form-group">
+                                <select class="form-control border-primary" id="exampleSelectPrimary"
+                                    [(ngModel)]="mainCat" name="mainCat" (change)="showSubcats($event.target.value)">
+                                    <option value="" disabled selected hidden>Select category</option>
+                                    <option *ngFor="let cat of category" [value]="cat.category_name">
+                                        {{cat.category_name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="firstname">Sub Category Name</label>
+                            <select class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="subName"
+                                name="subName" (change)="changeSubcats1($event.target.value)">
+                                <option value="" disabled selected hidden>Select subcategory</option>
+                                <option *ngFor="let sub of subData" [value]="sub.sub_category_name">
+                                    {{sub.sub_category_name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="company">Sub Sub Category name</label>
+                            <input type="text" class="form-control" id="city" placeholder="Sub Sub Category Name"
+                                [(ngModel)]="subsubCa" name="subsubCa">
+                        </div>
+                    </div>
+                    <!--/.row-->
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="textarea-input">Description</label>
+                            <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control"
+                                [(ngModel)]="textarea" name="textarea" placeholder="Description.."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <label class="" for="file-input">Sub Sub Category image</label>
+                        <input class="form-control" type="file" accept="image/*" (change)="changeListener($event)"
+                            [(ngModel)]="img" name="img">
+                        <div *ngIf="image">
+                            <img src="{{image}}" alt="" width="100" height="100"
+                                style="border: solid 1px;margin-top: 2%;">
+                        </div>
+
+                        <div class="form-group">
+                            <img src="{{img}}" alt="" width="100" height="100"
+                                style="border: solid 1px;margin-top: 2%;">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-success" *ngIf="!id" (click)="insertSubsubCat()">Add Subsub
+                                category</button>
+                            <button class="btn btn-success" *ngIf="id" (click)="updateSubCat()">Update Subsub
+                                category</button>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-success" (click)="insertSubsubCat()">Add Banner</button>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
