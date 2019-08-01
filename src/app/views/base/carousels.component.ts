@@ -22,6 +22,7 @@ export class CarouselsComponent implements OnInit {
   EcomCats;
   type;
   category;
+  categories = [];
   constructor(public router: Router, private appService: AppService) { }
   grocerySubCats;
   ecomSubcats;
@@ -55,9 +56,70 @@ export class CarouselsComponent implements OnInit {
   // ngOnDestroy(): void {
   // }
   ngOnInit() {
-    this.getSubCategory();
+    this.getGroceryCategories();
+    this.actionType = 'grocery';
+  
 
   }
+
+    getGroceryCategories() {
+      this.getSubCategory();
+      this.categories = [];
+      this.subCategory = [];
+        let Data = {
+            "country": "",
+            "pin_code": "",
+            "area": ""
+        }
+        this.appService.getGroceryCat(Data)
+            .subscribe((resp: any) => {
+                if (resp.status === 200) {
+                    this.categories = resp.categories;
+                }
+                else {
+
+                }
+            },
+                error => {
+
+                    console.log(error, "error");
+                })
+    }
+  
+    getEcomCategories(){
+      this.getEcomSubCategory();
+      this.categories = [];
+      this.subCategory = [];
+      this.appService.getEcomCat({})
+      .subscribe((resp: any) => {
+          if (resp.status === 200) {
+              this.categories = resp.categories;
+          }
+          else {
+
+          }
+      },
+          error => {
+
+              console.log(error, "error");
+          })
+      
+    }
+
+    onCategoryChange(categoryId){
+      this.subCategory = [];
+      this.getSubCategoriesByCategoryId(categoryId);
+    }
+
+    getSubCategoriesByCategoryId(categoryId){
+      this.appService.getSubCategoriesByCategoryId(categoryId).subscribe((resp: any) => {
+        this.subCategory = resp.sub_category.map(function (value, index) {
+          value.indexValue = index;
+          return value;
+        })
+      })
+    }
+
   getSubCategory() {
     this.grocerySubCats = true;
     this.ecomSubcats = false;

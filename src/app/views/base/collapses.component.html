@@ -7,12 +7,12 @@
         <div class="container">
           <div class="row align-items-center mb-3">
             <div class=" col-3  mb-3 mb-xl-0">
-              <button type="button" class="btn btn-block btn-primary" (click)="getSubsub()"
+              <button type="button" class="btn btn-block btn-primary" (click)="getGroceryCategories(); actionType = 'grocery'"
                 [ngStyle]="{'background-color':actionType == 'grocery' ? '#1985ac'  :  'white','border':actionType == 'grocery' ? ''  :  '1px solid #1985ac','color':actionType == 'grocery' ? 'white'  :  '#000000 '}">
                 Grocery</button>
             </div>
             <div class=" col-3 col-md-3  mb-3 mb-xl-0">
-              <button type="button" class="btn btn-block btn-secondary" (click)="getEcomSubCategory()"
+              <button type="button" class="btn btn-block btn-secondary" (click)="getEcomCategories();  actionType = 'ecom'"
                 [ngStyle]="{'background-color':actionType == 'ecom' ? '#1985ac'  :  'white','border':actionType == 'ecom' ? ''  :  '1px solid #1985ac','color':actionType == 'ecom' ? 'white'  :  '#000000 '}">
                 Ecommerce</button>
             </div>
@@ -21,10 +21,32 @@
             <div class="col-lg-6">
               <h1>Sub Sub Category </h1>
             </div>
+             
             <div class="col-lg-6 text-right">
               <button type="button" class="btn  btn-primary" (click)="newsubsubCat()">Add Sub Sub Category</button>
             </div>
           </div>
+          <div class="row">
+              <div class="col-lg-6">
+                <label>Category</label>
+                  <select class="form-control" placeholder="Enter Title" [(ngModel)]="mainCat1"
+                  (change)="onCategoryChange($event.target.value)"> 
+                  <option value="" selected disabled>Select Category</option>
+                  <option *ngFor="let cat of categories" [value]="cat.id">{{cat.category_name}}
+                  </option>
+              </select>
+              </div>
+              <div class="col-lg-6">
+                <label>Sub Category</label>
+                  <select class="form-control" placeholder="Enter Title" [(ngModel)]="mainCat2"
+                  (change)="onSubCategoryChange($event.target.value)"> 
+                  <option value="" selected disabled>Select Sub Category</option>
+                  <option *ngFor="let subCat of subCategories" [value]="subCat.id">{{subCat.sub_category_name}}
+                  </option>
+                  </select> 
+                </div>
+          </div>
+          <br/>
           <div class="row">
             <div class="col-sm-12">
               <div class="form-group">

@@ -65,118 +65,118 @@ export const routes: Routes = [
     children: [
       {
         path: 'Category',
-        loadChildren: () => import('./views/base/base.module').then(m => m.BaseModule)
+        loadChildren: './views/base/base.module#BaseModule'
       },
       {
         path: 'buttons',
-        loadChildren: () => import('./views/buttons/buttons.module').then(m => m.ButtonsModule)
+        loadChildren: './views/buttons/buttons.module#ButtonsModule'
       },
       {
         path: 'coupons',
-        loadChildren: () => import('./views/chartjs/chartjs.module').then(m => m.ChartJSModule)
+        loadChildren: './views/chartjs/chartjs.module#ChartJSModule'
       },
       {
         path: 'dashboard',
-        loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule),
+        loadChildren: './views/dashboard/dashboard.module#DashboardModule',
         // onSameUrlNavigation: 'reload'
       },
       {
         path: 'vendorhomepage',
-        loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule),
+        loadChildren: './views/dashboard/dashboard.module#DashboardModule',
         // onSameUrlNavigation: 'reload'
       },
       {
         path: 'wholesellerdashboard',
-        loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule),
+        loadChildren: './views/dashboard/dashboard.module#DashboardModule',
         // onSameUrlNavigation: 'reload'
       },
       {
         path: 'icons',
-        loadChildren: () => import('./views/icons/icons.module').then(m => m.IconsModule)
+        loadChildren: './views/icons/icons.module#IconsModule'
       },
       {
         path: 'notifications',
-        loadChildren: () => import('./views/notifications/notifications.module').then(m => m.NotificationsModule)
+        loadChildren: './views/notifications/notifications.module#NotificationsModule'
       },
       {
         path: 'theme',
-        loadChildren: () => import('./views/theme/theme.module').then(m => m.ThemeModule)
+        loadChildren: './views/theme/theme.module#ThemeModule'
       },
       {
         path: 'widgets',
-        loadChildren: () => import('./views/widgets/widgets.module').then(m => m.WidgetsModule)
+        loadChildren: './views/widgets/widgets.module#WidgetsModule'
       },
       {
         path: 'userslist',
-        loadChildren: () => import('./views/users/users.module').then(m => m.UsersModule)
+        loadChildren: './views/users/users.module#UsersModule'
       },
       {
         path: 'wholeseller',
-        loadChildren: () => import('./views/wholeseller/wholeseller.module').then(m => m.WholesellerModule)
+        loadChildren: './views/wholeseller/wholeseller.module#WholesellerModule'
       },
       {
         path: 'vendorslist',
-        loadChildren: () => import('./views/vendors/vendors.module').then(m => m.VendorsModule)
+        loadChildren: './views/vendors/vendors.module#VendorsModule'
       },
       {
         path: 'suggestedproducts',
-        loadChildren: () => import('./views/suggestedproducts/suggestedproducts.module').then(m => m.SuggestedproductsModule)
+        loadChildren: './views/suggestedproducts/suggestedproducts.module#SuggestedproductsModule'
       },
       {
         path: 'content',
-        loadChildren: () => import('./views/content/content.module').then(m => m.ContentModule)
+        loadChildren: './views/content/content.module#ContentModule'
       },
       {
         path: 'commission',
-        loadChildren: () => import('./views/commission/commission.module').then(m => m.CommissionModule)
+        loadChildren: './views/commission/commission.module#CommissionModule'
       },
       {
         path: 'staff',
-        loadChildren: () => import('./views/staff/staff.module').then(m => m.StaffModule)
+        loadChildren: './views/staff/staff.module#StaffModule'
       },
       {
         path: 'profile',
-        loadChildren: () => import('./views/adminprofile/adminprofile.module').then(m => m.AdminprofileModule)
+        loadChildren: './views/adminprofile/adminprofile.module#AdminprofileModule'
       },
       {
         path: 'wholesellerproducts',
-        loadChildren: () => import('./views/wholesellerproducts/wholesellerproducts.module').then(m => m.WholesellerproductsModule)
+        loadChildren: './views/wholesellerproducts/wholesellerproducts.module#WholesellerproductsModule'
       },
       {
         path: 'vendorproducts',
-        loadChildren: () => import('./views/vendorproducts/vendorproducts.module').then(m => m.VendorproductsModule)
+        loadChildren: './views/vendorproducts/vendorproducts.module#VendorproductsModule'
       },
       {
         path: 'attrimaster',
-        loadChildren: () => import('./views/attribute-master/attribute-master.module').then(m => m.AttributeMasterModule)
+        loadChildren: './views/attribute-master/attribute-master.module#AttributeMasterModule'
       },
       {
         path: 'ratings',
-        loadChildren: () => import('./views/rating/rating.module').then(m => m.RatingModule)
+        loadChildren: './views/rating/rating.module#RatingModule'
       },
       {
         path: 'allusers',
-        loadChildren: () => import('./views/allusers/allusers.module').then(m => m.AllusersModule)
+        loadChildren: './views/allusers/allusers.module#AllusersModule'
       },
       {
         path: 'vendoraccount',
-        loadChildren: () => import('./views/vendoraccount/vendoraccount.module').then(m => m.VendoraccountModule)
+        loadChildren: './views/vendoraccount/vendoraccount.module#VendoraccountModule'
       },
       {
         path: 'businessDetails',
-        loadChildren: () => import('./views/business-details/business-details.module').then(m => m.BusinessDetailsModule)
+        loadChildren: './views/business-details/business-details.module#BusinessDetailsModule'
       },
       {
         path: 'addressDetails',
-        loadChildren: () => import('./views/address-details/address-module.module').then(m => m.AddressModule)
+        loadChildren: './views/address-details/address-module.module#AddressModule'
       },
       {
         path: 'changePassword',
-        loadChildren: () => import('./views/change-password/change-password.module').then(m => m.ChangePasswordModule)
+        loadChildren: './views/change-password/change-password.module#ChangePasswordModule'
       },
       {
         path: 'deliverySlots',
-        loadChildren: () => import('./views/delivery-slots/delivery-slots.module').then(m => m.DeliverySlotsModule)
+        loadChildren: './views/delivery-slots/delivery-slots.module#DeliverySlotsModule'
       },
     ]
   },
