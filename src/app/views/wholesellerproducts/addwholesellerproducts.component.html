@@ -5,7 +5,7 @@
                 <div class="card-header">
                     <strong>Add Wholeseller Product</strong>
                     <small>Form</small>
-                    <button (click)="backtowholeseller()" class="btn  btn-primary text-right float-right ">Back</button>
+                    <!-- <button (click)="backtowholeseller()" class="btn  btn-primary text-right float-right ">Back</button> -->
                 </div>
                 <div class="container">
                     <div class="row align-items-center mt-3 module-buttons" *ngIf="CatDetails">
@@ -139,13 +139,38 @@
                                                         <div class="row">
                                                             <div class="col-sm-3">
                                                                 <label for="firstname">Size :</label>
-                                                                <div class="form-group">
-                                                                    <input id="category" myNumberOnly class="form-control"
+                                                                <div class="form-group" *ngIf="showecom" >
+                                                                    <!-- <input id="category" myNumberOnly class="form-control"
                                                                         type="text" placeholder="Size"
                                                                         [(ngModel)]="skuValues.size" name="skuValues.size"
-                                                                        [ngModelOptions]="{standalone:true}"
-                                                                        ngControl="skuValues.size" required name="size"/>
+                                                                        [ngModelOptions]="{standalone:true}" *ngIf="showGro"
+                                                                        ngControl="skuValues.size" required name="size" /> -->
+
+                                                                        <select class="form-control border-primary" id="exampleSelectPrimary"
+                                                                        [(ngModel)]="skuValues.size"  name="subsubcategoryName"
+                                                                        *ngIf="showecom" >
+                                                                        <option value="" disabled>Select Size</option>
+                                                                        <option *ngFor="let subsub of Attributes" value="{{subsub.Size}}"
+                                                                             required>
+                                                                            {{subsub.Size}}</option>
+                                                                    </select>
                                                                 </div>
+                                                                <div class="form-group" *ngIf="showGro">
+                                                                        <input id="category" myNumberOnly class="form-control"
+                                                                            type="text" placeholder="Size"
+                                                                            [(ngModel)]="skuValues.size" name="skuValues.size"
+                                                                            [ngModelOptions]="{standalone:true}" *ngIf="showGro"
+                                                                            ngControl="skuValues.size" required name="size" />
+    
+                                                                            <!-- <select class="form-control border-primary" id="exampleSelectPrimary"
+                                                                            [(ngModel)]="skuValues.size"  name="subsubcategoryName"
+                                                                            *ngIf="showecom" >
+                                                                            <option value="" disabled>Select Size</option>
+                                                                            <option *ngFor="let subsub of Attributes" value="{{subsub.Size}}"
+                                                                                 required>
+                                                                                {{subsub.Size}}</option>
+                                                                        </select> -->
+                                                                    </div>
                                                             </div>
                                                             <div class="col-sm-3">
                                                                 <label for="firstname">Units :</label>
@@ -153,7 +178,15 @@
                                                                     <input id="category" class="form-control" type="text"
                                                                         placeholder="Units" [(ngModel)]="skuValues.units"
                                                                         [ngModelOptions]="{standalone:true}" name="units"
-                                                                        ngControl="skuValues.units" required />
+                                                                        ngControl="skuValues.units" required *ngIf="showecom" />
+
+                                                                        <select class="form-control border-primary" id="exampleSelectPrimary"
+                                                                        [(ngModel)]="skuValues.units" *ngIf="showGro"  name="subsubcategoryName">
+                                                                        <option value="" disabled>Select Size</option>
+                                                                        <option *ngFor="let subsub of Attributes" value="{{subsub.Unit}}"
+                                                                             required>
+                                                                            {{subsub.Unit}}</option>
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                             <div class="col-sm-3">
@@ -229,7 +262,7 @@
                                                                     <label for="firstname" name="prodName">Sku Images :
                                                                     </label>
                                                                     <input class="form-control" type='file'
-                                                                        (change)="onSelectFile1($event,i,skuValues.skid)"
+                                                                        (change)="detectFiles($event,i,skuValues.skid)"
                                                                         multiple><br />
                                                                     <div *ngIf="!removeImg">
                                                                         <img *ngFor='let url of urls1' [src]="url.skuImg"
@@ -238,25 +271,15 @@
                                                                             width="100"
                                                                             style="margin-right: 2%;border: 1px solid;margin-bottom:5%">
         
-                                                                        <div *ngFor='let url of skuValues'>
-                                                                            fdfdf
+                                                                        <!-- <div *ngFor='let url of skuValues'>
                                                                             <img *ngFor="let imgUrl of url.sku_images;let i =index"
                                                                                 [src]="imgUrl.sku_image" height="100"
                                                                                 width="100"
                                                                                 style="margin-right: 2%;border: 1px solid;margin-bottom:5%"
                                                                                 (click)="updateImage(imgUrl.id)"
                                                                                 [ngClass]="{'selected':selectedImage==imgUrl.id}">
-                                                                        </div>
+                                                                        </div> -->
                                                                     </div>
-                                                                    <div *ngFor='let url of skuValues'>
-                                                                            fdfdf
-                                                                            <img *ngFor="let imgUrl of url.sku_images;let i =index"
-                                                                                [src]="imgUrl.sku_image" height="100"
-                                                                                width="100"
-                                                                                style="margin-right: 2%;border: 1px solid;margin-bottom:5%"
-                                                                                (click)="updateImage(imgUrl.id)"
-                                                                                [ngClass]="{'selected':selectedImage==imgUrl.id}">
-                                                                        </div>
                                                                 </div>
                                                             </div>
                                                             <!-- <div class="col-sm-3">

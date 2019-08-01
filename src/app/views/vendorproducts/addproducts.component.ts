@@ -3,6 +3,8 @@ import { AppService } from './../../services/mahali/mahali-data.service';
 import { Router } from '@angular/router';
 declare var $: any;
 declare var jsPDF: any;
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+
 @Component({
     selector: 'app-addproducts',
     templateUrl: './addproducts.component.html',
@@ -14,7 +16,7 @@ declare var jsPDF: any;
 
 export class AddproductsComponent implements OnInit {
     reqProduct;
-    constructor(private appService: AppService, public router: Router) { }
+    constructor(private appService: AppService, public router: Router, private spinnerService: Ng4LoadingSpinnerService) { }
     showSkuDetails: boolean;
     CatDetails = true;
     subSubdata = [];
@@ -27,7 +29,8 @@ export class AddproductsComponent implements OnInit {
         this.reverse = !this.reverse;
     }
     ngOnInit() {
-        this.getCat()
+        this.getCat();
+        this.getAttributes();
     }
     addsku() {
         this.showSkuDetails = true;
@@ -43,7 +46,7 @@ export class AddproductsComponent implements OnInit {
     wholeType;
     cat_id;
     subArr = [];
-    showGro;
+    showGro = true;
     showecom;
     formdata = {
         categoryName: '',
@@ -398,7 +401,7 @@ export class AddproductsComponent implements OnInit {
             "country": this.country,
             "adminproduct_id": this.AdminProdId || 0,
             "organic": this.organic,
-            "vendor_id": sessionStorage.userId,
+            "vendor_id": sessionStorage.vemdorId,
             "description": this.textarea,
 
             // 'warehouse': this.dataWare,
@@ -427,19 +430,33 @@ export class AddproductsComponent implements OnInit {
         //         debugger;
         // // return;
         // this.spinnerService.show();
-        this.appService.insertProduct(data)
-            .subscribe((resp: any) => {
-                if (resp.json().status === 200) {
-                    // this.spinnerService.hide();
-                    // swal('product added successfully', '', 'success');
-                    this.router.navigate(['/wholesellerproducts']);
-                    this.showAddProductsForm1 = false;
-                    // this.showAddProducts = true;
-                }
-            },
-                error => {
-                    console.log(error, "error");
-                })
+        this.spinnerService.show();
+        this.appService.insertVendorProduct(data).subscribe((resp: any) => {
+            if (resp.status === 200) {
+                this.spinnerService.hide();
+                // swal('product added successfully', '', 'success');
+                this.router.navigate(['/vendorproducts']);
+                this.showAddProductsForm1 = false;
+                // this.showAddProducts = true;
+            }
+        },
+            error => {
+                console.log(error, "error");
+            })
+        // })
+        // this.appService.insertProduct(data)
+        //     .subscribe((resp: any) => {
+        //         if (resp.status === 200) {
+        //             this.spinnerService.hide();
+        //             // swal('product added successfully', '', 'success');
+        //             this.router.navigate(['/vendorproducts']);
+        //             this.showAddProductsForm1 = false;
+        //             // this.showAddProducts = true;
+        //         }
+        //     },
+        //         error => {
+        //             console.log(error, "error");
+        //         })
     }
     strImage;
     skuImage;
@@ -628,6 +645,18 @@ export class AddproductsComponent implements OnInit {
                 $('#product-name').modal('hide');
             } else {
                 //   swal(res.json().message, "", "error");
+            }
+        })
+    }
+    Attributes = [];
+    getAttributes() {
+        this.appService.getAttributes().subscribe((res: any) => {
+            if (res.status == 200) {
+                // swal(res.message, "", "success");
+                this.Attributes = res.attributes;
+
+            } else {
+                // swal(res.message, "", "error");
             }
         })
     }

@@ -3,6 +3,7 @@ import { AppService } from './../../services/mahali/mahali-data.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, NavigationExtras } from '@angular/router';
 // import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-dashboard',
@@ -35,15 +36,18 @@ export class LoginComponent implements OnInit {
       // swal("test","","success")
       if (resp.status == 200) {
         // this.toastr.success("Hello, I'm the toastr message.");
-            // swal(resp.message, '', 'success');
+        Swal.fire(resp.message, '', "success");
         sessionStorage.setItem("role", resp.role);
         sessionStorage.setItem("profile", JSON.stringify(resp.row));
         if (resp.role == "wholesaler") {
           sessionStorage.setItem("wholesalerId", resp.id);
+          sessionStorage.setItem("Email", resp.row.email);
+
         } else if (resp.role == "vendor") {
           sessionStorage.setItem("vemdorId", resp.id);
+          sessionStorage.setItem("Email", resp.row.email);
         }
-// alert("success");
+        // alert("success");
         // this.redirectTo('dashboard');
         // this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
         // this.router.navigate(["dashboard"])); 
@@ -53,8 +57,8 @@ export class LoginComponent implements OnInit {
         //     // }
       }
       else if (resp.status == 400) {
-      // swal(resp.message, '', 'error');
-          this.router.navigate(['/'])
+        Swal.fire(resp.message, '', "error");
+        this.router.navigate(['/'])
       }
     })
   }

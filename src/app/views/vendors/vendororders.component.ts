@@ -18,6 +18,7 @@ export class VendorordersComponent implements OnInit {
   key: string = 'name';
   reverse: boolean = true;
   myDatePickerOptions;
+  role;
   sort(key) {
     this.key = key;
     this.reverse = !this.reverse;
@@ -25,6 +26,7 @@ export class VendorordersComponent implements OnInit {
   orders = [];
   type;
   ngOnInit() {
+    this.role = sessionStorage.role;
     this.myDatePickerOptions = {
       dateFormat: 'yyyy-mm-dd',
       // disableUntil: { year: this.currentYear, month: this.currentMonth, day: this.currentDate },
@@ -58,7 +60,7 @@ export class VendorordersComponent implements OnInit {
     })
   }
   getAllVendorOrders1() {
-    this.appService.getPlaceOrder().subscribe((res: any) => {
+    this.appService.getUserOrdersbyVenId1().subscribe((res: any) => {
       // this.orders = res.Orders;
       this.orders = res.Orders.map(function (value, index) {
         value.indexValue = index;

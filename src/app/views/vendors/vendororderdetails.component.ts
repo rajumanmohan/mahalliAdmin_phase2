@@ -33,7 +33,7 @@ export class VendororderdetailsComponent implements OnInit {
     this.reverse = !this.reverse;
   }
   ordDetails() {
-    this.appService.orderById(this.orderId).subscribe((resp: any) => {
+    this.appService.userOrdDetails(this.orderId).subscribe((resp: any) => {
       this.ordData = resp.Order.products;
       for (var i = 0; i < this.ordData.length; i++) {
         // this.productsData = this.ordData.products;
@@ -46,5 +46,23 @@ export class VendororderdetailsComponent implements OnInit {
       this.orderAdd = resp.Order.delivery_address[0];
       this.count = resp.Order.total_selling_price;
     })
+    if (sessionStorage.role == 'Admin' || 'wholesaler') {
+      this.appService.orderById(this.orderId).subscribe((resp: any) => {
+        this.ordData = resp.Order.products;
+        for (var i = 0; i < this.ordData.length; i++) {
+          // this.productsData = this.ordData.products;
+
+          this.ordData[i].quantity = this.ordData[i].quantity;
+          this.ordData[i].selling_price = this.ordData[i].sku_row[0].selling_price;
+
+        }
+        this.orderDet = resp.Order.details[0];
+        this.orderAdd = resp.Order.delivery_address[0];
+        this.count = resp.Order.total_selling_price;
+      })
+    } else {
+
+
+    }
   }
 }

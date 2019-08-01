@@ -76,7 +76,7 @@
                                                     <option *ngFor="let subsub of subSubdata" value="{{subsub.subsubcat_name}}"
                                                         ngControl="formdata.subsubcategoryName" required>
                                                         {{subsub.subsubcat_name}}</option>
-                                                </select>a
+                                                </select>
                                                     </div>
                         
                                                 <div class="form-group col-sm-3">
@@ -137,25 +137,58 @@
                                                         <div class="" *ngFor="let skuValues of skusData;let i= index"
                                                             style="margin-bottom:30px;border: solid 2px #eb9809; padding: 25px">
                                                             <div class="row">
-                                                                <div class="col-sm-3">
-                                                                    <label for="firstname">Size :</label>
-                                                                    <div class="form-group">
-                                                                        <input id="category" myNumberOnly class="form-control"
-                                                                            type="text" placeholder="Size"
-                                                                            [(ngModel)]="skuValues.size" name="skuValues.size"
-                                                                            [ngModelOptions]="{standalone:true}"
-                                                                            ngControl="skuValues.size" required name="size"/>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-3">
-                                                                    <label for="firstname">Units :</label>
-                                                                    <div class="form-group">
-                                                                        <input id="category" class="form-control" type="text"
-                                                                            placeholder="Units" [(ngModel)]="skuValues.unit"
-                                                                            [ngModelOptions]="{standalone:true}" name="units"
-                                                                            ngControl="skuValues.units" required />
-                                                                    </div>
-                                                                </div>
+                                                                    <div class="col-sm-3">
+                                                                            <label for="firstname">Size :</label>
+                                                                            <div class="form-group" *ngIf="showecom" >
+                                                                                <!-- <input id="category" myNumberOnly class="form-control"
+                                                                                    type="text" placeholder="Size"
+                                                                                    [(ngModel)]="skuValues.size" name="skuValues.size"
+                                                                                    [ngModelOptions]="{standalone:true}" *ngIf="showGro"
+                                                                                    ngControl="skuValues.size" required name="size" /> -->
+            
+                                                                                    <select class="form-control border-primary" id="exampleSelectPrimary"
+                                                                                    [(ngModel)]="skuValues.size"  name="subsubcategoryName"
+                                                                                    *ngIf="showecom" >
+                                                                                    <option value="" disabled>Select Size</option>
+                                                                                    <option *ngFor="let subsub of Attributes" value="{{subsub.Size}}"
+                                                                                         required>
+                                                                                        {{subsub.Size}}</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="form-group" *ngIf="showGro">
+                                                                                    <input id="category" myNumberOnly class="form-control"
+                                                                                        type="text" placeholder="Size"
+                                                                                        [(ngModel)]="skuValues.size" name="skuValues.size"
+                                                                                        [ngModelOptions]="{standalone:true}" *ngIf="showGro"
+                                                                                        ngControl="skuValues.size" required name="size" />
+                
+                                                                                        <!-- <select class="form-control border-primary" id="exampleSelectPrimary"
+                                                                                        [(ngModel)]="skuValues.size"  name="subsubcategoryName"
+                                                                                        *ngIf="showecom" >
+                                                                                        <option value="" disabled>Select Size</option>
+                                                                                        <option *ngFor="let subsub of Attributes" value="{{subsub.Size}}"
+                                                                                             required>
+                                                                                            {{subsub.Size}}</option>
+                                                                                    </select> -->
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="col-sm-3">
+                                                                            <label for="firstname">Units :</label>
+                                                                            <div class="form-group">
+                                                                                <input id="category" class="form-control" type="text"
+                                                                                    placeholder="Units" [(ngModel)]="skuValues.units"
+                                                                                    [ngModelOptions]="{standalone:true}" name="units"
+                                                                                    ngControl="skuValues.units" required *ngIf="showecom" />
+            
+                                                                                    <select class="form-control border-primary" id="exampleSelectPrimary"
+                                                                                    [(ngModel)]="skuValues.units" *ngIf="showGro"  name="subsubcategoryName">
+                                                                                    <option value="" disabled>Select Size</option>
+                                                                                    <option *ngFor="let subsub of Attributes" value="{{subsub.Unit}}"
+                                                                                         required>
+                                                                                        {{subsub.Unit}}</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
                                                                 <div class="col-sm-3">
                                                                     <label for="firstname">Quantity :</label>
                                                                     <div class="form-group">
@@ -200,6 +233,7 @@
                                                                             ngControl="skuValues.discount" required />
                                                                     </div>
                                                                 </div>
+                                                              
                                                                 <div class="col-sm-3">
                                                                     <label for="firstname">Stock :</label>
                                                                     <div class="form-group">

@@ -157,7 +157,27 @@ export const routes: Routes = [
       {
         path: 'allusers',
         loadChildren: () => import('./views/allusers/allusers.module').then(m => m.AllusersModule)
-      }
+      },
+      {
+        path: 'vendoraccount',
+        loadChildren: () => import('./views/vendoraccount/vendoraccount.module').then(m => m.VendoraccountModule)
+      },
+      {
+        path: 'businessDetails',
+        loadChildren: () => import('./views/business-details/business-details.module').then(m => m.BusinessDetailsModule)
+      },
+      {
+        path: 'addressDetails',
+        loadChildren: () => import('./views/address-details/address-module.module').then(m => m.AddressModule)
+      },
+      {
+        path: 'changePassword',
+        loadChildren: () => import('./views/change-password/change-password.module').then(m => m.ChangePasswordModule)
+      },
+      {
+        path: 'deliverySlots',
+        loadChildren: () => import('./views/delivery-slots/delivery-slots.module').then(m => m.DeliverySlotsModule)
+      },
     ]
   },
   { path: '**', component: P404Component },

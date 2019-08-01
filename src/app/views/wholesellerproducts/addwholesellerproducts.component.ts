@@ -3,6 +3,9 @@ import { AppService } from './../../services/mahali/mahali-data.service';
 import { Router, ActivatedRoute } from '@angular/router';
 declare var $: any;
 declare var jsPDF: any;
+import Swal from 'sweetalert2';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+
 @Component({
     selector: 'app-addwholesellerproducts',
     templateUrl: './addwholesellerproducts.component.html',
@@ -10,7 +13,7 @@ declare var jsPDF: any;
 })
 export class AddwholesellerproductsComponent implements OnInit {
     sellerId;
-    constructor(private appService: AppService, public router: Router, private route: ActivatedRoute) {
+    constructor(private appService: AppService, public router: Router, private route: ActivatedRoute, private spinnerService: Ng4LoadingSpinnerService) {
         this.route.queryParams.subscribe(params => {
             this.sellerId = params.sellerId
         });
@@ -33,7 +36,8 @@ export class AddwholesellerproductsComponent implements OnInit {
         this.reverse = !this.reverse;
     }
     ngOnInit() {
-        this.getCat()
+        this.getCat();
+        this.getAttributes();
     }
     image1;
     skuimages = [];
@@ -42,6 +46,18 @@ export class AddwholesellerproductsComponent implements OnInit {
     product_name;
     organic;
     textarea;
+    Attributes = [];
+    getAttributes() {
+        this.appService.getAttributes().subscribe((res: any) => {
+            if (res.status == 200) {
+                // swal(res.message, "", "success");
+                this.Attributes = res.attributes;
+
+            } else {
+                // swal(res.message, "", "error");
+            }
+        })
+    }
     getProduct() {
         this.image1 = true;
         this.skuimages = [];
@@ -123,7 +139,7 @@ export class AddwholesellerproductsComponent implements OnInit {
     wholeType;
     cat_id;
     subArr = [];
-    showGro;
+    showGro = true;
     showecom;
     formdata = {
         categoryName: '',
@@ -473,8 +489,9 @@ export class AddwholesellerproductsComponent implements OnInit {
             "country": this.country,
             "adminproduct_id": this.AdminProdId || 0,
             "organic": this.organic,
-            "vendor_id": sessionStorage.userId,
+            // "vendor_id": sessionStorage.userId,
             "description": this.textarea,
+            "wholesaller_id": sessionStorage.wholesalerId,
 
             // 'warehouse': this.dataWare,
             // 'country': this.country,
@@ -501,11 +518,12 @@ export class AddwholesellerproductsComponent implements OnInit {
         //         console.log(data);
         //         debugger;
         // // return;
-        // this.spinnerService.show();
+        this.spinnerService.show();
         this.appService.insertProduct(data)
             .subscribe((resp: any) => {
-                if (resp.json().status === 200) {
-                    // this.spinnerService.hide();
+                if (resp.status == 200) {
+                    this.spinnerService.hide();
+                    Swal.fire(resp.message, '', "success");
                     // swal('product added successfully', '', 'success');
                     this.router.navigate(['/wholesellerproducts']);
                     this.showAddProductsForm1 = false;
@@ -673,23 +691,23 @@ export class AddwholesellerproductsComponent implements OnInit {
             }
         }
     }
-    // detectFiles(event) {
-    //     this.urls = [];
-    //     let files = event.target.files;
-    //     if (files) {
-    //         for (let file of files) {
-    //             let reader = new FileReader();
-    //             reader.onload = (e: any) => {
-    //                 this.urls.push(e.target.result);
-    //                 // this.skusData
-    //                 for (var i = 0; i < this.skusData.length; i++) {
-    //                     this.skusData[i].sku_images = this.urls;
-    //                 }
-    //             }
-    //             reader.readAsDataURL(file);
-    //         }
-    //     }
-    // }
+    detectFiles(event) {
+        this.urls = [];
+        let files = event.target.files;
+        if (files) {
+            for (let file of files) {
+                let reader = new FileReader();
+                reader.onload = (e: any) => {
+                    this.urls.push(e.target.result);
+                    // this.skusData
+                    for (var i = 0; i < this.skusData.length; i++) {
+                        this.skusData[i].sku_images = this.urls;
+                    }
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+    }
     reqProduct;
     reqAdmin() {
         var inData = {
@@ -710,7 +728,8 @@ export class AddwholesellerproductsComponent implements OnInit {
             }
         })
     }
-    updatedSkus = []
+    updatedSkus = [];
+    wholesalerId;
     updateProduct() {
         // this.spinnerService.show();
         // setTimeout(() => this.spinnerService.hide(), 12000)
@@ -872,7 +891,7 @@ export class AddwholesellerproductsComponent implements OnInit {
             "brand": this.formdata.brand,
             "sku": this.updatedSkus,
             "vendor_id": 0,
-            "wholesaller_id": this.wholesalerid,
+            "wholesaller_id": this.wholesalerId,
             "country": this.formdata.country,
             "product_name": this.product_name,
             "description": this.textarea,

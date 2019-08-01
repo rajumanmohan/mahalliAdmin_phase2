@@ -286,6 +286,12 @@ else if (sessionStorage.role == 'wholesaler') {
 
       ]
     },
+    {
+      name: 'Change Password',
+      url: '/changePassword',
+      icon: 'icon-speedometer',
+
+    },
 
 
   ];
@@ -298,11 +304,41 @@ else if (sessionStorage.role == 'wholesaler') {
 
     },
     {
-      name: 'Vendor Orders',
-      url: '/vendorslist/vendororders',
-      icon: 'fa fa-cart-plus ',
-    },
+      name: 'My Account',
+      url: '/vendoraccount',
+      icon: 'icon-speedometer',
 
+    },
+    {
+      name: 'Business Address',
+      url: '/businessDetails',
+      icon: 'icon-speedometer',
+
+    },
+    {
+      name: 'Delivery Address',
+      url: '/addressDetails',
+      icon: 'icon-speedometer',
+
+    },
+    {
+      name: 'Buy Products',
+      url: '/dashboard',
+      icon: 'icon-speedometer',
+
+    },
+    {
+      name: 'DeliverySlots',
+      url: '/deliverySlots',
+      icon: 'icon-speedometer',
+
+    },
+    {
+      name: 'Change Password',
+      url: '/changePassword',
+      icon: 'icon-speedometer',
+
+    },
     {
       name: 'Vendor Products',
       url: '/vendorproducts',
@@ -320,7 +356,12 @@ else if (sessionStorage.role == 'wholesaler') {
         },
 
       ]
-    }
+    },
+    {
+      name: 'User Orders',
+      url: '/vendorslist/vendororders',
+      icon: 'fa fa-cart-plus ',
+    },
   ]
 } else {
 

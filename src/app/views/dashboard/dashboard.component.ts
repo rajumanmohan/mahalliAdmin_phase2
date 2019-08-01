@@ -5,11 +5,11 @@ import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
 import { AppService } from './../../services/mahali/mahali-data.service';
 import { navItems } from '../../_nav';
-
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label, BaseChartDirective } from 'ng2-charts';
 
 import { DatePipe } from '@angular/common';
+import * as moment from 'moment';
 
 
 @Component({
@@ -121,6 +121,17 @@ export class DashboardComponent implements OnInit {
     //   label: 'BEP'
     // }
   ];
+
+  wholeSaleData: Array<any> = [
+    {
+      data: [0, 1, 2, 4, 0, 0, 0],
+      label: 'User Orders'
+    },
+    {
+      data: [0, 1, 3, 0, 0, 0, 0],
+      label: 'Vendor Orders'
+    },
+  ]
   ngOnInit(): void {
     this.role = sessionStorage.role;
     if (sessionStorage.role == 'wholesaler') {
@@ -132,6 +143,10 @@ export class DashboardComponent implements OnInit {
     } else if (sessionStorage.role == 'vendor') {
       this.getGraphData();
       this.getvendorCount();
+    }
+    if (sessionStorage.role == 'vendor') {
+      window.open("https://www.mahalli.com/mahaliVendorGrocery/", "_blank");
+
     }
   }
 
@@ -268,12 +283,29 @@ export class DashboardComponent implements OnInit {
     var year = currentTime.getFullYear();
     let today = date.getDate();
     let befor7 = date.getDate() - 6;
+    var dateTo = moment().endOf('week');
+    var dateFrom = moment().startOf('week');
+
     let weekLables = [];
     let labels = [];
-    for (let i = befor7; i <= today; i++) {
-      labels.push(i + "/" + month + "/" + year);
-      weekLables.push(i)
+    let tempLabels = []
+
+    let tempDate = dateFrom;
+    while (tempDate.isSameOrBefore(dateTo)) {
+
+      tempLabels.push(tempDate.format("DD/MM/YYYY"));
+      weekLables.push(Number(tempDate.format('D')))
+      tempDate = tempDate.add(1, 'd');
+
     }
+
+    console.log(tempLabels);
+    labels = tempLabels;
+
+    // for (let i = befor7; i <= today; i++) {
+    //   labels.push(i + "/" + month + "/" + year);
+    //   weekLables.push(i)
+    // }
     let monthUserData = {};
     let monthVendorData = {};
     let userValues = [];

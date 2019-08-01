@@ -87,6 +87,13 @@ export class AppService {
     headers = headers.append('Content-Type', 'application/json; charset=utf-8');
     return this.http.put(AppSettings.updateProdUrl + "/" + prodId, params, { headers: headers });
   }
+  insertVendorProduct(params) {
+    // const headers = new Headers({ 'Content-Type': "application/JSON" });
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.post(AppSettings.insertvendorProd, params, { headers: headers })
+  }
   // deleteSkuProduct(params) {
   //     const headers = new Headers({ 'Content-Type': "application/JSON" });
   //     return this.http.post(AppSettings.deleteSkuUrl, params, { headers: headers });
@@ -98,6 +105,7 @@ export class AppService {
     headers = headers.append('Content-Type', 'application/json; charset=utf-8');
     return this.http.post(AppSettings.insertProduct, params, { headers: headers })
   }
+
   insertSubCat(params) {
     // const headers = new Headers({ 'Content-Type': "application/JSON" });
     var headers: HttpHeaders = new HttpHeaders;
@@ -677,7 +685,7 @@ export class AppService {
     var headers: HttpHeaders = new HttpHeaders;
     headers = headers.append('Accept', 'application/json, text/plain, */*');
     headers = headers.append('Content-Type', 'application/json; charset=utf-8');
-    return this.http.get(AppSettings.prodSub + "/" + subsub, { headers: headers })
+    return this.http.get(AppSettings.prodSubsub + "/" + subsub, { headers: headers })
   }
   reqAdmin(params) {
     var headers: HttpHeaders = new HttpHeaders;
@@ -800,6 +808,116 @@ export class AppService {
     headers = headers.append('Content-Type', 'application/json; charset=utf-8');
     this.vendor_id = sessionStorage.getItem('vemdorId');
     return this.http.post(AppSettings.vandorGraph + "/" + this.vendor_id, params, { headers: headers });
+  }
+  loginDetailsbyEmail(formValaues) {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.get(AppSettings.loginDetailsUrl + formValaues, { headers: headers })
+  }
+  getAccDetails() {
+    this.vendor_id = sessionStorage.vemdorId;
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.get(AppSettings.getAccDetails + "/" + this.vendor_id, { headers: headers });
+  }
+  updateAddData(params, addId) {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.put(AppSettings.updateAddress + "/" + this.vendor_id + "/" + addId, params, { headers: headers });
+  }
+  updateAcc(params) {
+    this.vendor_id = sessionStorage.vemdorId;
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.put(AppSettings.updateAcc + "/" + this.vendor_id, params, { headers: headers });
+  }
+  role;
+  updateProfile(params) {
+    this.role = sessionStorage.role;
+    this.vendor_id = this.role == 'vendor' ? sessionStorage.vemdorId : sessionStorage.wholesalerId
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.put(AppSettings.updateProfile + "/" + this.vendor_id, params, { headers: headers })
+  }
+  getUserOrdersbyVenId1() {
+    this.vendor_id = sessionStorage.vemdorId;
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.get(AppSettings.getUserOrdersbyVenId + "/" + this.vendor_id, { headers: headers });
+  }
+  userOrdDetails(ordId) {
+    // this.vendor_id = sessionStorage.vemdorId;
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.get(AppSettings.userOrdDetails + "/" + ordId, { headers: headers });
+  }
+  getAddress() {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    this.vendor_id = sessionStorage.vemdorId;
+    // this.vendor_id = sessionStorage.getItem('userId');
+    return this.http.get(AppSettings.getAddress + "/" + this.vendor_id, { headers: headers });
+  }
+  getAddedData() {
+    this.vendor_id = sessionStorage.vemdorId;
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.get(AppSettings.getAddedData + "/" + this.vendor_id + "/" + 0, { headers: headers });
+  }
+  changePwd(params) {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    this.vendor_id = sessionStorage.vemdorId ? sessionStorage.vemdorId : sessionStorage.wholesalerId
+
+    return this.http.post(AppSettings.changePwdUrl + "/" + this.vendor_id, params, { headers: headers });
+  }
+  getDelSlots() {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    this.vendor_id = sessionStorage.vemdorId;
+    return this.http.get(AppSettings.getDelSlots + "/" + this.vendor_id, { headers: headers });
+  }
+  delDelSlot(params) {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    this.vendor_id = sessionStorage.vemdorId;
+    return this.http.delete(AppSettings.delDelSlot + "/" + params, { headers: headers });
+  }
+  delAddress(params) {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.delete(AppSettings.delAddress + "/" + params, { headers: headers });
+  }
+  AddSlots(params) {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.post(AppSettings.AddSlots, params, { headers: headers });
+  }
+  AdddelCharges(params) {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.post(AppSettings.AdddelCharges, params, { headers: headers });
+  }
+  getAttributes() {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.get(AppSettings.getAttributes, { headers: headers });
   }
   // deleteVendorbyId(id) {
   //     const headers = new Headers({ 'Content-Type': "application/JSON" });

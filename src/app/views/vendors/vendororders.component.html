@@ -35,7 +35,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6">
-                            <h1>Vendor Orders </h1>
+                            <h1 *ngIf="role=='Admin'">Vendor Orders </h1>
+                            <h1 *ngIf="role=='vendor'">User Orders </h1>
+
                         </div>
                         <div class="col-lg-6 text-right">
                             <button type="button" class="btn  btn-primary mb-3" (click)="exportAsXLSX()">Export To

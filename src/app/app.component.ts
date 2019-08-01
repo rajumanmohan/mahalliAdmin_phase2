@@ -10,7 +10,9 @@ import { Router, NavigationEnd } from '@angular/router';
   <router-outlet></router-outlet>,
  <div>
  
-
+ <ng4-loading-spinner [threshold]="1000" [timeout]="18000" [template]="template" [loadingText]="'Please wait...'"
+ [zIndex]="9999">
+</ng4-loading-spinner>
  </div>
 
   </div> 

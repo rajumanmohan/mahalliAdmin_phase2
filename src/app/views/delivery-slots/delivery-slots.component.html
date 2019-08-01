@@ -1,0 +1,216 @@
+<div *ngIf="AddSlot">
+    <div class="form-group row">
+        <div class="col-sm-12 cust-deliveryslot">
+            <!-- <div><label for="fisrtname" class="col-form-label">* From Time :</label></div> -->
+            <label for="firstname">Open Time :</label>
+
+            <div class="col-md-6">
+                <div class="form-group">
+
+                    <!-- <kendo-timepicker [(value)]="from_date" name="from_date"
+                                        [(ngModel)]="from_date">
+                                    </kendo-timepicker> -->
+                    <input type="time" class="form-control" name="Enter open Time" [(ngModel)]="from_date"
+                        (change)="valuechange($event)">
+                </div>
+            </div>
+            <label for="firstname">&nbsp;&nbsp;Close Time :</label>
+            <div class="col-md-6">
+
+                <div class="form-group">
+
+                    <!-- <kendo-timepicker [min]="from_date" [(value)]="to_date"
+                                                                [(ngModel)]="to_date" name="to_date">
+                                                            </kendo-timepicker> -->
+                    <input type="time" class="form-control" name="Enter Close Time" [(ngModel)]="to_date" name="to_date"
+                        (change)="close()">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col text-center">
+                <button type="button" class="btn btn-success" (click)="AddDeliverySlots()">Add
+                    Slot
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="profile-header">Add Delivery Charges</h3>
+    <form class="form-details" #formCtrl="ngForm">
+        <div class="form-group row">
+            <label for="fisrtname" class="col-sm-6 col-form-label">* Standard Delivery :</label>
+            <div class="col-sm-6">
+                <input myNumberOnly type="text" name="standDel" class="form-control" id="business_area"
+                    [(ngModel)]="standDel" ngControl="standDel" required>
+                <!-- <div *ngIf="business_area_errors" class="invalid-feedback">
+                <div *ngIf="business_area_errors">Area is required</div>
+            </div> -->
+            </div>
+            <br />
+            <br />
+            <label for="fisrtname" class="col-sm-6 col-form-label">* Express Delivery :</label>
+            <div class="col-sm-6">
+                <input myNumberOnly type="text" name="expressDel" class="form-control" id="business_city"
+                    [(ngModel)]="expressDel" ngControl="expressDel" required>
+                <!-- <div *ngIf="business_city_errors" class="invalid-feedback">
+                <div *ngIf="business_city_errors">City is required</div>
+            </div> -->
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="col text-center">
+                    <button type="button" class="btn btn-success" (click)="AddDelCharges()"
+                        [disabled]="!formCtrl.form.valid">Add
+                        Delivery Charges
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="animated fadeIn" *ngIf="showDel">
+    <!-- <div class="row">
+            <div class="col-lg-4 col-sm-5">
+                <div class="well"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                    velit esse cillum dolore eu fugiat nulla pariatur. </div>
+            </div>
+            <div class="col-lg-4 offset-lg-4 col-sm-5 offset-sm-2">
+                <table class="table table-clear">
+                    <tbody>
+                        <tr>
+                            <td class="left"><strong>Subtotal</strong></td>
+                            <td class="right">$8.497,00</td>
+                        </tr>
+                        <tr>
+                            <td class="left"><strong>Discount (20%)</strong></td>
+                            <td class="right">$1,699,40</td>
+                        </tr>
+                        <tr>
+                            <td class="left"><strong>VAT (10%)</strong></td>
+                            <td class="right">$679,76</td>
+                        </tr>
+                        <tr>
+                            <td class="left"><strong>Total</strong></td>
+                            <td class="right"><strong>$7.477,36</strong></td>
+                        </tr>
+                    </tbody>
+                </table><a class="btn btn-success" href="#"><i class="fa fa-usd"></i> Proceed to Payment</a>
+            </div>
+        </div> -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card pt-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h1>Delivery Slots </h1>
+                        </div>
+                        <div class="col-lg-6 text-right">
+                            <button type="button" class="btn  btn-primary" (click)="addSlot()">Add Slot</button>
+                        </div>
+                        <!-- </div> -->
+                        <div class="col-lg-6 text-right">
+                            <!-- <button type="button" class="btn  btn-primary mb-3" (click)="exportAsXLSX()">Export To
+                                    Excel</button> -->
+                            <!-- <button type="submit" class="btn request-admin" data-dismiss="modal"
+                                                                data-toggle="modal" data-target="#product-name">Request
+                                                                Admin
+                                                            </button> -->
+
+                        </div>
+
+
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="ccnumber" placeholder="Search"
+                                    [(ngModel)]="filter">
+                            </div>
+                        </div>
+                    </div> -->
+                    <!--/.row-->
+                </div>
+
+                <div class="card-body table-responsive">
+                    <!-- <div class="cust-filter" data-toggle="modal" data-dismiss="modal" data-target="#filter2">
+                        <i class="fa fa-filter"></i> Filters
+                    </div> -->
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="font-size:18px;">S.NO</th>
+                                <th scope="col" style="font-size:18px;">From Time</th>
+                                <th scope="col" style="font-size:18px;">To Time</th>
+                                <th scope="col" style="font-size:18px;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let slot of delSlots">
+                                <td>
+                                    {{slot.indexValue +1}}
+                                </td>
+                                <td>
+                                    {{slot.start_time}}
+                                </td>
+                                <td>
+                                    {{slot.end_time}}
+                                </td>
+                                <td>
+                                    <i class="fa fa-trash-o cust-delete1" aria-hidden="true"
+                                        (click)="deleteSlot(slot.id)"></i>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <!-- <pagination-controls (pageChange)="p = $event" style="float:right; margin-top:15px;">
+                    </pagination-controls> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="modal " id="filter2 " tabindex="-1 " role="dialog ">
+        <div class="modal-dialog " role="document ">
+            <div class="modal-content ">
+                <div class="modal-header c-modalheader ">
+                    <button type="button " class="close " data-dismiss="modal " aria-label="Close ">
+                        <span aria-hidden="true " class="cust-close ">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body ">
+                    <div class="container ">
+                        <div class="cust-date ">
+                            <strong>Select Date</strong>
+                            <form>
+                                <div class="form-row ">
+                                    <div class="form-group col-md-6 ">
+                                        <label for="inputEmail4 ">From Date</label>
+                                        <input type="date " class="form-control " placeholder="From Date ">
+                                    </div>
+                                    <div class="form-group col-md-6 ">
+                                        <label for="inputPassword4 ">To Date</label>
+                                        <input type="date " class="form-control " placeholder="To Date ">
+                                    </div>
+                                    <div class="col-md-12 cust-apply ">
+                                        <button type="submit " data-dismiss="modal ">Apply</button>
+                                    </div>
+                                </div>
+    
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->

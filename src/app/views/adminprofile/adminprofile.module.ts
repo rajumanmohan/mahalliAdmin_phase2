@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminprofileComponent } from './adminprofile.component';
 import { AdminProfileRoutingModule } from './adminprofile-routing.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -9,7 +10,7 @@ import { AdminProfileRoutingModule } from './adminprofile-routing.module';
 @NgModule({
   declarations: [AdminprofileComponent],
   imports: [
-    CommonModule, AdminProfileRoutingModule
+    CommonModule, AdminProfileRoutingModule, FormsModule
   ]
 })
 export class AdminprofileModule { }

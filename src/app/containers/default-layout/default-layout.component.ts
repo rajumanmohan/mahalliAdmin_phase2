@@ -259,9 +259,10 @@ export class DefaultLayoutComponent implements OnDestroy {
           ]
         },
         {
-          name: 'Buy A Products',
-          url: '',
-          icon: 'fa fa-cart-plus ',
+          name: 'Change Password',
+          url: '/changePassword',
+          icon: 'icon-speedometer',
+
         },
 
 
@@ -275,10 +276,43 @@ export class DefaultLayoutComponent implements OnDestroy {
 
         },
         {
-          name: 'Vendor Orders',
-          url: '/vendorslist/vendororders',
-          icon: 'fa fa-cart-plus ',
+          name: 'My Account',
+          url: '/vendoraccount',
+          icon: 'icon-speedometer',
+
         },
+        {
+          name: 'Business Details',
+          url: '/businessDetails',
+          icon: 'icon-speedometer',
+
+        },
+        {
+          name: 'Delivery Address',
+          url: '/addressDetails',
+          icon: 'icon-speedometer',
+
+        },
+        {
+          name: 'DeliverySlots',
+          url: '/deliverySlots',
+          icon: 'icon-speedometer',
+
+        },
+        {
+          name: 'Change Password',
+          url: '/changePassword',
+          icon: 'icon-speedometer',
+
+        },
+        {
+          name: 'Buy Products',
+          url: '/dashboard',
+          // target:'_blank',
+          icon: 'icon-speedometer',
+
+        },
+
 
         {
           name: 'Vendor Products',
@@ -297,7 +331,12 @@ export class DefaultLayoutComponent implements OnDestroy {
             },
 
           ]
-        }
+        },
+        {
+          name: 'User Orders',
+          url: '/vendorslist/vendororders',
+          icon: 'fa fa-cart-plus ',
+        },
       ]
     } else {
 

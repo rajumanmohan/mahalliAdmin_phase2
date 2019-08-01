@@ -1,0 +1,151 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header"><i class="fa fa-align-justify"></i>Account Details </div>
+            <div class="card-body">
+                <div class="col-lg-12 col-sm-12" *ngIf="showprofileData">
+                    <table class="table table-clear">
+                        <tbody>
+                            <tr>
+                                <td class="left"><strong>
+                                        Account Name</strong></td>
+                                <td class="right">{{accDet?.account_holder_name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>Account Number</strong></td>
+                                <td class="right">{{accDet?.account_number}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>Bank Name</strong></td>
+                                <td class="right">{{accDet?.bank_name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>IBAN code</strong></td>
+                                <td class="right">{{accDet?.ifsc_code}}</td>
+                            </tr>
+                            <!-- <tr>
+                                <td class="left"><strong>Branch Address</strong></td>
+                                <td class="right">
+                                    {{accDet?.bank_branch}}
+                                </td>
+                            </tr> -->
+                            <tr>
+                                <td class="left"><strong>Branch Address</strong></td>
+                                <td class="right">{{accDet?.bank_branch}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <button class="btn btn-success" (click)="ShoweditProfile()">Edit</button>
+                    </div>
+                </div>
+                <!-- Account Details -->
+                <div class="col-lg-12 col-sm-12" *ngIf="showAccountDetails">
+                    <table class="table table-clear">
+                        <tbody>
+                            <tr>
+                                <td class="left"><strong>
+                                        Account Name</strong></td>
+                                <td class="right">{{accDet?.account_holder_name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>Account Number</strong></td>
+                                <td class="right">{{accDet?.account_number}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>Bank Name</strong></td>
+                                <td class="right">{{accDet?.bank_name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>IBAN code</strong></td>
+                                <td class="right">{{accDet?.ifsc_code}}</td>
+                            </tr>
+                            <!-- <tr>
+                                <td class="left"><strong>Branch Address</strong></td>
+                                <td class="right">
+                                    {{accDet?.bank_branch}}
+                                </td>
+                            </tr> -->
+                            <tr>
+                                <td class="left"><strong>Branch Address</strong></td>
+                                <td class="right">{{accDet?.bank_branch}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <button class="btn btn-success" (click)="ShoweditProfile()">Edit Profile</button>
+                    </div>
+                </div>
+                <div *ngIf="editProfile">
+                    <form class="form-details" #formCtrl="ngForm">
+                        <div class="form-group row">
+                            <label for="inputname1" class="col-sm-3 col-form-label">Account Name
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input alphabetsOnly type="text" class="form-control input-feild" id="inputname1"
+                                    name="first_name" [(ngModel)]="accDet.account_holder_name"
+                                    ngControl="account_holder_name" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputname1" class="col-sm-3 col-form-label">Account Number
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input alphabetsOnly type="text" class="form-control input-feild" id="inputname2"
+                                    name="last_name" [(ngModel)]="accDet.account_number" ngControl="account_number"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Bank Name
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control input-feild" id="inputEmail3"
+                                    placeholder="tarunkumar321@gmail.com" name="email" [(ngModel)]="accDet.bank_name"
+                                    ngControl="bank_name" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputphoneno" class="col-sm-3 col-form-label">IBAN Code
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control input-feild" id="inputEmail3"
+                                    placeholder="tarunkumar321@gmail.com" name="email" [(ngModel)]="accDet.ifsc_code"
+                                    ngControl="ifsc_code" required>
+                            </div>
+                            <!-- <div class="col-sm-9 mobile-behrain">
+                                <div class="input-group-prepend group">
+                                    <button class="input-button" type="button" id="button-addon1">+973</button>
+                                </div>
+                                <input myNumberOnly type="text" class="form-control input-feild" id="inputphoneno"
+                                    placeholder="+973" [(ngModel)]="accDet.ifsc_code" name="ifsc_code"
+                                    ngControl="ifsc_code" required>
+                            </div> -->
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputphoneno" class="col-sm-3 col-form-label">Branch Address
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input alphabetsOnly type="text" class="form-control input-feild" id="inputphoneno"
+                                    placeholder="my business" [(ngModel)]="accDet.bank_branch" name="bank_branch"
+                                    ngControl="bank_branch" required>
+                            </div>
+                        </div>
+                        <div class="mrgn-btn">
+                            <button type="button" class="btn btn-success" [disabled]="!formCtrl.form.valid"
+                                (click)="saveDetails()">Save</button>
+                            <button type="button" class="btn btn-success" (click)="cancelDetails()">Cancel</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

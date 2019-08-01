@@ -1,0 +1,192 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header"><i class="fa fa-align-justify"></i>Address Details </div>
+            <div class="card-body">
+
+                <div class="col-lg-12 col-sm-12" *ngIf="showprofileData">
+
+                    <div class="row address-details" *ngFor="let add of getAddData;let i=index">
+                        <div class="col-lg-10 ">
+                            <h3>{{add.address_type}}</h3>
+                            <P>
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;
+                                {{add.landmark}},{{add.house_no}}, {{add.city}} ,{{add.pin_code}}
+
+                            </P>
+                            <p>
+                                <i class="fa fa-phone" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i>{{add.mobile_number}}
+                            </p>
+                        </div>
+                        <a> <i class="fa fa-pencil-square-o fa-lg " (click)="editAdd(add.address_id)"></i></a>
+                        <a> <i class="fa fa-trash fa-lg" aria-hidden="true" (click)="delete(add.address_id)"></i></a>
+                        <!-- <div class="col-lg-2 form-check">
+                            <div *ngIf="seleOpt==i">
+                                <button class="icon-btn">
+                                    <i class="fa fa-pencil" aria-hidden="true"
+                                        (click)="showEditAdd(add.address_id)"></i>
+                                </button>
+                                <button class="icon-btn1">
+                                    <i class="fa fa-trash" aria-hidden="true" (click)="delAdd(add.address_id)"></i>
+                                </button>
+                            </div>
+                            <i class="far fa-circle" (click)="seleAddOptn(i,add.address_id)" *ngIf="seleOpt!==i"></i>
+                            <i class="far fa-dot-circle" *ngIf="seleOpt==i"></i>
+                        </div> -->
+                    </div>
+                    <!-- <div>
+                        <button class="btn btn-success" (click)="ShoweditProfile()">Edit</button>
+                    </div> -->
+                </div>
+                <!-- Account Details -->
+                <div class="col-lg-12 col-sm-12" *ngIf="showAccountDetails">
+                    <table class="table table-clear">
+                        <tbody>
+                            <tr>
+                                <td class="left"><strong>
+                                        Business Name</strong></td>
+                                <td class="right">{{accDet?.account_holder_name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>Account Number</strong></td>
+                                <td class="right">{{accDet?.account_number}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>Bank Name</strong></td>
+                                <td class="right">{{accDet?.bank_name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>IBAN code</strong></td>
+                                <td class="right">{{accDet?.ifsc_code}}</td>
+                            </tr>
+                            <!-- <tr>
+                                <td class="left"><strong>Branch Address</strong></td>
+                                <td class="right">
+                                    {{accDet?.bank_branch}}
+                                </td>
+                            </tr> -->
+                            <tr>
+                                <td class="left"><strong>Branch Address</strong></td>
+                                <td class="right">{{accDet?.bank_branch}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <button class="btn btn-success" (click)="ShoweditProfile()">Edit Profile</button>
+                    </div>
+                </div>
+                <div *ngIf="showEditAddress">
+                    <form class="form-details" #formCtrl="ngForm">
+                        <div class="form-group row">
+                            <label for="inputname1" class="col-sm-3 col-form-label">Full Name
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input alphabetsOnly type="text" class="form-control input-feild" id="inputname1"
+                                    name="first_name" name="full_name" [(ngModel)]="editAddData.full_name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputname1" class="col-sm-3 col-form-label">Mobile Number
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input alphabetsOnly type="text" class="form-control input-feild" id="inputname2"
+                                    name="last_name" name="mobile_number" [(ngModel)]="editAddData.mobile_number"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Shop No
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control input-feild" id="inputEmail3"
+                                    placeholder="tarunkumar321@gmail.com" name="city" [(ngModel)]="editAddData.city">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputphoneno" class="col-sm-3 col-form-label">Road No
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control input-feild" id="inputEmail3"
+                                    placeholder="tarunkumar321@gmail.com" name="email" [(ngModel)]="editAddData.city">
+                            </div>
+                            <!-- <div class="col-sm-9 mobile-behrain">
+                                <div class="input-group-prepend group">
+                                    <button class="input-button" type="button" id="button-addon1">+973</button>
+                                </div>
+                                <input myNumberOnly type="text" class="form-control input-feild" id="inputphoneno"
+                                    placeholder="+973" [(ngModel)]="accDet.ifsc_code" name="ifsc_code"
+                                    ngControl="ifsc_code" required>
+                            </div> -->
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputphoneno" class="col-sm-3 col-form-label">Building No
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input alphabetsOnly type="text" class="form-control input-feild" id="inputphoneno"
+                                    placeholder="my business" name="landmark" [(ngModel)]="editAddData.landmark">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputphoneno" class="col-sm-3 col-form-label">Block
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input alphabetsOnly type="text" class="form-control input-feild" id="inputphoneno"
+                                    placeholder="my business" [(ngModel)]="editAddData.city" name="city">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputphoneno" class="col-sm-3 col-form-label">Area
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input alphabetsOnly type="text" class="form-control input-feild" id="inputphoneno"
+                                    placeholder="my business" name="state" [(ngModel)]="editAddData.state">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputphoneno" class="col-sm-3 col-form-label">City
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input alphabetsOnly type="text" class="form-control input-feild" name="pin_code"
+                                    [(ngModel)]="editAddData.pin_code">
+                            </div>
+                        </div>
+                        <!-- <div class="form-group row">
+                            <label for="inputphoneno" class="col-sm-3 col-form-label">Business Address
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input alphabetsOnly type="text" class="form-control input-feild" id="inputphoneno"
+                                    placeholder="my business" [(ngModel)]="profileData.bussiness_address"
+                                    name="bussiness_address" ngControl="bussiness_address" required>
+                            </div>
+                        </div> -->
+
+                        <div class="addType">
+                            <p>Choose nick name for this address</p>
+                            <p class="addresses ">
+                                <a (click)="Type('Shop')" [ngClass]="{'activeAdd':typeval=='Shop'}">Shop</a>
+                                <a (click)="Type('Godown')" [ngClass]="{'activeAdd':typeval=='Godown'}">Godown</a>
+                                <a (click)="Type('Other')" [ngClass]="{'activeAdd':typeval=='Other'}">Other</a>
+                            </p>
+                        </div>
+                        <div class="mrgn-btn">
+                            <button type="button" class="btn btn-success" [disabled]="!formCtrl.form.valid"
+                                (click)="UpdateAdd(editAddData.address_id)">Edit</button>
+                            <button type="button" class="btn btn-success" (click)="cancelDetails()">Cancel</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

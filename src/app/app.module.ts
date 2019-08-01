@@ -16,7 +16,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 
 import { AppComponent } from './app.component';
 import { ExcelService } from './services/excel.service';
-
+import { NumberOnlyDirective } from './directives/number';
+import { AlphabetsOnly, EmailOnly } from './directives/number';
+// import { IntlModule } from '@progress/kendo-angular-intl';
+// import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 // Import containers
 import { DefaultLayoutComponent } from './containers';
 import { MyDatePickerModule } from 'mydatepicker';
@@ -59,6 +62,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { AllusersComponent } from './views/allusers/allusers.component';
 import { ProfileComponent } from './views/profile/profile.component';
+// import { AddressDetailsComponent } from './views/address-details/address-details.component';
 
 @NgModule({
   imports: [
@@ -86,6 +90,8 @@ import { ProfileComponent } from './views/profile/profile.component';
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule,
+    // IntlModule,
+    // DateInputsModule,
     // ExcelService
   ],
   declarations: [
@@ -97,6 +103,9 @@ import { ProfileComponent } from './views/profile/profile.component';
     RegisterComponent,
     AllusersComponent,
     ProfileComponent,
+    NumberOnlyDirective,
+    AlphabetsOnly,
+
     // DashboardComponent
   ],
   providers: [{

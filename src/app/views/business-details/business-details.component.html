@@ -1,0 +1,193 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header"><i class="fa fa-align-justify"></i>Business Details </div>
+            <div class="card-body">
+                <div class="col-lg-12 col-sm-12" *ngIf="showprofileData">
+                    <table class="table table-clear">
+                        <tbody>
+                            <tr>
+                                <td class="left"><strong>
+                                        Business Name</strong></td>
+                                <td class="right">{{profileData.bussiness_name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>Business Email</strong></td>
+                                <td class="right">{{profileData.bussiness_email}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>Business Email</strong></td>
+                                <td class="right">{{profileData.bussiness_email}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>Business Area</strong></td>
+                                <td class="right">{{profileData.bussiness_area}}</td>
+                            </tr>
+                            <!-- <tr>
+                                <td class="left"><strong>Branch Address</strong></td>
+                                <td class="right">
+                                    {{accDet?.bank_branch}}
+                                </td>
+                            </tr> -->
+                            <tr>
+                                <td class="left"><strong>Business City</strong></td>
+                                <td class="right">{{profileData.bussiness_city}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>Business Mobile Number</strong></td>
+                                <td class="right">{{profileData.bussiness_mobile_number}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>Business Block Number</strong></td>
+                                <td class="right">{{profileData.bussiness_pincode}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>Business Address</strong></td>
+                                <td class="right">{{profileData.bussiness_address}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <button class="btn btn-success" (click)="ShoweditProfile()">Edit</button>
+                    </div>
+                </div>
+                <!-- Account Details -->
+                <div class="col-lg-12 col-sm-12" *ngIf="showAccountDetails">
+                    <table class="table table-clear">
+                        <tbody>
+                            <tr>
+                                <td class="left"><strong>
+                                        Business Name</strong></td>
+                                <td class="right">{{accDet?.account_holder_name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>Account Number</strong></td>
+                                <td class="right">{{accDet?.account_number}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>Bank Name</strong></td>
+                                <td class="right">{{accDet?.bank_name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><strong>IBAN code</strong></td>
+                                <td class="right">{{accDet?.ifsc_code}}</td>
+                            </tr>
+                            <!-- <tr>
+                                <td class="left"><strong>Branch Address</strong></td>
+                                <td class="right">
+                                    {{accDet?.bank_branch}}
+                                </td>
+                            </tr> -->
+                            <tr>
+                                <td class="left"><strong>Branch Address</strong></td>
+                                <td class="right">{{accDet?.bank_branch}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <button class="btn btn-success" (click)="ShoweditProfile()">Edit Profile</button>
+                    </div>
+                </div>
+                <div *ngIf="editProfile">
+                    <form class="form-details" #formCtrl="ngForm">
+                        <div class="form-group row">
+                            <label for="inputname1" class="col-sm-3 col-form-label">Business Name
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input alphabetsOnly type="text" class="form-control input-feild" id="inputname1"
+                                    name="first_name" [(ngModel)]="profileData.bussiness_name"
+                                    ngControl="bussiness_name" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputname1" class="col-sm-3 col-form-label">Business Email
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input alphabetsOnly type="text" class="form-control input-feild" id="inputname2"
+                                    name="last_name" [(ngModel)]="profileData.bussiness_email"
+                                    ngControl="bussiness_email" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Business Area
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control input-feild" id="inputEmail3"
+                                    placeholder="tarunkumar321@gmail.com" name="email"
+                                    [(ngModel)]="profileData.bussiness_area" ngControl="bussiness_area" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputphoneno" class="col-sm-3 col-form-label">Business City
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control input-feild" id="inputEmail3"
+                                    placeholder="tarunkumar321@gmail.com" name="email"
+                                    [(ngModel)]="profileData.bussiness_city" ngControl="bussiness_city" required>
+                            </div>
+                            <!-- <div class="col-sm-9 mobile-behrain">
+                                <div class="input-group-prepend group">
+                                    <button class="input-button" type="button" id="button-addon1">+973</button>
+                                </div>
+                                <input myNumberOnly type="text" class="form-control input-feild" id="inputphoneno"
+                                    placeholder="+973" [(ngModel)]="accDet.ifsc_code" name="ifsc_code"
+                                    ngControl="ifsc_code" required>
+                            </div> -->
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputphoneno" class="col-sm-3 col-form-label">Business Mobile Number
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input alphabetsOnly type="text" class="form-control input-feild" id="inputphoneno"
+                                    placeholder="my business" [(ngModel)]="profileData.bussiness_mobile_number"
+                                    name="bussiness_mobile_number" ngControl="bussiness_mobile_number" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputphoneno" class="col-sm-3 col-form-label">Business Block Number
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input alphabetsOnly type="text" class="form-control input-feild" id="inputphoneno"
+                                    placeholder="my business" [(ngModel)]="profileData.bussiness_pincode"
+                                    name="bussiness_pincode" ngControl="bussiness_pincode" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputphoneno" class="col-sm-3 col-form-label">Business Address
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input alphabetsOnly type="text" class="form-control input-feild" id="inputphoneno"
+                                    placeholder="my business" [(ngModel)]="profileData.bussiness_address"
+                                    name="bussiness_address" ngControl="bussiness_address" required>
+                            </div>
+                        </div>
+                        <!-- <div class="form-group row">
+                            <label for="inputphoneno" class="col-sm-3 col-form-label">Business Address
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input alphabetsOnly type="text" class="form-control input-feild" id="inputphoneno"
+                                    placeholder="my business" [(ngModel)]="profileData.bussiness_address"
+                                    name="bussiness_address" ngControl="bussiness_address" required>
+                            </div>
+                        </div> -->
+                        <div class="mrgn-btn">
+                            <button type="button" class="btn btn-success" [disabled]="!formCtrl.form.valid"
+                                (click)="saveBusiness()">Save</button>
+                            <button type="button" class="btn btn-success" (click)="cancelDetails()">Cancel</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

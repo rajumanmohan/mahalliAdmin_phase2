@@ -1,0 +1,16 @@
+.row.address-details {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    padding: 26px;
+    margin-top: 20px;
+}
+.addresses a {
+    border: 1px solid #7eba00;
+    color: #7eba00;
+    padding: 5px;
+    border-radius: 10px;
+    margin-right: 1%;
+}
+.activeAdd{
+    background-color:#7eba00 !important;
+    color: #fff !important;
+}

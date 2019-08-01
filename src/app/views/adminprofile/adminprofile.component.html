@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-header"><i class="fa fa-align-justify"></i>My Profile </div>
             <div class="card-body">
-                <div class="col-lg-12 col-sm-12" *ngIf="profileData">
+                <div class="col-lg-12 col-sm-12" *ngIf="showprofileData">
                     <table class="table table-clear">
                         <tbody>
                             <tr>
@@ -40,12 +40,97 @@
                     </div>
                 </div>
                 <div *ngIf="editProfile">
-                    <div class="row">
-                        <div class="form-group col-sm-3">
-                            <label for="firstname" name="proName">Product Name :</label>
-                            <input class="form-control" />
+                    <form class="form-details" #formCtrl="ngForm">
+                        <div class="form-group row">
+                            <label for="inputname1" class="col-sm-3 col-form-label">First Name *
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input alphabetsOnly type="text" class="form-control input-feild" id="inputname1"
+                                    name="first_name" [(ngModel)]="profileData.first_name" ngControl="passwordCtrl"
+                                    required>
+                            </div>
                         </div>
-                    </div>
+                        <div class="form-group row">
+                            <label for="inputname1" class="col-sm-3 col-form-label">Last Name *
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input alphabetsOnly type="text" class="form-control input-feild" id="inputname2"
+                                    name="last_name" [(ngModel)]="profileData.last_name" ngControl="passwordCtrl"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Email ID *
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control input-feild" id="inputEmail3"
+                                    placeholder="tarunkumar321@gmail.com" name="email" [(ngModel)]="profileData.email"
+                                    ngControl="passwordCtrl" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputphoneno" class="col-sm-3 col-form-label">Phone No *
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9 mobile-behrain">
+                                <div class="input-group-prepend group">
+                                    <button class="input-button" type="button" id="button-addon1">+973</button>
+                                </div>
+                                <input myNumberOnly type="text" class="form-control input-feild" id="inputphoneno"
+                                    placeholder="+973" [(ngModel)]="profileData.mobile_number" name="mobile_number"
+                                    ngControl="passwordCtrl" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputphoneno" class="col-sm-3 col-form-label">Business Name
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input alphabetsOnly type="text" class="form-control input-feild" id="inputphoneno"
+                                    placeholder="my business" [(ngModel)]="profileData.bussiness_name"
+                                    name="bussiness_name" ngControl="bussiness_name" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputhouseno" class="col-sm-3 col-form-label">House No
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control input-feild" id="inputhouseno"
+                                    placeholder="Unispace Bussiness Center #143" name="bussiness_address"
+                                    [(ngModel)]="profileData.bussiness_address">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputstate" class="col-sm-3 col-form-label">Area
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9 pad-rt">
+                                <input type="text" class="form-control input-feild" id="inputstate"
+                                    placeholder="Karnataka" name="bussiness_area"
+                                    [(ngModel)]="profileData.bussiness_area">
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputcity" class="col-sm-3 col-form-label city-ltpad">City
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-sm-9 pad-lt">
+                                <input type="text" class="form-control input-feild" id="inputcity"
+                                    placeholder="Bangalore" name="bussiness_city"
+                                    [(ngModel)]="profileData.bussiness_city">
+                            </div>
+                        </div>
+                        <div class="mrgn-btn">
+                            <button type="button" class="btn btn-success" [disabled]="!formCtrl.form.valid"
+                                (click)="updateProfile()">Save</button>
+                            <button type="button" class="btn btn-success" (click)="cancel()">Cancel</button>
+                        </div>
+                    </form>
 
                 </div>
             </div>
