@@ -119,6 +119,18 @@ export class AppService {
     headers = headers.append('Content-Type', 'application/json; charset=utf-8');
     return this.http.get(AppSettings.getSubCategory, { headers: headers });
   }
+  getSubCategoriesByCategoryId(categoryId){
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.get(`${AppSettings.getSubCategoriesByCategoryId}/${categoryId}` , { headers: headers }); 
+  }
+  getSubSubCategoriesByCategoryIdSubCategoryId(categoryId, subCategoryId){
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.get(`${AppSettings.getSubSubCategoriesByCategoryId_SubCategoryId}/${categoryId}/${subCategoryId}` , { headers: headers }); 
+  }
   deleteSubCat(params) {
     var headers: HttpHeaders = new HttpHeaders;
     headers = headers.append('Accept', 'application/json, text/plain, */*');

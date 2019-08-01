@@ -13,14 +13,100 @@ export class WidgetsComponent implements OnInit {
   showGroceryProds;
   key: string = 'name';
   reverse: boolean = true;
+  categories = [];
+  subCategories = [];
+
   sort(key) {
     this.key = key;
     this.reverse = !this.reverse;
   }
   wholeType;
   ngOnInit() {
-    this.getGroceryProds();
+    //this.getGroceryProds();
+    this.getGroceryCategories();
   }
+
+  getGroceryCategories() {
+    this.getGroceryProds();
+    this.categories = [];
+  this.subCategories = [];
+  this.product = [];
+    let Data = {
+        "country": "",
+        "pin_code": "",
+        "area": ""
+    }
+    // this.spinnerService.show();
+    this.appService.getGroceryCat(Data)
+        .subscribe((resp: any) => {
+            if (resp.status === 200) {
+                // this.name = ""
+                this.categories = resp.categories;
+                // this.spinnerService.hide();
+            }
+            else {
+
+            }
+        },
+            error => {
+
+                console.log(error, "error");
+            })
+}
+
+getEcomCategories(){
+  this.getEcomProds();
+  this.categories = [];
+  this.subCategories = [];
+  this.product = [];
+  this.appService.getEcomCat({})
+  .subscribe((resp: any) => {
+      if (resp.status === 200) {
+          this.categories = resp.categories;
+      }
+      else {
+
+      }
+  },
+      error => {
+
+          console.log(error, "error");
+      })
+  
+}
+
+
+onCategoryChange(categoryId){
+  this.subCategories = [];
+  this.product = [];
+  this.getProductsByCategoryId(categoryId);
+  this.getSubCategoriesByCategoryId(categoryId);
+}
+
+getSubCategoriesByCategoryId(categoryId){
+  this.appService.getSubCategoriesByCategoryId(categoryId).subscribe((resp: any) => {
+    this.subCategories = resp.sub_category;
+  })
+}
+
+onSubCategoryChange(subCategoryId){
+  this.product =[];
+ this.getProductsBySubCategoryId(subCategoryId);
+}
+
+getProductsByCategoryId(categoryId) {
+  this.appService.prodCat(categoryId).subscribe((resp: any) => {
+    this.product = resp.products;
+  })
+}
+
+getProductsBySubCategoryId(subCategoryId){
+  this.appService.prodSub(subCategoryId).subscribe((resp: any) => {
+    this.product = resp.products;
+  })
+}
+
+
   limit = 10;
   skip = 1;
   addproduct() {

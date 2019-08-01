@@ -14,6 +14,8 @@ export const AppSettings = {
     addCatUrl: base_url + 'categories/addcatagories',
     updateCat: base_url + 'categories/updatecatagires',
     deleteCat: base_url + 'categories/deletecatagories',
+    getSubCategoriesByCategoryId: base_url + 'sub_categories',
+    getSubSubCategoriesByCategoryId_SubCategoryId: base_url + 'sub_categories/filtersubcat/subsub',
     insertSubCat: base_url + 'sub_categories/addsubcatagories',
     getSubCategory: base_url + 'sub_categories/alldata/get',
     getEcomSubCats: base_url + "sub_categories/alldataecommers/get",
