@@ -149,6 +149,8 @@ export const AppSettings = {
     getAttributes: base_url + "products/getaddattributes",
     AddSlots: base_url + "delivery_slots/deliveryslots",
     AdddelCharges: base_url + "delivery_slots/deliverycharges",
+    vendorwholesallergraphs: base_url + "place_order/vendorwholesallergraphs",
+    userGraph: base_url + "place_order/usergraphs"
 
     // postattrmast: base_url + "products/addattributes",
     // deleteVendorById: 'http://192.168.0.116:9000/vendors/',

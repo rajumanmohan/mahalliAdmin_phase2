@@ -28,6 +28,8 @@ export class DashboardComponent implements OnInit {
   public mainChartLegend = false;
   public mainChartType = 'line';
   barChartDataRes: any
+  wholeSaleDataRes: any;
+  userRes: any;
   // Admin, wholesaler, vendor
   radioModel: string = 'Month';
   wholeCount = [];
@@ -37,6 +39,9 @@ export class DashboardComponent implements OnInit {
   role: string;
   vendorCount = 0;
   userCount = 0;
+  vendorWholesaleCount = 0;
+  userWholesaleCount = 0;
+  totalUserCount = 0;
   Count = {};
   public mainChartColours: Array<any> = [
     { // brandInfo
@@ -122,7 +127,7 @@ export class DashboardComponent implements OnInit {
     // }
   ];
 
-  wholeSaleData: Array<any> = [
+  mainWholeSaleData: Array<any> = [
     {
       data: [0, 1, 2, 4, 0, 0, 0],
       label: 'User Orders'
@@ -132,6 +137,12 @@ export class DashboardComponent implements OnInit {
       label: 'Vendor Orders'
     },
   ]
+  mainUserData: Array<any> = [
+    {
+      data: [0, 1, 2, 4, 0, 0, 0],
+      label: 'User Orders'
+    }
+  ]
   ngOnInit(): void {
     this.role = sessionStorage.role;
     if (sessionStorage.role == 'wholesaler') {
@@ -139,7 +150,9 @@ export class DashboardComponent implements OnInit {
       this.getWholeProddsCunt();
     } else if (sessionStorage.role == 'Admin') {
       this.getGraphData();
+      this.getWholeSaleGraphData();
       this.getAdminCount();
+      this.getUserData();
     } else if (sessionStorage.role == 'vendor') {
       this.getGraphData();
       this.getvendorCount();
@@ -152,17 +165,40 @@ export class DashboardComponent implements OnInit {
 
   getGraphData() {
     this.appService.getGraph({ year: this.year }).subscribe((res: any) => {
-      console.log(res);
       this.barChartDataRes = res;
+      console.log("this.barChartDataRes..", this.barChartDataRes)
       this.yearly()
     }, err => {
 
     })
   }
+
+  // Wholesale Graph 
+  getWholeSaleGraphData() {
+
+    this.appService.getWholeSaleGraph({ year: this.year }).subscribe((res: any) => {
+      this.wholeSaleDataRes = res;
+      console.log("this.wholeSaleDataRes", this.wholeSaleDataRes)
+      this.yearly();
+    }, err => {
+
+    })
+  }
+  // User Graph
+  getUserData() {
+    this.appService.getUserSaleGraph({ year: this.year }).subscribe((res: any) => {
+      this.userRes = res;
+      console.log(this.userRes)
+      this.yearly();
+    }, err => {
+
+    })
+  }
+
   wholeSalerGraph() {
     //wholesalerId
     this.appService.graphWhole({ year: this.year }).subscribe((res: any) => {
-      console.log(res);
+
       this.barChartDataRes = res;
       this.yearly()
     }, err => {
@@ -171,7 +207,7 @@ export class DashboardComponent implements OnInit {
   }
   vendorGraph() {
     this.appService.graphVendor({ year: this.year }).subscribe((res: any) => {
-      console.log(res);
+
       this.barChartDataRes = res;
       this.yearly()
     }, err => {
@@ -222,9 +258,13 @@ export class DashboardComponent implements OnInit {
     this.mainChartLabels = [];
     let weekUserData = {};
     let weekVendorData = {};
+    let weekUserGraphData = {};
     let userValues = [];
     let vendorValues = [];
     let labels = [];
+    let wholeSaleData = {};
+    let wholeSaleVendorData = [];
+    let userData = [];
     for (let i = 1; i <= monthdays; i++) {
       labels.push(i + "/" + month + "/" + year);
     }
@@ -247,21 +287,7 @@ export class DashboardComponent implements OnInit {
       }
     }
 
-    for (let i = 1; i <= monthdays; i++) {
-      if (weekUserData['day-' + i]) {
-        userValues.push(weekUserData['day-' + i]);
-      } else {
-        userValues.push(0);
-      }
-    }
 
-    for (let i = 1; i <= 31; i++) {
-      if (weekVendorData['day-' + i]) {
-        vendorValues.push(weekVendorData['day-' + i]);
-      } else {
-        vendorValues.push(0);
-      }
-    }
     this.mainChartLabels = labels;
     this.mainChartData = [{
       data: userValues,
@@ -273,6 +299,84 @@ export class DashboardComponent implements OnInit {
       label: 'Vendor Orders',
       borderWidth: 0
     }];
+    /**User Graph */
+    let userGraphValues = [];
+    for (let data of (this.userRes || {}).userdata) {
+      if (month === data.month) {
+        if (!weekUserGraphData['day-' + data.day]) {
+          weekUserGraphData['day-' + data.day] = 0;
+        }
+        weekUserGraphData['day-' + data.day] += data.order_count;
+      }
+    }
+
+    for (let i = 1; i <= monthdays; i++) {
+      if (weekUserGraphData['day-' + i]) {
+        userGraphValues.push(weekUserGraphData['day-' + i]);
+      } else {
+        userGraphValues.push(0);
+      }
+    }
+
+
+    this.mainChartLabels = labels;
+    this.mainUserData = [{
+      data: userGraphValues,
+      label: 'User Orders',
+      borderWidth: 0
+    }];
+
+    let wholeSaleValues = [];
+    let wholeSaleVendorValues = [];
+
+    /**Whole sale data */
+    for (let data of (this.wholeSaleDataRes || {}).wholesalerdata) {
+      if (month === data.month) {
+        if (!wholeSaleData['day-' + data.day]) {
+          wholeSaleData['day-' + data.day] = 0;
+        }
+        wholeSaleData['day-' + data.day] += data.wholesaler_count;
+      }
+    }
+
+    for (let data of (this.wholeSaleDataRes || {}).vendordata) {
+      if (month === data.month) {
+        if (!wholeSaleVendorData['day-' + data.day]) {
+          wholeSaleVendorData['day-' + data.day] = 0;
+        }
+        wholeSaleVendorData['day-' + data.day] += data.vendor_count;
+      }
+    }
+    for (let i = 1; i <= monthdays; i++) {
+      if (wholeSaleData['day-' + i]) {
+        wholeSaleValues.push(wholeSaleData['day-' + i]);
+      } else {
+        wholeSaleValues.push(0);
+      }
+    }
+
+    for (let i = 1; i <= 31; i++) {
+      if (wholeSaleVendorData['day-' + i]) {
+        wholeSaleVendorValues.push(wholeSaleVendorData['day-' + i]);
+      } else {
+        wholeSaleVendorValues.push(0);
+      }
+    }
+
+
+
+    this.mainWholeSaleData = [
+      {
+        data: wholeSaleValues,
+        label: 'User Orders',
+        borderWidth: 0
+      },
+      {
+        data: wholeSaleVendorValues,
+        label: 'Vendor Orders',
+        borderWidth: 0
+      }
+    ]
   }
 
   public weekly() {
@@ -310,6 +414,10 @@ export class DashboardComponent implements OnInit {
     let monthVendorData = {};
     let userValues = [];
     let vendorValues = [];
+    let monthWholesaleUserData = {};
+    let monthWholesaleVendorData = {};
+    let userWholesaleValues = [];
+    let vendorWholesaleValues = [];
 
     for (let data of (this.barChartDataRes || {}).useroders) {
       if (!monthUserData['day-' + data.day]) {
@@ -348,6 +456,69 @@ export class DashboardComponent implements OnInit {
       label: 'Vendor Orders',
       borderWidth: 0
     }];
+
+    /**Whole sale data */
+    for (let data of (this.wholeSaleDataRes || {}).wholesalerdata) {
+      if (!monthWholesaleUserData['day-' + data.day]) {
+        monthWholesaleUserData['day-' + data.day] = 0;
+      }
+      monthWholesaleUserData['day-' + data.day] += data.wholesaler_count;
+    }
+    for (let data of (this.wholeSaleDataRes || {}).vendordata) {
+      if (!monthWholesaleVendorData['day-' + data.day]) {
+        monthWholesaleVendorData['day-' + data.day] = 0;
+      }
+      monthWholesaleVendorData['day-' + data.day] += data.vendor_count;
+    }
+    for (let day of weekLables) {
+      if (monthWholesaleUserData['day-' + day]) {
+        userWholesaleValues.push(monthWholesaleUserData['day-' + day]);
+      } else {
+        userWholesaleValues.push(0);
+      }
+    }
+    for (let day of weekLables) {
+      if (monthWholesaleVendorData['day-' + day]) {
+        vendorWholesaleValues.push(monthWholesaleVendorData['day-' + day]);
+      } else {
+        vendorWholesaleValues.push(0);
+      }
+    }
+    this.mainChartLabels = labels;
+    this.mainWholeSaleData = [{
+      data: userWholesaleValues,
+      label: 'User Orders',
+      borderWidth: 0
+    },
+    {
+      data: vendorWholesaleValues,
+      label: 'Vendor Orders',
+      borderWidth: 0
+    }];
+
+    /** user data */
+    let monthGraphUserData = {};
+    let userGraphValues = [];
+    for (let data of (this.userRes || {}).userdata) {
+      if (!monthGraphUserData['day-' + data.day]) {
+        monthGraphUserData['day-' + data.day] = 0;
+      }
+      monthGraphUserData['day-' + data.day] += data.order_count;
+    }
+    for (let day of weekLables) {
+      if (monthGraphUserData['day-' + day]) {
+        userGraphValues.push(monthGraphUserData['day-' + day]);
+      } else {
+        userGraphValues.push(0);
+      }
+    }
+    this.mainChartLabels = labels;
+    this.mainUserData = [{
+      data: userGraphValues,
+      label: 'User Orders',
+      borderWidth: 0
+    }];
+
   }
   public yearly() {
     this.mainChartLabels = [];
@@ -357,6 +528,16 @@ export class DashboardComponent implements OnInit {
     let vendorValues = [];
     this.userCount = 0;
     this.vendorCount = 0;
+    let monthWholesaleUserData = {};
+    let monthWholesaleVendorData = {};
+    let userWholesaleValues = [];
+    let vendorWholesaleValues = [];
+    this.userCount = 0;
+    this.vendorCount = 0;
+    this.userWholesaleCount = 0;
+    this.vendorWholesaleCount = 0;
+    this.totalUserCount = 0;
+
     if (!(this.barChartDataRes || {}).useroders) {
       this.barChartDataRes.useroders = []
     }
@@ -406,7 +587,84 @@ export class DashboardComponent implements OnInit {
       label: 'Vendor Orders',
       borderWidth: 0
     }];
-  }
 
+
+    /**Wholesale Data */
+    if (!(this.wholeSaleDataRes || {}).wholesalerdata) {
+      this.barChartDataRes.useroders = []
+    }
+    if (!(this.wholeSaleDataRes || {}).vendordata) {
+      this.barChartDataRes.venderoders = [];
+    }
+
+    for (let data of (this.wholeSaleDataRes || {}).wholesalerdata) {
+      if (!monthWholesaleUserData[this.mlist[data.month]]) {
+        monthWholesaleUserData[this.mlist[data.month]] = 0;
+      }
+      this.userWholesaleCount += data.wholesaler_count
+      monthWholesaleUserData[this.mlist[data.month]] += data.wholesaler_count;
+    }
+    for (let data of (this.wholeSaleDataRes || {}).vendordata) {
+      if (!monthWholesaleVendorData[this.mlist[data.month]]) {
+        monthWholesaleVendorData[this.mlist[data.month]] = 0;
+      }
+      this.vendorWholesaleCount += data.vendor_count;
+      monthWholesaleVendorData[this.mlist[data.month]] += data.vendor_count;
+    }
+    for (let month of this.mlist) {
+      if (monthWholesaleUserData[month]) {
+        userWholesaleValues.push(monthWholesaleUserData[month]);
+      } else {
+        userWholesaleValues.push(0);
+      }
+    }
+    for (let month of this.mlist) {
+      if (monthWholesaleVendorData[month]) {
+        vendorWholesaleValues.push(monthWholesaleVendorData[month]);
+      } else {
+        vendorWholesaleValues.push(0);
+      }
+    }
+
+    this.mainWholeSaleData = [{
+      data: userWholesaleValues,
+      label: 'User Orders',
+      borderWidth: 0
+    },
+    {
+      data: vendorWholesaleValues,
+      label: 'Vendor Orders',
+      borderWidth: 0
+    }];
+
+    /**User Data */
+    let monthGraphUserData = {};
+    let userGraphValues = [];
+    if (!(this.userRes || {}).userdata) {
+      this.userRes.userdata = []
+    }
+
+    for (let data of (this.userRes || {}).userdata) {
+      if (!monthGraphUserData[this.mlist[data.month]]) {
+        monthGraphUserData[this.mlist[data.month]] = 0;
+      }
+      this.totalUserCount += data.order_count
+      monthGraphUserData[this.mlist[data.month]] += data.order_count;
+    }
+
+    for (let month of this.mlist) {
+      if (monthGraphUserData[month]) {
+        userGraphValues.push(monthGraphUserData[month]);
+      } else {
+        userGraphValues.push(0);
+      }
+    }
+
+    this.mainUserData = [{
+      data: userGraphValues,
+      label: 'User Orders',
+      borderWidth: 0
+    }];
+  }
 
 }

@@ -733,6 +733,20 @@ export class AppService {
     this.vendor_id = sessionStorage.getItem('vemdorId');
     return this.http.post(AppSettings.getGraph, body, { headers: headers });
   }
+  getWholeSaleGraph(body) {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    this.vendor_id = sessionStorage.getItem('vemdorId');
+    return this.http.post(AppSettings.vendorwholesallergraphs, body, { headers: headers });
+  }
+  getUserSaleGraph(body) {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    this.vendor_id = sessionStorage.getItem('vemdorId');
+    return this.http.post(AppSettings.userGraph, body, { headers: headers });
+  }
   getvendorCount() {
     var headers: HttpHeaders = new HttpHeaders;
     headers = headers.append('Accept', 'application/json, text/plain, */*');
