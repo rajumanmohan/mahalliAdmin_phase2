@@ -323,7 +323,7 @@ else if (sessionStorage.role == 'wholesaler') {
     },
     {
       name: 'Buy Products',
-      url: '/dashboard',
+      url: '/buyProduct',
       icon: 'icon-speedometer',
 
     },

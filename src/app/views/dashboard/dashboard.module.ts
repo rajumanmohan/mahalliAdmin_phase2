@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 
 import { DatePipe } from '@angular/common';
 
-
+import { Ng2OrderModule } from 'ng2-order-pipe';
 
 @NgModule({
   imports: [
@@ -20,7 +20,8 @@ import { DatePipe } from '@angular/common';
     ChartsModule,
     BsDropdownModule,
     CommonModule,
-    ButtonsModule.forRoot()
+    ButtonsModule.forRoot(),
+    Ng2OrderModule
   ],
   providers: [
     DatePipe

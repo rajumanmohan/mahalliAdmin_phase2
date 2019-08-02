@@ -528,6 +528,9 @@ export class AddwholesellerproductsComponent implements OnInit {
                     this.router.navigate(['/wholesellerproducts']);
                     this.showAddProductsForm1 = false;
                     // this.showAddProducts = true;
+                } else {
+                    Swal.fire(resp.message, '', "error");
+
                 }
             },
                 error => {

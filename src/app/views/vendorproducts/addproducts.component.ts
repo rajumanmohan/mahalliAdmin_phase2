@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 declare var $: any;
 declare var jsPDF: any;
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-addproducts',
@@ -434,10 +435,14 @@ export class AddproductsComponent implements OnInit {
         this.appService.insertVendorProduct(data).subscribe((resp: any) => {
             if (resp.status === 200) {
                 this.spinnerService.hide();
+                Swal.fire(resp.message, '', "success");
                 // swal('product added successfully', '', 'success');
                 this.router.navigate(['/vendorproducts']);
                 this.showAddProductsForm1 = false;
                 // this.showAddProducts = true;
+            } else {
+                Swal.fire(resp.message, '', "error");
+
             }
         },
             error => {

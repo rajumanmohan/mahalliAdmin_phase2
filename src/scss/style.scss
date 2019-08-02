@@ -38,3 +38,16 @@ border-radius: 4px;
         margin:12px;
     }
 }
+
+.sidebar .nav-dropdown.open > .nav-dropdown-items {
+    background: #69a1b5;
+    font-size: 13px;
+}
+.sidebar .nav-dropdown.open > .nav-dropdown-items .nav-link {
+    padding-left: 40px;
+    font-size: 11px;
+}
+
+.sidebar .nav-link {
+    font-size: 13px;
+}

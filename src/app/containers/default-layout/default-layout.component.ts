@@ -37,22 +37,22 @@ export class DefaultLayoutComponent implements OnDestroy {
         },
 
         {
-          name: 'Main Categories',
+          name: 'Categories',
           url: '/Category',
           icon: 'icon-puzzle',
           children: [
             {
-              name: 'Categories',
+              name: 'Category',
               url: '/Category/categories',
               icon: 'icon-puzzle'
             },
             {
-              name: 'Sub Categories',
+              name: 'Sub Category',
               url: '/Category/subcategories',
               icon: 'icon-puzzle'
             },
             {
-              name: 'Sub Sub Categories',
+              name: 'Sub Sub Category',
               url: '/Category/subsubcategories',
               icon: 'icon-puzzle'
             },
@@ -65,7 +65,7 @@ export class DefaultLayoutComponent implements OnDestroy {
           icon: 'icon-calculator',
         },
         {
-          name: 'Requested Products',
+          name: 'Product Master',
           url: '/suggestedproducts',
           icon: 'fa fa-cart-plus ',
         },
@@ -91,7 +91,7 @@ export class DefaultLayoutComponent implements OnDestroy {
               icon: 'icon-user',
             },
             {
-              name: 'Products for Approval',
+              name: 'Product Approvals',
               url: '/vendorslist/allvendorporducts',
               icon: 'fa fa-cart-plus ',
             },
@@ -259,7 +259,7 @@ export class DefaultLayoutComponent implements OnDestroy {
           ]
         },
         {
-          name: 'Change Password',
+          name: 'Password Management',
           url: '/changePassword',
           icon: 'icon-speedometer',
 
@@ -307,7 +307,7 @@ export class DefaultLayoutComponent implements OnDestroy {
         },
         {
           name: 'Buy Products',
-          url: '/dashboard',
+          url: '/buyProduct',
           // target:'_blank',
           icon: 'icon-speedometer',
 
@@ -349,7 +349,7 @@ export class DefaultLayoutComponent implements OnDestroy {
         },
 
         {
-          name: 'Main Categories',
+          name: 'Categories',
           url: '/Category',
           icon: 'icon-puzzle',
           children: [
@@ -515,7 +515,7 @@ export class DefaultLayoutComponent implements OnDestroy {
               icon: 'fa fa-money',
             },
             {
-              name: 'Whole Seller',
+              name: 'WholeSeller',
               url: '/commission/wholeseller',
               icon: 'fa fa-money',
             }

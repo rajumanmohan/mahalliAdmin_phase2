@@ -228,7 +228,7 @@
   </div>
 
   <!-- Wholesaleres-->
-  <div class="card">
+  <div class="card" *ngIf="role=='Admin'">
     <div class="card-body">
       <div class="row">
         <div class="col-sm-5">
@@ -286,7 +286,7 @@
   </div>
 
   <!--User List-->
-  <div class="card">
+  <div class="card" *ngIf="role=='Admin'">
     <div class="card-body">
       <div class="row">
         <div class="col-sm-5">
@@ -334,6 +334,327 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="card">
+
+
+
+    <!-- <div class="container"> -->
+
+    <!-- <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="ccnumber" placeholder="Search"
+                                        [(ngModel)]="filter">
+                                </div>
+                            </div>
+                        </div> -->
+    <!--/.row-->
+    <!-- |filter:filter; -->
+    <!-- </div> -->
+
+    <div class="card-body products-list table-responsive">
+      <div class="row">
+        <div class="col-lg-6">
+          <h4 class="card-title mb-0">Users</h4>
+        </div>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>S No</th>
+            <th (click)="sort(first_name)">First Name
+              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th (click)="sort(last_name)">Last Name <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th (click)="sort(email)">Email<span><i class="fa fa-sort" aria-hidden="true"></i></span></th>
+            <th (click)="sort(mobile_number)">Mobile <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of UserData|orderBy: key : reverse ;let i = index">
+            <td>{{i+1}}</td>
+            <td>{{item.first_name}} </td>
+            <td>{{item.last_name }}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.mobile_number}} </td>
+            <th>
+              <button type="button" class="btn btn-primary mb-3">View More</button>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+      <!-- | paginate: { itemsPerPage: 10, currentPage: p } -->
+      <!-- <pagination-controls (pageChange)="p = $event" style="float:right; margin-top:15px;">
+                        </pagination-controls> -->
+    </div>
+
+
+
+  </div>
+  <div class="card">
+
+
+
+    <div class="card-body products-list table-responsive">
+      <div class="row">
+        <div class="col-lg-6">
+          <h4 class="card-title mb-0">Sellers</h4>
+        </div>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>S No</th>
+            <th (click)="sort(first_name)">First Name
+              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th (click)="sort(last_name)">Last Name <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th (click)="sort(email)">Email<span><i class="fa fa-sort" aria-hidden="true"></i></span></th>
+            <th (click)="sort(mobile_number)">Mobile <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of SellersData|orderBy: key : reverse ;let i = index">
+            <td>{{i+1}}</td>
+            <td>{{item.first_name}} </td>
+            <td>{{item.last_name }}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.mobile_number}} </td>
+            <th>
+              <button type="button" class="btn btn-primary mb-3">View More</button>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+      <!-- | paginate: { itemsPerPage: 10, currentPage: p } -->
+      <!-- <pagination-controls (pageChange)="p = $event" style="float:right; margin-top:15px;">
+                            </pagination-controls> -->
+    </div>
+
+
+
+  </div>
+  <div class="card">
+
+
+
+    <div class="card-body products-list table-responsive">
+      <div class="row">
+        <div class="col-lg-6">
+          <h4 class="card-title mb-0">WholeSellers</h4>
+        </div>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>S No</th>
+            <th (click)="sort(first_name)">First Name
+              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th (click)="sort(last_name)">Last Name <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th (click)="sort(email)">Email<span><i class="fa fa-sort" aria-hidden="true"></i></span></th>
+            <th (click)="sort(mobile_number)">Mobile <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of WholeSellersData|orderBy: key : reverse ;let i = index">
+            <td>{{i+1}}</td>
+            <td>{{item.first_name}} </td>
+            <td>{{item.last_name }}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.mobile_number}} </td>
+            <th>
+              <button type="button" class="btn btn-primary mb-3">View More</button>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+      <!-- | paginate: { itemsPerPage: 10, currentPage: p } -->
+      <!-- <pagination-controls (pageChange)="p = $event" style="float:right; margin-top:15px;">
+                          </pagination-controls> -->
+    </div>
+
+
+
+  </div>
+
+  <div class="card">
+
+
+
+    <div class="card-body products-list table-responsive">
+      <div class="row">
+        <div class="col-lg-6">
+          <h4 class="card-title mb-0">Categories </h4>
+        </div>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>S No</th>
+            <th (click)="sort(category_name)">Category Name
+              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th (click)="sort(description)">Description<span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th></th>
+
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of CategoriesData|orderBy: key : reverse ;let i = index">
+            <td>{{i+1}}</td>
+            <td>{{item.category_name}} </td>
+            <td style="width: 400px;">
+              <p> {{item.description}}</p>
+            </td>
+            <td><img alt="item.category_name" class="img-avatar" [src]="item.image_url"></td>
+
+            <th>
+              <button type="button" class="btn btn-primary mb-3">View More</button>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+      <!-- | paginate: { itemsPerPage: 10, currentPage: p } -->
+      <!-- <pagination-controls (pageChange)="p = $event" style="float:right; margin-top:15px;">
+                  </pagination-controls> -->
+    </div>
+
+
+
+  </div>
+
+  <div class="card">
+
+
+
+    <div class="card-body products-list table-responsive">
+      <div class="row">
+        <div class="col-lg-6">
+          <h4 class="card-title mb-0">Products </h4>
+        </div>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>S No</th>
+            <th (click)="sort(product_name)">Product Name
+              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th (click)="sort(category_name)">Category Name
+              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th (click)="sort(sub_category_name)">Sub Category Name
+              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th>Image
+            </th>
+
+
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of ProductsData|orderBy: key : reverse ;let i = index">
+            <td>{{i+1}}</td>
+            <td>{{item.product_name}}</td>
+            <td>{{item.category_name}} </td>
+            <td>
+              {{item.sub_category_name}}
+            </td>
+            <td><img alt="item.product_name" class="img-avatar" [src]="item.Img"></td>
+
+            <th>
+              <button type="button" class="btn btn-primary mb-3">View More</button>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+      <!-- | paginate: { itemsPerPage: 10, currentPage: p } -->
+      <!-- <pagination-controls (pageChange)="p = $event" style="float:right; margin-top:15px;">
+                    </pagination-controls> -->
+    </div>
+
+
+
+  </div>
+  <div class="card">
+
+
+
+    <div class="card-body products-list table-responsive">
+      <div class="row">
+        <div class="col-lg-6">
+          <h4 class="card-title mb-0">Coupons </h4>
+        </div>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>S No</th>
+            <th (click)="sort(voucher_code)">Voucher Code
+              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th (click)="sort(total_count)">Total Count
+              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th (click)="sort(available_count)">Available Count
+              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th (click)="sort(start_date)">Start Date
+              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th (click)="sort(end_date)">End Date
+              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th>Image
+            </th>
+
+
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of CouponData|orderBy: key : reverse ;let i = index">
+            <td>{{i+1}}</td>
+            <td>{{item.voucher_code}}</td>
+            <td>{{item.total_count}} </td>
+            <td>
+              {{item.available_count}}
+            </td>
+            <td>
+              {{item.start_date}}
+            </td>
+            <td>
+              {{item.end_date}}
+            </td>
+
+            <th>
+              <button type="button" class="btn btn-primary mb-3">View More</button>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+      <!-- | paginate: { itemsPerPage: 10, currentPage: p } -->
+      <!-- <pagination-controls (pageChange)="p = $event" style="float:right; margin-top:15px;">
+                      </pagination-controls> -->
+    </div>
+
+
+
   </div>
 </div>
 

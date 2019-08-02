@@ -152,10 +152,17 @@ export const AppSettings = {
     AddSlots: base_url + "delivery_slots/deliveryslots",
     AdddelCharges: base_url + "delivery_slots/deliverycharges",
     vendorwholesallergraphs: base_url + "place_order/vendorwholesallergraphs",
-    userGraph: base_url + "place_order/usergraphs"
+    userGraph: base_url + "place_order/usergraphs",
+    UserData: base_url + "users",
+    VendorsCompleteData: base_url + "vendors",
+    WholeSellersData: base_url + "wholesalers",
+    CategoriesALLData: base_url + "categories/alldata/get",
+    Products10Data: base_url + "products/getalladminproducts/2",
+    Coupons10Data: base_url + "vouchers",
+    Orders10Data: base_url + "users/10/1",
 
-    // postattrmast: base_url + "products/addattributes",
-    // deleteVendorById: 'http://192.168.0.116:9000/vendors/',
+
+
     // getOrdersUrl: base_url + 'oders',
     // getOffersUrl: base_url + 'voucher',
     // postOffersUrl: base_url + 'voucher',

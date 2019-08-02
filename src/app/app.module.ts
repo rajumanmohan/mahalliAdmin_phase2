@@ -62,6 +62,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { AllusersComponent } from './views/allusers/allusers.component';
 import { ProfileComponent } from './views/profile/profile.component';
+import { WholesalerApprovalComponent } from './views/wholesaler-approval/wholesaler-approval.component';
 // import { AddressDetailsComponent } from './views/address-details/address-details.component';
 
 @NgModule({
@@ -105,6 +106,7 @@ import { ProfileComponent } from './views/profile/profile.component';
     ProfileComponent,
     NumberOnlyDirective,
     AlphabetsOnly,
+    WholesalerApprovalComponent,
 
     // DashboardComponent
   ],

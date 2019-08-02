@@ -119,17 +119,17 @@ export class AppService {
     headers = headers.append('Content-Type', 'application/json; charset=utf-8');
     return this.http.get(AppSettings.getSubCategory, { headers: headers });
   }
-  getSubCategoriesByCategoryId(categoryId){
+  getSubCategoriesByCategoryId(categoryId) {
     var headers: HttpHeaders = new HttpHeaders;
     headers = headers.append('Accept', 'application/json, text/plain, */*');
     headers = headers.append('Content-Type', 'application/json; charset=utf-8');
-    return this.http.get(`${AppSettings.getSubCategoriesByCategoryId}/${categoryId}` , { headers: headers }); 
+    return this.http.get(`${AppSettings.getSubCategoriesByCategoryId}/${categoryId}`, { headers: headers });
   }
-  getSubSubCategoriesByCategoryIdSubCategoryId(categoryId, subCategoryId){
+  getSubSubCategoriesByCategoryIdSubCategoryId(categoryId, subCategoryId) {
     var headers: HttpHeaders = new HttpHeaders;
     headers = headers.append('Accept', 'application/json, text/plain, */*');
     headers = headers.append('Content-Type', 'application/json; charset=utf-8');
-    return this.http.get(`${AppSettings.getSubSubCategoriesByCategoryId_SubCategoryId}/${categoryId}/${subCategoryId}` , { headers: headers }); 
+    return this.http.get(`${AppSettings.getSubSubCategoriesByCategoryId_SubCategoryId}/${categoryId}/${subCategoryId}`, { headers: headers });
   }
   deleteSubCat(params) {
     var headers: HttpHeaders = new HttpHeaders;
@@ -944,6 +944,49 @@ export class AppService {
     headers = headers.append('Accept', 'application/json, text/plain, */*');
     headers = headers.append('Content-Type', 'application/json; charset=utf-8');
     return this.http.get(AppSettings.getAttributes, { headers: headers });
+  }
+
+  getUserData() {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.get(AppSettings.UserData, { headers: headers });
+  }
+  getVendorsData() {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.get(AppSettings.VendorsCompleteData, { headers: headers });
+  }
+  getWholeSellersData() {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.get(AppSettings.WholeSellersData, { headers: headers });
+  }
+  getCategoriesData() {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.get(AppSettings.CategoriesALLData, { headers: headers });
+  }
+  getProductsLatestData() {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.get(AppSettings.Products10Data, { headers: headers });
+  }
+  getCoupnsLatestData() {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.get(AppSettings.Coupons10Data, { headers: headers });
+  }
+  getOrdersLatestData() {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.get(AppSettings.Orders10Data, { headers: headers });
   }
   // deleteVendorbyId(id) {
   //     const headers = new Headers({ 'Content-Type': "application/JSON" });

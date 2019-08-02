@@ -178,6 +178,10 @@ export const routes: Routes = [
         path: 'deliverySlots',
         loadChildren: './views/delivery-slots/delivery-slots.module#DeliverySlotsModule'
       },
+      {
+        path: 'buyProduct',
+        loadChildren: './views/buy-product/buy-product.module#BuyProductModule'
+      },
     ]
   },
   { path: '**', component: P404Component },

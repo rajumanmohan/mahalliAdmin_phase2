@@ -10,6 +10,7 @@ import { Color, Label, BaseChartDirective } from 'ng2-charts';
 
 import { DatePipe } from '@angular/common';
 import * as moment from 'moment';
+import { IfStmt } from '@angular/compiler';
 
 
 @Component({
@@ -43,6 +44,13 @@ export class DashboardComponent implements OnInit {
   userWholesaleCount = 0;
   totalUserCount = 0;
   Count = {};
+  UserData = [];
+  VendorsData = [];
+  SellersData = [];
+  WholeSellersData = []
+  CategoriesData = []
+  ProductsData = [];
+  CouponData = [];
   public mainChartColours: Array<any> = [
     { // brandInfo
       backgroundColor: hexToRgba(getStyle('--info'), 10),
@@ -143,6 +151,13 @@ export class DashboardComponent implements OnInit {
       label: 'User Orders'
     }
   ]
+  Key;
+  key: string = 'name';
+  reverse: boolean = true;
+  sort(key) {
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
   ngOnInit(): void {
     this.role = sessionStorage.role;
     if (sessionStorage.role == 'wholesaler') {
@@ -153,14 +168,21 @@ export class DashboardComponent implements OnInit {
       this.getWholeSaleGraphData();
       this.getAdminCount();
       this.getUserData();
+      this.getUserLatest10();
+      this.getWholeSellerTen();
+      this.getCategoriesTen();
+      this.getSellers10();
+      this.getProductsLatest10();
+      this.getCoupnsData10();
     } else if (sessionStorage.role == 'vendor') {
       this.getGraphData();
       this.getvendorCount();
-    }
-    if (sessionStorage.role == 'vendor') {
-      window.open("https://www.mahalli.com/mahaliVendorGrocery/", "_blank");
 
     }
+    // if (sessionStorage.role == 'vendor') {
+    //   window.open("https://www.mahalli.com/mahaliVendorGrocery/", "_blank");
+
+    // }
   }
 
   getGraphData() {
@@ -195,6 +217,153 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  //User latest 10
+
+  getUserLatest10() {
+    this.appService.getUserData().subscribe((res: any) => {
+
+      if (res.data) {
+        if (res.data.length > 10) {
+          this.UserData = res.data.splice(0, 10);
+        }
+        else {
+          this.UserData = res.data;
+        }
+
+
+      }
+
+
+    }, err => {
+
+    })
+  }
+  getSellers10() {
+    this.appService.getVendorsData().subscribe((res: any) => {
+
+      if (res.data) {
+        if (res.data.length > 10) {
+          this.SellersData = res.data.splice(0, 10);
+        }
+        else {
+          this.SellersData = res.data;
+        }
+
+
+      }
+
+
+
+    }, err => {
+
+    })
+  }
+  getWholeSellerTen() {
+    this.appService.getWholeSellersData().subscribe((res: any) => {
+
+      if (res.data) {
+        if (res.data.length > 10) {
+          this.WholeSellersData = res.data.splice(0, 10);
+        }
+        else {
+          this.WholeSellersData = res.data;
+        }
+
+
+      }
+
+
+
+    }, err => {
+
+    })
+  }
+  getCategoriesTen() {
+    this.appService.getCategoriesData().subscribe((res: any) => {
+
+      if (res.result) {
+        if (res.result.length > 10) {
+          this.CategoriesData = res.result.splice(0, 10);
+        }
+        else {
+          this.CategoriesData = res.result;
+        }
+
+
+      }
+
+
+
+    }, err => {
+
+    })
+  }
+  getProductsLatest10() {
+    this.appService.getProductsLatestData().subscribe((res: any) => {
+
+      if (res.products) {
+        if (res.products.length > 10) {
+          this.ProductsData = res.products.splice(0, 10);
+        }
+        else {
+          this.ProductsData = res.products;
+        }
+        this.ProductsData.forEach(x => {
+          if (x.sku_images) {
+            if (x.sku_images.length) {
+              x.Img = x.sku_images[0].sku_image;
+            }
+          }
+        })
+
+      }
+
+
+
+    }, err => {
+
+    })
+  }
+  getCoupnsData10() {
+    this.appService.getCoupnsLatestData().subscribe((res: any) => {
+
+      if (res.data) {
+        if (res.data.length > 10) {
+          this.CouponData = res.data.splice(0, 10);
+        }
+        else {
+          this.CouponData = res.data;
+        }
+
+
+      }
+
+
+
+    }, err => {
+
+    })
+  }
+  getOrdersData10() {
+    this.appService.getOrdersLatestData().subscribe((res: any) => {
+
+      if (res.data) {
+        if (res.data.length > 10) {
+          this.CouponData = res.data.splice(0, 10);
+        }
+        else {
+          this.CouponData = res.data;
+        }
+
+
+      }
+
+
+
+    }, err => {
+
+    })
+  }
   wholeSalerGraph() {
     //wholesalerId
     this.appService.graphWhole({ year: this.year }).subscribe((res: any) => {
@@ -286,7 +455,13 @@ export class DashboardComponent implements OnInit {
         weekVendorData['day-' + data.day] += data.order_count;
       }
     }
-
+    // for (let day of labels) {
+    //   if (weekUserData['day-' + day]) {
+    //     userValues.push(weekUserData['day-' + day]);
+    //   } else {
+    //     userValues.push(0);
+    //   }
+    // }
 
     this.mainChartLabels = labels;
     this.mainChartData = [{
@@ -574,8 +749,8 @@ export class DashboardComponent implements OnInit {
         vendorValues.push(0);
       }
     }
-    console.log(userValues)
-    console.log(vendorValues)
+    console.log("userValues", userValues)
+    console.log("vendorValues", vendorValues)
     this.mainChartLabels = this.mlist;
     this.mainChartData = [{
       data: userValues,
@@ -588,6 +763,7 @@ export class DashboardComponent implements OnInit {
       borderWidth: 0
     }];
 
+    console.log("mainChart..", this.mainChartData)
 
     /**Wholesale Data */
     if (!(this.wholeSaleDataRes || {}).wholesalerdata) {
