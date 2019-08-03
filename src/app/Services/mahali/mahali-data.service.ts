@@ -988,6 +988,30 @@ export class AppService {
     headers = headers.append('Content-Type', 'application/json; charset=utf-8');
     return this.http.get(AppSettings.Orders10Data, { headers: headers });
   }
+
+
+  sendnewsletter(params) {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.post(AppSettings.SendNewsLetter, params, { headers: headers });
+  }
+
+  getAllwholesalerApprovalProds() {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    this.wholesalerId = sessionStorage.getItem('wholesalerId');
+    return this.http.get(AppSettings.getallwholesalerproducts, { headers: headers })
+  }
+
+  getwholesellerapproverByCategoryId(categoryId) {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.get(`${AppSettings.getallwholesalerproductsforapprovalByCatId}/${categoryId}`, { headers: headers });
+  }
+
   // deleteVendorbyId(id) {
   //     const headers = new Headers({ 'Content-Type': "application/JSON" });
   //     return this.http.delete(AppSettings.deleteVendorById + id, { headers: headers })
@@ -1229,3 +1253,4 @@ export class AppService {
     //     const headers = new Headers({ 'Content-Type': "application/JSON" });
     //     return this.http.put(AppSettings.updateDealbannerUrl + '/' + id, { headers: headers })
     // }
+

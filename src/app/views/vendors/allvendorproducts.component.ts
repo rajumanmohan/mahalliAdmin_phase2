@@ -28,7 +28,7 @@ export class AllvendorproductsComponent implements OnInit {
       // this.vendorProds = res.products;
       this.vendorProds = res.products.map(function (value, index) {
         value.indexValue = index;
-        return value;
+        return value; 
       })
       // for (var i = 0; i < this.vendorProds.length; i++) {
       //     // this.skuArr = 

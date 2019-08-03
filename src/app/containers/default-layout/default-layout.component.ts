@@ -73,7 +73,18 @@ export class DefaultLayoutComponent implements OnDestroy {
         {
           name: 'Wholeseller ',
           url: '/wholeseller',
-          icon: 'icon-user'
+          icon: 'icon-user',
+          children: [ 
+            {
+              name: 'Wholeseller List',
+              url: '/wholeseller',
+              icon: 'icon-user',
+            },
+            {
+              name: 'Products for Approval',
+              url: '/wholeseller/allwholesellerporducts',
+              icon: 'fa fa-cart-plus ',
+            }]
         },
         {
           name: 'Attribute Master',
@@ -385,7 +396,18 @@ export class DefaultLayoutComponent implements OnDestroy {
         {
           name: 'Wholeseller ',
           url: '/wholeseller',
-          icon: 'icon-user'
+          icon: 'icon-user',
+          children: [ 
+            {
+              name: 'Wholeseller List',
+              url: '/wholeseller',
+              icon: 'icon-user',
+            },
+            {
+              name: 'Products for Approval',
+              url: '/wholeseller/allwholsellerporducts',
+              icon: 'fa fa-cart-plus ',
+            }]
         },
 
         {

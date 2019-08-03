@@ -16,6 +16,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AllvendorproductsComponent } from './allvendorproducts.component';
 
 
+
 @NgModule({
   declarations: [VendorsComponent, VendorproductsComponent, VendorordersComponent, VendororderdetailsComponent, EditvendorComponent, AllvendorproductsComponent],
   imports: [

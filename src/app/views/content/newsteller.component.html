@@ -1,34 +1,42 @@
 <div class="animated fadeIn">
-        <div class="row mt-5">
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <strong>News Teller</strong>
-                        <small>Form</small>
+    <div class="row mt-5">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong>News Teller</strong>
+                    <small>Form</small>
+                </div>
+                <div class="card-body">
+                    <form>
+                    </form>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="company">Title</label>
+                            <input type="text" class="form-control" tabindex="1" id="city" placeholder="Enter Title" [(ngModel)]="title">
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <form>
-                        </form>
-                        <div class="row">
-                            <div class="form-group col-sm-6">
-                                <label for="company">Title</label>
-                                <input type="text" class="form-control" id="city" placeholder="Enter Title" [(ngModel)]="title">
-                            </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="textarea-input">Description</label>
+                            <textarea id="textarea-input" tabindex="2" name="textarea-input" rows="9" class="form-control" placeholder="Description.." [(ngModel)]="aboutusData"></textarea>
                         </div>
-                        <div class="row">
+                    </div>
+                    <div class="row">
                             <div class="form-group col-sm-6">
-                                <label for="textarea-input">Description</label>
-                                <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control"
-                                    placeholder="Description.." [(ngModel)]="aboutusData"></textarea>
+                                    <label for="company">Email(s)</label>
+                                    <!-- <input formControlName="email" tabindex="3" [pattern]="emailPattern" placeholder="Email Address"> -->
+                                    <input name="email" class="form-control" required placeholder="Email Address" [(ngModel)]="emailaddres">
+                                     <span style="float:right;"> Use semicolon(;) for multiple email address</span>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <button class="btn btn-success" (click)="updateabout()">Update</button>
-                            </div>
+                    </div>                     
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-success" tabindex="4" (click)="updateabout()">Update</button>
+                            <span *ngIf="!isFormValid" class="badge badge-danger">All fields are mandatory!</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>

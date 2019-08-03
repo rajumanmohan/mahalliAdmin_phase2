@@ -160,6 +160,10 @@ export const AppSettings = {
     Products10Data: base_url + "products/getalladminproducts/2",
     Coupons10Data: base_url + "vouchers",
     Orders10Data: base_url + "users/10/1",
+    SendNewsLetter : base_url + "place_order/newsletter",
+    getallwholesalerproducts : base_url + "products/getallwholesalerproducts/forapproval",
+    getallwholesalerproductsforapprovalByCatId : base_url + "products/getallwholesalerproducts/forapproval/wholesaller"
+    
 
 
 

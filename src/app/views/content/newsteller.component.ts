@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../services/mahali/mahali-data.service';
 declare let swal: any;
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-newsteller',
@@ -13,6 +14,10 @@ export class NewstellerComponent implements OnInit {
   aboutusData = [];
   title;
   aboutusId;
+  emailaddres;
+  isFormValid=true;
+
+  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
   ngOnInit() {
     this.getAboutUs();
@@ -29,21 +34,34 @@ export class NewstellerComponent implements OnInit {
       this.aboutusId = resp.data[0].id;
     })
   }
+
   updateabout() {
     // this.encodeData = btoa(this.ckeditorContent);
-
-    var data =
-    {
-      "id": this.aboutusId,
-      "description": this.aboutusData
-
-    }
-
-    this.appService.updateFooter(data).subscribe((resp: any) => {
-      if (resp.status === 200) {
-        swal(resp.message, '', 'success');
-
+    if (this.title && this.aboutusData && this.emailaddres) {
+      var emails;
+      if (this.emailaddres) {
+        emails = this.emailaddres.split(";");
       }
-    })
+      
+      var data =
+      {
+        "array": emails,
+        "subject": this.aboutusData,
+        "text": this.title
+      }
+
+      this.appService.sendnewsletter(data).subscribe((resp: any) => {
+        if (resp.status === 200) {
+          Swal.fire(resp.message, '', "success");
+          // swal(resp.message, '', 'success');
+        }
+        else if (resp.status == 400) {
+          Swal.fire(resp.message, '', "error");
+        }
+      });
+    }
+    else {
+      this.isFormValid = false;
+    }
   }
 }
