@@ -10,11 +10,12 @@ import { Ng2OrderModule } from 'ng2-order-pipe';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
 import { ImageapprovalComponent } from './imageapproval.component';
+import { AllwholesellerproductsComponent } from './allwholesellerproducts.component';
 
 @NgModule({
-  declarations: [WholesellerComponent, AddwholesellerComponent, WholesellerproductsComponent, ImageapprovalComponent],
+  declarations: [WholesellerComponent, AddwholesellerComponent, WholesellerproductsComponent, ImageapprovalComponent, AllwholesellerproductsComponent],
   imports: [
     CommonModule, WholeSellerRoutingModule, FormsModule, NgxPaginationModule, SafePipeModule, Ng2OrderModule, Ng2SearchPipeModule
-  ]
+  ]   
 })
 export class WholesellerModule { }

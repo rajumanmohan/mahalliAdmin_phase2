@@ -120,7 +120,7 @@ getSubSubCategoriesByCatIdAndSubCatId(categoryId, subCategoryId){
       // this.spinnerService.hide();
       this.SubsubCategory = resp.result;
       console.log(this.SubsubCategory);
-      if (resp.json().result.length === 0) {
+      if (resp.result.length === 0) {
         // swal("No data found, please add new one", '', 'error');
       }
     },
@@ -140,7 +140,7 @@ getSubSubCategoriesByCatIdAndSubCatId(categoryId, subCategoryId){
       // this.spinnerService.hide();
       this.SubsubCategory = resp.result;
       console.log(this.SubsubCategory);
-      if (resp.json().result.length === 0) {
+      if (resp.result.length === 0) {
         // swal("No data found, please add new one", '', 'error');
       }
     },
@@ -158,7 +158,7 @@ getSubSubCategoriesByCatIdAndSubCatId(categoryId, subCategoryId){
     this.appService.getSubsubEcom().subscribe((resp: any) => {
       // this.spinnerService.hide();
       this.SubsubCategory = resp.result;
-      if (resp.json().result.length === 0) {
+      if (resp.result.length === 0) {
         // swal("No data found, please add new one", '', 'error');
       }
     },

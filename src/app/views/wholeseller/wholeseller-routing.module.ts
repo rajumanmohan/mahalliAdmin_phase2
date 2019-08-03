@@ -4,6 +4,7 @@ import { WholesellerComponent } from './wholeseller.component';
 import { AddwholesellerComponent } from './addwholeseller.component';
 import { WholesellerproductsComponent } from './wholesellerproducts.component';
 import { ImageapprovalComponent } from './imageapproval.component';
+import { AllwholesellerproductsComponent } from './allwholesellerproducts.component';
 
 const routes: Routes = [
     {
@@ -32,6 +33,14 @@ const routes: Routes = [
         component: ImageapprovalComponent,
         data: {
             title: 'Wholeseller'
+        }
+    }
+    ,
+    {
+        path: 'allwholesellerporducts',
+        component: AllwholesellerproductsComponent,
+        data: {
+            title: 'All Wholeseller Products'
         }
     }
 ];

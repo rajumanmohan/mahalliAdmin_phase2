@@ -116,7 +116,18 @@ if (sessionStorage.role == 'Admin') {
         {
       name: 'Wholeseller ',
       url: '/wholeseller',
-      icon: 'icon-user'
+      icon: 'icon-user',
+      children: [ 
+        {
+          name: 'Wholeseller List',
+          url: '/wholeseller',
+          icon: 'icon-user',
+        },
+        {
+          name: 'Products for Approval',
+          url: '/wholeseller/allwholesellerporducts',
+          icon: 'fa fa-cart-plus ',
+        }]
     },
         {
                 name: 'Wholeseller Commision',
@@ -134,7 +145,7 @@ if (sessionStorage.role == 'Admin') {
       name: 'Vendors',
       url: '/vendorslist',
       icon: 'icon-user',
-      children: [
+      children: [ 
         {
           name: 'Vendors List',
           url: '/vendorslist',

@@ -6,6 +6,7 @@ import { VendorordersComponent } from './vendororders.component';
 import { VendororderdetailsComponent } from './vendororderdetails.component';
 import { EditvendorComponent } from './editvendor.component';
 import { AllvendorproductsComponent } from './allvendorproducts.component';
+import { AllwholesellerproductsComponent } from '../wholeseller/allwholesellerproducts.component';
 
 const routes: Routes = [
     {
