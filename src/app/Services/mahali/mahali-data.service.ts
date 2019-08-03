@@ -13,7 +13,8 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class AppService {
-  whole_id
+  whole_id;
+  wholesalerId;
   constructor(private http: HttpClient) {
 
   }
@@ -964,6 +965,13 @@ export class AppService {
     headers = headers.append('Content-Type', 'application/json; charset=utf-8');
     return this.http.get(AppSettings.WholeSellersData, { headers: headers });
   }
+  getProductCatsData(body) {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    this.vendor_id = sessionStorage.getItem('vemdorId');
+    return this.http.post(AppSettings.productsCats, body, { headers: headers });
+  }
   getCategoriesData() {
     var headers: HttpHeaders = new HttpHeaders;
     headers = headers.append('Accept', 'application/json, text/plain, */*');
@@ -1001,7 +1009,6 @@ export class AppService {
     var headers: HttpHeaders = new HttpHeaders;
     headers = headers.append('Accept', 'application/json, text/plain, */*');
     headers = headers.append('Content-Type', 'application/json; charset=utf-8');
-    this.wholesalerId = sessionStorage.getItem('wholesalerId');
     return this.http.get(AppSettings.getallwholesalerproducts, { headers: headers })
   }
 

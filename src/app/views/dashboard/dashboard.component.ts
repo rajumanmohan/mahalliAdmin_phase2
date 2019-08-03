@@ -51,6 +51,9 @@ export class DashboardComponent implements OnInit {
   CategoriesData = []
   ProductsData = [];
   CouponData = [];
+  productCatsData: any;
+  productscount = 0;
+  catagiriescount = 0;
   public mainChartColours: Array<any> = [
     { // brandInfo
       backgroundColor: hexToRgba(getStyle('--info'), 10),
@@ -145,6 +148,16 @@ export class DashboardComponent implements OnInit {
       label: 'Vendor Orders'
     },
   ]
+  mainProductCatsData: Array<any> = [
+    {
+      data: [0, 1, 2, 4, 0, 0, 0],
+      label: 'User Orders'
+    },
+    {
+      data: [0, 1, 3, 0, 0, 0, 0],
+      label: 'Vendor Orders'
+    },
+  ]
   mainUserData: Array<any> = [
     {
       data: [0, 1, 2, 4, 0, 0, 0],
@@ -174,8 +187,8 @@ export class DashboardComponent implements OnInit {
       this.getSellers10();
       this.getProductsLatest10();
       this.getCoupnsData10();
+      this.getProductCatsData();
     } else if (sessionStorage.role == 'vendor') {
-      this.getGraphData();
       this.getvendorCount();
 
     }
@@ -378,6 +391,16 @@ export class DashboardComponent implements OnInit {
     this.appService.graphVendor({ year: this.year }).subscribe((res: any) => {
 
       this.barChartDataRes = res;
+      this.yearly()
+    }, err => {
+
+    })
+  }
+  //get Products and Cats Data
+  getProductCatsData() {
+    this.appService.getProductCatsData({ year: this.year }).subscribe((res: any) => {
+      this.productCatsData = res;
+      console.log("this.productCatsData", this.productCatsData)
       this.yearly()
     }, err => {
 
@@ -587,8 +610,8 @@ export class DashboardComponent implements OnInit {
     // }
     let monthUserData = {};
     let monthVendorData = {};
-    let userValues = [];
-    let vendorValues = [];
+    let userValues1 = [];
+    let vendorValues1 = [];
     let monthWholesaleUserData = {};
     let monthWholesaleVendorData = {};
     let userWholesaleValues = [];
@@ -608,26 +631,26 @@ export class DashboardComponent implements OnInit {
     }
     for (let day of weekLables) {
       if (monthUserData['day-' + day]) {
-        userValues.push(monthUserData['day-' + day]);
+        userValues1.push(monthUserData['day-' + day]);
       } else {
-        userValues.push(0);
+        userValues1.push(0);
       }
     }
     for (let day of weekLables) {
       if (monthVendorData['day-' + day]) {
-        vendorValues.push(monthVendorData['day-' + day]);
+        vendorValues1.push(monthVendorData['day-' + day]);
       } else {
-        vendorValues.push(0);
+        vendorValues1.push(0);
       }
     }
     this.mainChartLabels = labels;
     this.mainChartData = [{
-      data: userValues,
+      data: userValues1,
       label: 'User Orders',
       borderWidth: 0
     },
     {
-      data: vendorValues,
+      data: vendorValues1,
       label: 'Vendor Orders',
       borderWidth: 0
     }];
@@ -713,6 +736,7 @@ export class DashboardComponent implements OnInit {
     this.vendorWholesaleCount = 0;
     this.totalUserCount = 0;
 
+
     if (!(this.barChartDataRes || {}).useroders) {
       this.barChartDataRes.useroders = []
     }
@@ -767,10 +791,10 @@ export class DashboardComponent implements OnInit {
 
     /**Wholesale Data */
     if (!(this.wholeSaleDataRes || {}).wholesalerdata) {
-      this.barChartDataRes.useroders = []
+      this.wholeSaleDataRes.useroders = []
     }
     if (!(this.wholeSaleDataRes || {}).vendordata) {
-      this.barChartDataRes.venderoders = [];
+      this.wholeSaleDataRes.venderoders = [];
     }
 
     for (let data of (this.wholeSaleDataRes || {}).wholesalerdata) {
@@ -804,12 +828,12 @@ export class DashboardComponent implements OnInit {
 
     this.mainWholeSaleData = [{
       data: userWholesaleValues,
-      label: 'User Orders',
+      label: 'Wholesalar',
       borderWidth: 0
     },
     {
       data: vendorWholesaleValues,
-      label: 'Vendor Orders',
+      label: 'Vendor',
       borderWidth: 0
     }];
 
@@ -838,9 +862,67 @@ export class DashboardComponent implements OnInit {
 
     this.mainUserData = [{
       data: userGraphValues,
-      label: 'User Orders',
+      label: 'User',
+      borderWidth: 0
+    }];
+
+    /** Prodcuts and Cats Data Graph */
+    let monthGraphCatData = {};
+    let catGraphValues = [];
+    let monthGraphProductData = {};
+    let productGraphValues = [];
+    let monthProductCatData = {};
+    let monthProductCatVendorData = {};
+
+    if (!(this.productCatsData || {}).categoriesdetails) {
+      this.barChartDataRes.useroders = []
+    }
+    if (!(this.productCatsData || {}).productdetails) {
+      this.barChartDataRes.venderoders = [];
+    }
+
+    for (let data of (this.productCatsData || {}).categoriesdetails) {
+      if (!monthProductCatData[this.mlist[data.month]]) {
+        monthProductCatData[this.mlist[data.month]] = 0;
+      }
+      this.catagiriescount += data.categories_count
+      monthProductCatData[this.mlist[data.month]] += data.categories_count;
+    }
+    for (let data of (this.productCatsData || {}).productdetails) {
+      if (!monthProductCatVendorData[this.mlist[data.month]]) {
+        monthProductCatVendorData[this.mlist[data.month]] = 0;
+      }
+      this.productscount += data.product_count;
+      monthProductCatVendorData[this.mlist[data.month]] += data.product_count;
+    }
+    for (let month of this.mlist) {
+      if (monthProductCatData[month]) {
+        catGraphValues.push(monthProductCatData[month]);
+      } else {
+        catGraphValues.push(0);
+      }
+    }
+    for (let month of this.mlist) {
+      if (monthProductCatVendorData[month]) {
+        productGraphValues.push(monthProductCatVendorData[month]);
+      } else {
+        productGraphValues.push(0);
+      }
+    }
+
+    this.mainProductCatsData = [{
+      data: catGraphValues,
+      label: 'catagiries',
+      borderWidth: 0
+    },
+    {
+      data: productGraphValues,
+      label: 'product',
       borderWidth: 0
     }];
   }
+
+
+
 
 }

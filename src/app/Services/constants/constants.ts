@@ -162,8 +162,9 @@ export const AppSettings = {
     Orders10Data: base_url + "users/10/1",
     SendNewsLetter : base_url + "place_order/newsletter",
     getallwholesalerproducts : base_url + "products/getallwholesalerproducts/forapproval",
-    getallwholesalerproductsforapprovalByCatId : base_url + "products/getallwholesalerproducts/forapproval/wholesaller"
+    getallwholesalerproductsforapprovalByCatId : base_url + "products/getallwholesalerproducts/forapproval/wholesaller",
     
+    productsCats: base_url + "place_order/categortandproductgraphs"
 
 
 
