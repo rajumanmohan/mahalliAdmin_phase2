@@ -20,33 +20,76 @@
                 </div>
 
                 <div class="card-body table-responsive">
+                    <div class="cust-filter pull-right" data-toggle="modal" data-dismiss="modal" data-target="#filter2">
+                        <i class="fa fa-filter"></i> Filters
+                    </div>
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>S No</th>
-                                <th (click)="sort(first_name)">Name <span><i class="fa fa-sort"
+                                <th (click)="sort(commission_amount)">Commission Amount <span><i class="fa fa-sort"
                                             aria-hidden="true"></i></span></th>
-                                <th (click)="sort(final_amount)">Final Amount <span><i class="fa fa-sort"
+                                <th (click)="sort(commission_percentage)">Commission Percentage <span><i
+                                            class="fa fa-sort" aria-hidden="true"></i></span></th>
+                                <th (click)="sort(order_amount)">Order Amount <span><i class="fa fa-sort"
                                             aria-hidden="true"></i></span></th>
-                                <th (click)="sort(commission_to_admin)">Commission To Admin <span><i class="fa fa-sort"
+                                <th (click)="sort(created_on)">Created On <span><i class="fa fa-sort"
                                             aria-hidden="true"></i></span></th>
-                                <th (click)="sort(amount_to_clint)">Amount To Client <span><i class="fa fa-sort"
-                                            aria-hidden="true"></i></span></th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr
                                 *ngFor="let data of commisionData |orderBy: key : reverse| paginate: { itemsPerPage: 10, currentPage: p }|filter:filter;let i = index">
                                 <td>{{i+1}}</td>
-                                <td>{{data.first_name}}</td>
-                                <td>{{data.final_amount}}
+                                <td>{{data.commission_amount}}</td>
+                                <td>{{data.commission_percentage}}%
                                 </td>
-                                <td>{{data.commission_to_admin}}%
+                                <td>{{data.order_amount}}
                                 </td>
-                                <td>{{data.amount_to_clint}}</td>
+                                <td>{{data.created_on}}</td>
+                                <td>
+                                    <select (change)="onStatusChange($event,data)">
+                                        <option [selected]="data.is_paid == '0'" value="1">Not Paid</option>
+                                        <option [selected]="data.is_paid == '1'" value="2">Paid</option>
+                                    </select>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="filter2" tabindex="-1" role="dialog" >  
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header c-modalheader">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="cust-close">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <div class="container ">
+                    <div class="cust-date text-center">
+                        <strong>Select Status</strong>
+                        <form>
+                            <div class="form-row ">
+                                <div class="form-group col-md-12 ">
+                                    <select (change)="onFilterStatChange($event,data)">
+                                        <option value="1">Not Paid</option>
+                                        <option value="2">Paid</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </form>
+                        <div class="col-md-12 cust-apply text-center">
+                            <button class="btn btn-success" (click)="Filter()">Apply</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

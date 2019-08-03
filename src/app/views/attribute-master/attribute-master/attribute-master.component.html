@@ -5,7 +5,41 @@
                 <div class="card-header">
                     <strong>Attribute Master</strong>
                 </div>
-                <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                    </div>
+                    <div class="col-lg-6 text-right" style="margin-left: 46%" *ngIf="isListAvailable">
+                        <button type="button" class="btn  btn-primary" (click)="onAddAttrClick()">Add
+                            Attributes</button>
+                    </div>
+                </div>
+
+                <div class="card-body table-responsive" *ngIf="isListAvailable">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>S No</th>
+                                <th>Size</th>
+                                <th>Unit</th>
+                                <th>CreatedOn</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let attr of attributeList;let i = index">
+                                <td>{{attr.indexValue +1}}</td>
+                                <td>{{attr.Size}}</td>
+                                <td>{{attr.Unit}}</td>
+                                <td>{{attr.CreatedOn}}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <!-- <pagination-controls (pageChange)="p = $event" style="float:right; margin-top:15px;">
+                    </pagination-controls> -->
+                </div>
+
+
+                <div class="card-body" *ngIf="!isListAvailable">
                     <form [formGroup]="angForm">
                         <div class="row">
                             <div class="form-group col-sm-6">

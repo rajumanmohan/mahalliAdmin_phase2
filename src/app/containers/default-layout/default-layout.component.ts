@@ -70,10 +70,32 @@ export class DefaultLayoutComponent implements OnDestroy {
           icon: 'fa fa-cart-plus ',
         },
 
+        // {
+        //   name: 'Wholeseller ',
+        //   url: '/wholeseller',
+        //   icon: 'icon-user'
+        // },
         {
+          name: 'Wholeseller',
+          url: '/wholeseller',
+          icon: 'icon-user',
+          children: [
+            {
           name: 'Wholeseller ',
           url: '/wholeseller',
           icon: 'icon-user'
+        },
+            {
+                    name: 'Wholeseller Commision',
+                    url: '/commission/wholeseller',
+                    icon: 'fa fa-money',
+                  },
+            // {
+            //   name: 'Vendor Orders',
+            //   url: '/vendorslist/vendororders',
+            //   icon: 'fa fa-cart-plus ',
+            // },
+          ]
         },
         {
           name: 'Attribute Master',
@@ -99,6 +121,11 @@ export class DefaultLayoutComponent implements OnDestroy {
               name: 'Vendor Orders',
               url: '/vendorslist/vendororders',
               icon: 'fa fa-cart-plus ',
+            },
+            {
+              name: 'Vendor Commison',
+              url: '/commission/vendor',
+              icon: 'fa fa-money',
             },
           ]
         },
@@ -196,23 +223,23 @@ export class DefaultLayoutComponent implements OnDestroy {
           ]
         },
 
-        {
-          name: 'Commision ',
-          url: '/commission',
-          icon: 'fa fa-money',
-          children: [
-            {
-              name: 'Vendor',
-              url: '/commission/vendor',
-              icon: 'fa fa-money',
-            },
-            {
-              name: 'Whole Seller',
-              url: '/commission/wholeseller',
-              icon: 'fa fa-money',
-            }
-          ]
-        },
+        // {
+        //   name: 'Commision ',
+        //   url: '/commission',
+        //   icon: 'fa fa-money',
+        //   children: [
+        //     {
+        //       name: 'Vendor',
+        //       url: '/commission/vendor',
+        //       icon: 'fa fa-money',
+        //     },
+        //     {
+        //       name: 'Whole Seller',
+        //       url: '/commission/wholeseller',
+        //       icon: 'fa fa-money',
+        //     }
+        //   ]
+        // },
         {
           name: 'Staff',
           url: '/staff',
@@ -408,6 +435,11 @@ export class DefaultLayoutComponent implements OnDestroy {
               url: '/vendorslist/vendororders',
               icon: 'fa fa-cart-plus ',
             },
+            {
+              name: 'Vendor Commison',
+              url: '/commission/vendor',
+              icon: 'fa fa-money',
+            },
           ]
         },
         {
@@ -504,23 +536,23 @@ export class DefaultLayoutComponent implements OnDestroy {
           ]
         },
 
-        {
-          name: 'Commision ',
-          url: '/commission',
-          icon: 'fa fa-money',
-          children: [
-            {
-              name: 'Vendor',
-              url: '/commission/vendor',
-              icon: 'fa fa-money',
-            },
-            {
-              name: 'WholeSeller',
-              url: '/commission/wholeseller',
-              icon: 'fa fa-money',
-            }
-          ]
-        },
+        // {
+        //   name: 'Commision ',
+        //   url: '/commission',
+        //   icon: 'fa fa-money',
+        //   children: [
+        //     {
+        //       name: 'Vendor',
+        //       url: '/commission/vendor',
+        //       icon: 'fa fa-money',
+        //     },
+        //     {
+        //       name: 'WholeSeller',
+        //       url: '/commission/wholeseller',
+        //       icon: 'fa fa-money',
+        //     }
+        //   ]
+        // },
         {
           name: 'Staff',
           url: '/staff',

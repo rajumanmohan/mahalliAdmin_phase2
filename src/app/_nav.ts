@@ -103,10 +103,32 @@ if (sessionStorage.role == 'Admin') {
       url: '/attrimaster',
       icon: 'icon-user'
     },
+    // {
+    //   name: 'Wholeseller ',
+    //   url: '/wholeseller',
+    //   icon: 'icon-user'
+    // },
     {
+      name: 'Wholeseller',
+      url: '/wholeseller',
+      icon: 'icon-user',
+      children: [
+        {
       name: 'Wholeseller ',
       url: '/wholeseller',
       icon: 'icon-user'
+    },
+        {
+                name: 'Wholeseller Commision',
+                url: '/commission/wholeseller',
+                icon: 'fa fa-money',
+              },
+        // {
+        //   name: 'Vendor Orders',
+        //   url: '/vendorslist/vendororders',
+        //   icon: 'fa fa-cart-plus ',
+        // },
+      ]
     },
     {
       name: 'Vendors',
@@ -127,6 +149,11 @@ if (sessionStorage.role == 'Admin') {
           name: 'Vendor Orders',
           url: '/vendorslist/vendororders',
           icon: 'fa fa-cart-plus ',
+        },
+        {
+          name: 'Vendor Commison',
+          url: '/commission/vendor',
+          icon: 'fa fa-money',
         },
       ]
     },
@@ -224,23 +251,23 @@ if (sessionStorage.role == 'Admin') {
       ]
     },
 
-    {
-      name: 'Commision ',
-      url: '/commission',
-      icon: 'fa fa-money',
-      children: [
-        {
-          name: 'Vendor',
-          url: '/commission/vendor',
-          icon: 'fa fa-money',
-        },
-        {
-          name: 'Whole Seller',
-          url: '/commission/wholeseller',
-          icon: 'fa fa-money',
-        }
-      ]
-    },
+    // {
+    //   name: 'Commision ',
+    //   url: '/commission',
+    //   icon: 'fa fa-money',
+    //   children: [
+    //     {
+    //       name: 'Vendor',
+    //       url: '/commission/vendor',
+    //       icon: 'fa fa-money',
+    //     },
+    //     {
+    //       name: 'Whole Seller',
+    //       url: '/commission/wholeseller',
+    //       icon: 'fa fa-money',
+    //     }
+    //   ]
+    // },
     {
       name: 'Staff',
       url: '/staff',
@@ -437,6 +464,12 @@ else if (sessionStorage.role == 'wholesaler') {
           url: '/vendorslist/vendororders',
           icon: 'fa fa-cart-plus ',
         },
+        {
+                name: 'Vendor Commison',
+                url: '/commission/vendor',
+                icon: 'fa fa-money',
+              },
+        
       ]
     },
     {
@@ -528,23 +561,23 @@ else if (sessionStorage.role == 'wholesaler') {
       ]
     },
 
-    {
-      name: 'Commision ',
-      url: '/commission',
-      icon: 'fa fa-money',
-      children: [
-        {
-          name: 'Vendor',
-          url: '/commission/vendor',
-          icon: 'fa fa-money',
-        },
-        {
-          name: 'Whole Seller',
-          url: '/commission/wholeseller',
-          icon: 'fa fa-money',
-        }
-      ]
-    },
+    // {
+    //   name: 'Commision ',
+    //   url: '/commission',
+    //   icon: 'fa fa-money',
+    //   children: [
+    //     {
+    //       name: 'Vendor',
+    //       url: '/commission/vendor',
+    //       icon: 'fa fa-money',
+    //     },
+    //     {
+    //       name: 'Whole Seller',
+    //       url: '/commission/wholeseller',
+    //       icon: 'fa fa-money',
+    //     }
+    //   ]
+    // },
     {
       name: 'Staff',
       url: '/staff',

@@ -69,6 +69,12 @@ export const AppSettings = {
     getAdminCount: base_url + "vendors/getcount/all",
     // getWholesellerProductUrl: base_url + 'products/getwholesalerproducts/',
     // deleteSkuUrl: base_url + 'products/deletesku',
+
+    getWholeCommision: base_url + "wholesalers/getcommission/wholesaller",
+    getVendorCommision: base_url + "wholesalers/getcommission/wholesaller",
+
+    getattributedata: base_url + "products/getaddattributes",
+
     updateProdUrl: base_url + 'products/updateproduct',
     getProdById: base_url + "products/getwholesalerproductsbyid",
     approvalProds: base_url + "vendor_products/allvendorproducts",
@@ -81,8 +87,10 @@ export const AppSettings = {
     getVendorOrdInWhole: base_url + "place_order/getwholesalervenderorders",
     orderDetailsByOrdId: base_url + "place_order/order_products",
     orderChangeByProdId: base_url + "vendor/cart_details/updatecart",
-    getWholeCommision: base_url + "vendor/cart_details/getcommission/wholesaler",
-    getVendorCommision: base_url + "vendor/cart_details/getcommission/vendor",
+
+    updateWholeSaleCommision: base_url + "wholesalers/updatestatus/wholesaller",
+    updateVendorCommision: base_url + "wholesalers/updatestatus/vendor",
+
     // uploadProductimg: base_url + 'products/uploadimage',
     // importExcel: base_url + 'products/readExcel',
     // multiproductimgUrl: base_url + 'products/getproductbyid',

@@ -713,6 +713,144 @@
 
 
   </div>
+
+  <!-- Vendor Orders -->
+
+  <div class="card">
+
+
+
+    <div class="card-body products-list table-responsive">
+      <div class="row">
+        <div class="col-lg-6">
+          <h4 class="card-title mb-0">Vendor Orders </h4>
+        </div>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>S No</th>
+            <th (click)="sort(voucher_code)">Voucher Code
+              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th (click)="sort(total_count)">Total Count
+              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th (click)="sort(available_count)">Available Count
+              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th (click)="sort(start_date)">Start Date
+              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th (click)="sort(end_date)">End Date
+              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th>Image
+            </th>
+
+
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of CouponData|orderBy: key : reverse ;let i = index">
+            <td>{{i+1}}</td>
+            <td>{{item.voucher_code}}</td>
+            <td>{{item.total_count}} </td>
+            <td>
+              {{item.available_count}}
+            </td>
+            <td>
+              {{item.start_date}}
+            </td>
+            <td>
+              {{item.end_date}}
+            </td>
+
+            <th>
+              <button type="button" class="btn btn-primary mb-3">View More</button>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+      <!-- | paginate: { itemsPerPage: 10, currentPage: p } -->
+      <!-- <pagination-controls (pageChange)="p = $event" style="float:right; margin-top:15px;">
+                        </pagination-controls> -->
+    </div>
+
+
+
+  </div>
+
+
+  <!-- User Orders -->
+
+
+  <div class="card">
+
+
+
+    <div class="card-body products-list table-responsive">
+      <div class="row">
+        <div class="col-lg-6">
+          <h4 class="card-title mb-0">User Orders </h4>
+        </div>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>S No</th>
+            <th (click)="sort(voucher_code)">Voucher Code
+              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th (click)="sort(total_count)">Total Count
+              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th (click)="sort(available_count)">Available Count
+              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th (click)="sort(start_date)">Start Date
+              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th (click)="sort(end_date)">End Date
+              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+            </th>
+            <th>Image
+            </th>
+
+
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of CouponData|orderBy: key : reverse ;let i = index">
+            <td>{{i+1}}</td>
+            <td>{{item.voucher_code}}</td>
+            <td>{{item.total_count}} </td>
+            <td>
+              {{item.available_count}}
+            </td>
+            <td>
+              {{item.start_date}}
+            </td>
+            <td>
+              {{item.end_date}}
+            </td>
+
+            <th>
+              <button type="button" class="btn btn-primary mb-3">View More</button>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+      <!-- | paginate: { itemsPerPage: 10, currentPage: p } -->
+      <!-- <pagination-controls (pageChange)="p = $event" style="float:right; margin-top:15px;">
+                        </pagination-controls> -->
+    </div>
+
+
+
+  </div>
 </div>
 
 

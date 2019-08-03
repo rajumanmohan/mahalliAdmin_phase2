@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../services/mahali/mahali-data.service';
-
+import Swal from 'sweetalert2';
+declare var $: any;
 @Component({
   selector: 'app-wholeseller',
   templateUrl: './wholeseller.component.html',
@@ -8,6 +9,8 @@ import { AppService } from './../../services/mahali/mahali-data.service';
 })
 export class WholesellerComponent implements OnInit {
 
+  filterValue: string;
+  isHide: boolean;
   constructor(private appService: AppService) { }
 
   ngOnInit() {
@@ -22,7 +25,12 @@ export class WholesellerComponent implements OnInit {
   }
   commisionData;
   wholecomission() {
-    this.appService.getWholeCommision().subscribe((res: any) => {
+    this.loadCommisionData(0);
+  }
+
+
+  loadCommisionData(id) {
+    this.appService.getWholeCommision(id).subscribe((res: any) => {
       // this.commisionData = res.data;
       this.commisionData = res.data.map(function (value, index) {
         value.indexValue = index;
@@ -30,4 +38,27 @@ export class WholesellerComponent implements OnInit {
       })
     })
   }
+
+  onStatusChange(e, data) {
+    var obj =
+    {
+      "Is_paid": e.currentTarget.value
+    }
+    this.appService.updateStatWholeSaleCommision(data.id, obj).subscribe((res: any) => {
+      Swal.fire(res.message, '', "success");
+    })
+  }
+
+  onFilterStatChange(e) {
+    this.filterValue = e.currentTarget.value;
+  }
+
+  Filter() {
+    $('#filter2').modal('hide');
+    this.loadCommisionData(this.filterValue);
+  }
+
+
+
+
 }

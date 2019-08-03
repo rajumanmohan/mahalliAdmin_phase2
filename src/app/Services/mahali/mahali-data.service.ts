@@ -437,6 +437,14 @@ export class AppService {
     headers = headers.append('Content-Type', 'application/json; charset=utf-8');
     return this.http.get(AppSettings.getCatEcomcount, { headers: headers });
   }
+
+  getAttributeData() {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.get(AppSettings.getattributedata, { headers: headers });
+  }
+
   getGroceryCat(params) {
     var headers: HttpHeaders = new HttpHeaders;
     headers = headers.append('Accept', 'application/json, text/plain, */*');
@@ -477,6 +485,8 @@ export class AppService {
     headers = headers.append('Accept', 'application/json, text/plain, */*');
     headers = headers.append('Content-Type', 'application/json; charset=utf-8');
     return this.http.get(AppSettings.orderDetailsByOrdId + "/" + orderId + "/" + this.whole_id, { headers: headers })
+
+
   }
   orderChangeByProdId(prodId, params) {
     var headers: HttpHeaders = new HttpHeaders;
@@ -484,18 +494,38 @@ export class AppService {
     headers = headers.append('Content-Type', 'application/json; charset=utf-8');
     return this.http.put(AppSettings.orderChangeByProdId + "/" + prodId, params, { headers: headers })
   }
-  getWholeCommision() {
+
+  updateStatWholeSaleCommision(id, params) {
     var headers: HttpHeaders = new HttpHeaders;
     headers = headers.append('Accept', 'application/json, text/plain, */*');
     headers = headers.append('Content-Type', 'application/json; charset=utf-8');
-    return this.http.get(AppSettings.getWholeCommision, { headers: headers })
+    return this.http.put(AppSettings.updateWholeSaleCommision + "/" + id, params, { headers: headers })
   }
-  getVendorCommision() {
+
+  updateVendorCommision(id, params) {
     var headers: HttpHeaders = new HttpHeaders;
     headers = headers.append('Accept', 'application/json, text/plain, */*');
     headers = headers.append('Content-Type', 'application/json; charset=utf-8');
-    return this.http.get(AppSettings.getVendorCommision, { headers: headers })
+    return this.http.put(AppSettings.updateVendorCommision + "/" + id, params, { headers: headers })
   }
+
+  getWholeCommision(id) {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.get(AppSettings.getWholeCommision + "/" + id, { headers: headers })
+  }
+  getVendorCommision(id) {
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.get(AppSettings.getVendorCommision + "/" + id, { headers: headers })
+  }
+
+
+ 
+
+
   // uploadProductImg(params) {
   //       var headers: HttpHeaders = new HttpHeaders;
   // headers = headers.append('Accept', 'application/json, text/plain, */*');

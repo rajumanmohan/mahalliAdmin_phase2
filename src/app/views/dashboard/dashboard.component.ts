@@ -54,6 +54,10 @@ export class DashboardComponent implements OnInit {
   productCatsData: any;
   productscount = 0;
   catagiriescount = 0;
+
+  vendorOrdersData: any;
+  userOrdersData: any;
+
   public mainChartColours: Array<any> = [
     { // brandInfo
       backgroundColor: hexToRgba(getStyle('--info'), 10),
@@ -179,6 +183,8 @@ export class DashboardComponent implements OnInit {
     } else if (sessionStorage.role == 'Admin') {
       this.getGraphData();
       this.getWholeSaleGraphData();
+      this.getVendorOrdersLatest10();
+      this.getUserOrdersLatest10();
       this.getAdminCount();
       this.getUserData();
       this.getUserLatest10();
@@ -187,6 +193,7 @@ export class DashboardComponent implements OnInit {
       this.getSellers10();
       this.getProductsLatest10();
       this.getCoupnsData10();
+     
       this.getProductCatsData();
     } else if (sessionStorage.role == 'vendor') {
       this.getvendorCount();
@@ -337,6 +344,45 @@ export class DashboardComponent implements OnInit {
 
     })
   }
+
+  getUserOrdersLatest10() {
+    this.appService.getUserOrders().subscribe((res: any) => {
+
+      if (res.data) {
+        if (res.data.length > 10) {
+          this.userOrdersData = res.data.splice(0, 10);
+        }
+        else {
+          this.userOrdersData = res.data;
+        }
+        console.log("userordersdata" + this.userOrdersData);
+      }
+
+    }, err => {
+
+    })
+
+  }
+
+  getVendorOrdersLatest10() {
+    this.appService.vendorOrders().subscribe((res: any) => {
+
+      if (res.data) {
+        if (res.data.length > 10) {
+          this.vendorOrdersData = res.data.splice(0, 10);
+        }
+        else {
+          this.vendorOrdersData = res.data;
+        }
+        console.log("vendorOrders" + this.vendorOrdersData);
+      }
+
+    }, err => {
+
+    })
+
+  }
+
   getCoupnsData10() {
     this.appService.getCoupnsLatestData().subscribe((res: any) => {
 
