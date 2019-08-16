@@ -32,6 +32,11 @@
 				</div>
 			</li>
 		</cui-breadcrumb>
+		<div class="overlay" *ngIf='loaderVisible'>
+		<div class="spinner-border text-primary" role="status" >
+  <span class="sr-only">Loading...</span>
+</div>
+</div>
 
 		<div class="container-fluid">
 			<router-outlet></router-outlet>
@@ -39,6 +44,25 @@
 	</main>
 </div>
 <app-footer>
-	<span><a href="https://coreui.io">Mahalli Mall</a> &copy; 2019 Allrights Reserved.</span>
-	<span class="ml-auto">Powered by <a href="https://versatilemobitech.com" target="_blank">Mahalli</a></span>
+	<span><a href="https://www.mahalli.com" target="_blank">Mahalli Mall</a> &copy; 2019 Allrights Reserved.</span>
+	<span class="ml-auto">Powered by <a href="https://www.mahalli.com" target="_blank">Mahalli</a></span>
 </app-footer>
+
+<style type="text/css">
+.overlay {
+  position:fixed;
+  display:block;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  background-color:rgba(74,74,74,.8);
+  z-index:99999;
+}
+.spinner-border {
+  position:absolute;
+  top:50%;
+  left:50%;
+  
+}
+</style>

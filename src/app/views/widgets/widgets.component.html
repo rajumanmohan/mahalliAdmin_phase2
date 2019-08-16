@@ -24,8 +24,11 @@
               <button type="button" class="btn  btn-primary mb-3" (click)="addproduct()">Add Product</button>
               <!-- <div class="form-group"> -->
               <!-- <label for="file">Import Excel</label> -->
+
               <button class=" file-upload-button">
-                <input type="file" #fileInput (change)="onFileSelect(fileInput)" />
+              <input type="file" id="bulk-product" #fileInput (change)="onFileSelect($event)" />
+              </button>
+              <button (click)="onImportClick()" class=" file-upload-button btn-primary mb-2">
                 Import</button>
               <!-- </div> -->
             </div>
@@ -56,6 +59,17 @@
               <div class="form-group">
                 <input type="text" class="form-control" id="ccnumber" placeholder="Search" [(ngModel)]="filter">
               </div>
+            </div>
+          </div>
+          <br/>
+          <div class="row">
+            <div class="col-md-12  text-right">
+
+                <button type="button" class="btn  btn-primary mb-3" (click)="exportAsXLSX()">Export To
+                    Excel</button>
+                <button type="button" class="btn  btn-primary mb-3" (click)="exportAsPdf()">Export To
+                    Pdf</button>
+
             </div>
           </div>
           <!--/.row-->
@@ -120,10 +134,11 @@
 
             </tbody>
           </table>
-          <div style="width: 100%; text-align: center;">
+          <!--<div style="width: 100%; text-align: center;">
             <button type="button" class="btn btn-primary mb-3" (click)="pageChanged()">View More</button>
-          </div>
-
+          </div>-->
+ <pagination-controls (pageChange)="p = $event" style="float:right; margin-top:15px;">
+          </pagination-controls>
 
         </div>
       </div>

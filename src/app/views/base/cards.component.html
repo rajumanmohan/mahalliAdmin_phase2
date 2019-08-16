@@ -52,7 +52,7 @@
                         <tbody>
                             <tr
                                 *ngFor="let cat of category|orderBy: key : reverse| paginate: { itemsPerPage: 10, currentPage: p }|filter:filter;let i = index">
-                                <td>{{cat.indexValue +1}}</td>
+                                <td>{{((p-1)*10)+(i+1)}}</td>
                                 <td>{{cat.category_name}}</td>
                                 <td><img alt="cat.image_url" class="img-avatar" [src]="cat.image_url"></td>
                                 <td>{{cat.description}}</td>

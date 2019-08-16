@@ -8,18 +8,19 @@
                     <button (click)="backtosubcat()" class="btn  btn-primary text-right float-right ">Back</button>
                 </div>
                 <div class="card-body">
-                    <form>
-
-                    </form>
+                    <form [formGroup]="categoryForm">
                     <div class="row">
                         <div class="form-group col-sm-6">
                             <label for="company">Title</label>
-                            <select class="form-control" placeholder="Enter Title" [(ngModel)]="mainCat1"
+                            <select class="form-control" placeholder="Enter Title" [(ngModel)]="mainCat1" formControlName="mainCat1" [ngClass]="{'is-invalid':(submitted && categoryForm.controls.mainCat1.errors&&categoryForm.controls.mainCat1.errors.required)}"
                                 (change)="changeCat($event.target.value)">
                                 <option value="" selected disabled>Select Category</option>
                                 <option *ngFor="let cat of category" [value]="cat.category_name">{{cat.category_name}}
                                 </option>
                             </select>
+							<div *ngIf="submitted && categoryForm.controls.mainCat1.errors" class="invalid-feedback" style="display:block">
+								<div *ngIf="categoryForm.controls.mainCat1.errors.required">Category is required</div>
+							</div>
                             <!-- <select class="form-control"
                                                     [(ngModel)]="mainCat" name="mainCat"
                                                     (change)="changeCat($event.target.value)">
@@ -34,8 +35,11 @@
                     <div class="row">
                         <div class="form-group col-sm-6">
                             <label for="city">Sub category Name</label>
-                            <input type="text" class="form-control" id="city" [(ngModel)]="subCa" name="subCa"
+                            <input type="text" class="form-control" id="city" [(ngModel)]="subCa" formControlName="subCa" [ngClass]="{'is-invalid':(submitted && categoryForm.controls.subCa.errors&&categoryForm.controls.subCa.errors.required)}"
                                 placeholder="Enter Sub category Name">
+								<div *ngIf="submitted && categoryForm.controls.subCa.errors" class="invalid-feedback" style="display:block">
+								<div *ngIf="categoryForm.controls.subCa.errors.required">Sub category is required</div>
+							</div>
                         </div>
                     </div>
                     <!-- <div class="row">
@@ -52,8 +56,11 @@
                     <div class="row">
                         <div class="form-group col-sm-6">
                             <label for="textarea-input">Description</label>
-                            <textarea id="textarea-input" rows="9" class="form-control" placeholder="Description.."
-                                [(ngModel)]="textarea" name="textarea"></textarea>
+                            <textarea id="textarea-input" rows="9" class="form-control" placeholder="Description.." formControlName="textarea" [ngClass]="{'is-invalid':(submitted && categoryForm.controls.textarea.errors&&categoryForm.controls.textarea.errors.required)}"
+                                [(ngModel)]="textarea" ></textarea>
+								<div *ngIf="submitted && categoryForm.controls.textarea.errors" class="invalid-feedback" style="display:block">
+								<div *ngIf="categoryForm.controls.textarea.errors.required">Description is required</div>
+								</div>
                         </div>
                     </div>
 
@@ -61,7 +68,7 @@
                         <label class="col-md-3 col-form-label" for="file-input">Sub Category image</label>
                         <div class="col-md-3">
                             <input type="file" id="file-input" name="file-input" (change)="changeListener($event)"
-                                [(ngModel)]="img" name="img">
+                                [(ngModel)]="img"  formControlName="img" [ngClass]="{'is-invalid':(submitted && categoryForm.controls.img&&categoryForm.controls.img.errors&&categoryForm.controls.img.errors.required)}">
                             <div *ngIf="image">
                                 <img src="{{image}}" alt="" width="100" height="100"
                                     style="border: solid 1px;margin-top: 2%;">
@@ -72,6 +79,9 @@
                             </div>
 
                         </div>
+						<div  *ngIf="submitted &&categoryForm.controls.img&& categoryForm.controls.img.errors" class="invalid-feedback col-md-12" style="display:block">
+								<div *ngIf="categoryForm.controls.img.errors.required">Sub category image is required</div>
+								</div>
 
                     </div>
                     <div class="row">
@@ -82,6 +92,7 @@
                                 Subcategory</button>
                         </div>
                     </div>
+					</form>
                 </div>
             </div>
         </div>

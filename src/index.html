@@ -53,5 +53,16 @@
 <body class="app">
   <!-- App Loading... -->
 </body>
-
+<script type="text/javascript">
+$(document).on('click','.nav-dropdown',function(){
+var isOpen=false;
+if($(this).hasClass('open')){
+isOpen=true;
+}
+$('.nav-dropdown').removeClass('open');
+if(isOpen){
+$(this).addClass('open');
+}
+});
+</script>
 </html>

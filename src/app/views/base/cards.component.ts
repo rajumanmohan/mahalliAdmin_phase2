@@ -22,6 +22,7 @@ export class CardsComponent implements OnInit {
     type;
     category;
     typeVal;
+	p=1;
     ngOnInit() {
         this.getGroceryCats();
     }

@@ -40,7 +40,7 @@ export class CommissionComponent implements OnInit {
   onStatusChange(e, data) {
     var obj =
     {
-      "Is_paid": e.currentTarget.value
+      "is_paid": e.currentTarget.value
     }
     this.appService.updateStatWholeSaleCommision(data.id, obj).subscribe((res: any) => {
       Swal.fire(res.message, '', "success");

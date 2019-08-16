@@ -65,9 +65,9 @@
                                             <select [value]='ratingandreview.status' id="company"
                                                 class="form-control order-status" #ratestatus
                                                 (change)="statusChange(ratestatus.value, ratingandreview.id)">
-                                                <option>Select status</option>
-                                                <option value="true">Approve</option>
-                                                <option value="false">Disapprove</option>
+                                                <option [selected]='!ratingandreview.Status'>Select status</option>
+                                                <option [selected]='ratingandreview.Status=="true"' value="true">Approve</option>
+                                                <option [selected]='ratingandreview.Status=="false"' value="false">Disapprove</option>
 
                                                 <!-- <option value="Disapprove">Disapprove</option> -->
                                             </select>

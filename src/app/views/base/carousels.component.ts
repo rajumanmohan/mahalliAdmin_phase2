@@ -23,6 +23,7 @@ export class CarouselsComponent implements OnInit {
   type;
   category;
   categories = [];
+  p=1;
   constructor(public router: Router, private appService: AppService) { }
   grocerySubCats;
   ecomSubcats;

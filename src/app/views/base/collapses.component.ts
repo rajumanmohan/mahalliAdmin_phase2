@@ -16,6 +16,8 @@ export class CollapsesComponent implements OnInit {
   categories = [];
   subCategories = [];
   selectedCategoryId = 0;
+  p=1;
+  
   constructor(public router: Router, private appService: AppService) { }
 
   ngOnInit() {

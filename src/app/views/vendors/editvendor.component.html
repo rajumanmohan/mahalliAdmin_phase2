@@ -10,122 +10,221 @@
 				</div>
 
 				<div class="card-body">
-					<div class="row">
-						<div class="col-md-3">
-							<div class="form-group">
+				 <form [formGroup]="vendorForm">
+				 
+					<div class="row form-group">
+						<div class="col-md-3">							
 								<label for="company">First Name</label>
 								<input class="form-control" id="first_name" placeholder="Enter First name" type="text"
-									[(ngModel)]="vendorData.first_name">
-							</div>
+									[(ngModel)]="vendorData.first_name" formControlName="first_name" [ngClass]="{'is-invalid':(submitted && vendorForm.controls.first_name.errors&&vendorForm.controls.first_name.errors.required)}"  />
+								<div *ngIf="submitted && vendorForm.controls.first_name.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="vendorForm.controls.first_name.errors.required">First Name is required</div>
+								</div>							
 						</div>
 						<div class="col-md-3">
-							<div class="form-group">
+							
 								<label for="company">Last Name</label>
 								<input class="form-control" id="company" placeholder="Enter Last name" type="text"
-									[(ngModel)]="vendorData.last_name">
-							</div>
+									[(ngModel)]="vendorData.last_name" formControlName="last_name" [ngClass]="{'is-invalid':(submitted && vendorForm.controls.last_name.errors&&vendorForm.controls.last_name.errors.required)}"  />
+								<div *ngIf="submitted && vendorForm.controls.last_name.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="vendorForm.controls.last_name.errors.required">Last Name is required</div>
+								</div>	
+							
 						</div>
 						<div class="col-md-3">
-							<div class="form-group">
-								<label for="company">Mobile Number</label>
-								<input class="form-control" id="company" placeholder="Enter Mobile Number" type="text"
-									[(ngModel)]="vendorData.mobile_number">
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
+							
 								<label for="company">Email</label>
 								<input class="form-control" id="company" placeholder="Enter Email" type="text"
-									[(ngModel)]="vendorData.email">
-							</div>
+									[(ngModel)]="vendorData.email" formControlName="email" [ngClass]="{'is-invalid':(submitted && vendorForm.controls.email.errors&&vendorForm.controls.email.errors.required)}"  />
+								<div *ngIf="submitted && vendorForm.controls.email.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="vendorForm.controls.email.errors.required">Email is required</div>
+								</div>	
+							
+						</div>
+
+						<div class="col-md-3">
+							
+								<label for="company">Mobile Number</label>
+								<input class="form-control" id="company" placeholder="Enter Mobile Number" type="text"
+									[(ngModel)]="vendorData.mobile_number" formControlName="mobile_number" [ngClass]="{'is-invalid':(submitted && vendorForm.controls.mobile_number.errors&&vendorForm.controls.mobile_number.errors.required)}"  />
+								<div *ngIf="submitted && vendorForm.controls.mobile_number.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="vendorForm.controls.mobile_number.errors.required">Mobile Number is required</div>
+								</div>	
+							
 						</div>
 
 
 
 						<div class="col-md-3">
-							<div class="form-group">
-								<label for="company">Bussiness Name</label>
-								<input class="form-control" id="company" placeholder="Enter Bussiness Name" type="text"
-									[(ngModel)]="vendorData.bussiness_name">
-							</div>
+							
+								<label for="company">Business Name</label>
+								<input class="form-control" id="company" placeholder="Enter Business Name" type="text"
+									[(ngModel)]="vendorData.bussiness_name" formControlName="bussiness_name" [ngClass]="{'is-invalid':(submitted && vendorForm.controls.bussiness_name.errors&&vendorForm.controls.bussiness_name.errors.required)}"  />
+								<div *ngIf="submitted && vendorForm.controls.bussiness_name.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="vendorForm.controls.bussiness_name.errors.required">Business Name is required</div>
+								</div>	
+							
 						</div>
 						<div class="col-md-3">
-							<div class="form-group">
-								<label for="company">Bussiness From</label>
-								<input class="form-control" id="company" placeholder="Enter Bussiness From" type="text"
-									[(ngModel)]="vendorData.bussiness_from_time">
-							</div>
+							
+								<label for="company">Opening Time</label>
+								<input class="form-control" id="company" placeholder="Enter Opening Time" type="text"
+									[(ngModel)]="vendorData.bussiness_from_time" formControlName="bussiness_from_time" [ngClass]="{'is-invalid':(submitted && vendorForm.controls.bussiness_from_time.errors&&vendorForm.controls.bussiness_from_time.errors.required)}"  />
+								<div *ngIf="submitted && vendorForm.controls.bussiness_from_time.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="vendorForm.controls.bussiness_from_time.errors.required">Opening Time is required</div>
+								</div>	
+							
 						</div>
 						<div class="col-md-3">
-							<div class="form-group">
-								<label for="company">Bussiness House No</label>
-								<input class="form-control" id="company" placeholder="Enter Bussiness House No"
-									type="text" [(ngModel)]="vendorData.bussiness_houseno">
-							</div>
+							
+								<label for="company">Closing Time</label>
+								<input class="form-control" id="company" placeholder="Enter Closing Time" type="text"
+									[(ngModel)]="vendorData.bussiness_end_time" formControlName="bussiness_end_time" [ngClass]="{'is-invalid':(submitted && vendorForm.controls.bussiness_end_time.errors&&vendorForm.controls.bussiness_end_time.errors.required)}"  />
+								<div *ngIf="submitted && vendorForm.controls.bussiness_end_time.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="vendorForm.controls.bussiness_end_time.errors.required">Closing Time is required</div>
+								</div>	
+							
 						</div>
 						<div class="col-md-3">
+								<label for="company">Shop/Building No</label>
+								<input class="form-control" id="company" placeholder="Enter Shop/Building No"
+									type="text" [(ngModel)]="vendorData.bussiness_houseno" formControlName="bussiness_houseno" [ngClass]="{'is-invalid':(submitted && vendorForm.controls.bussiness_houseno.errors&&vendorForm.controls.bussiness_houseno.errors.required)}"  />
+								<div *ngIf="submitted && vendorForm.controls.bussiness_houseno.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="vendorForm.controls.bussiness_houseno.errors.required">Shop/Building No is required</div>
+								</div>	
+							
+						</div>
+
+						<div class="col-md-3">
+								<label for="roadNo">Road No</label>
+								<input class="form-control" id="roadNo" placeholder="Enter Road No" type="text"
+									[(ngModel)]="vendorData.Road_No" formControlName="Road_No" [ngClass]="{'is-invalid':(submitted && vendorForm.controls.Road_No.errors&&vendorForm.controls.Road_No.errors.required)}"  />
+								<div *ngIf="submitted && vendorForm.controls.Road_No.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="vendorForm.controls.Road_No.errors.required">Road No is required</div>
+								</div>	
+							
+						</div>
+						<div class="col-md-3">
+								<label for="blockNo">Block No</label>
+								<input class="form-control" id="blockNo" placeholder="Enter Block No" type="text"
+									[(ngModel)]="vendorData.Block_No" formControlName="Block_No" [ngClass]="{'is-invalid':(submitted && vendorForm.controls.Block_No.errors&&vendorForm.controls.Block_No.errors.required)}"  />
+								<div *ngIf="submitted && vendorForm.controls.Block_No.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="vendorForm.controls.Block_No.errors.required">Block No is required</div>
+								</div>	
+							
+						</div>
+
+						<!-- <div class="col-md-3">
 							<div class="form-group">
 								<label for="company">Bussiness Address</label>
 								<input class="form-control" id="company" placeholder="Enter Bussiness Address"
 									type="text" [(ngModel)]="vendorData.bussiness_address">
 							</div>
+						</div> -->
+
+						<div class="col-md-3">
+								<label for="company">Area</label>
+								<input class="form-control" id="company" placeholder="Enter Area" type="text"
+									[(ngModel)]="vendorData.bussiness_area" formControlName="bussiness_area" [ngClass]="{'is-invalid':(submitted && vendorForm.controls.bussiness_area.errors&&vendorForm.controls.bussiness_area.errors.required)}"  />
+								<div *ngIf="submitted && vendorForm.controls.bussiness_area.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="vendorForm.controls.bussiness_area.errors.required">Area is required</div>
+								</div>	
+							
 						</div>
 						<div class="col-md-3">
-							<div class="form-group">
-								<label for="company">Bussiness To</label>
-								<input class="form-control" id="company" placeholder="Enter Bussiness To" type="text"
-									[(ngModel)]="vendorData.bussiness_end_time">
-							</div>
+								<label for="company">City</label>
+								<input class="form-control" id="company" placeholder="Enter City" type="text"
+									[(ngModel)]="vendorData.bussiness_city" formControlName="bussiness_city" [ngClass]="{'is-invalid':(submitted && vendorForm.controls.bussiness_city.errors&&vendorForm.controls.bussiness_city.errors.required)}"  />
+								<div *ngIf="submitted && vendorForm.controls.bussiness_city.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="vendorForm.controls.bussiness_city.errors.required">City is required</div>
+								</div>	
+							
 						</div>
 						<div class="col-md-3">
-							<div class="form-group">
-								<label for="company">Bussiness Area</label>
-								<input class="form-control" id="company" placeholder="Enter Bussiness Area" type="text"
-									[(ngModel)]="vendorData.bussiness_area">
-							</div>
+								<label for="company">PO Box No</label>
+								<input class="form-control" id="company" placeholder="Enter PO Box No" type="text"
+									[(ngModel)]="vendorData.bussiness_pincode" formControlName="bussiness_pincode" [ngClass]="{'is-invalid':(submitted && vendorForm.controls.bussiness_pincode.errors&&vendorForm.controls.bussiness_pincode.errors.required)}"  />
+								<div *ngIf="submitted && vendorForm.controls.bussiness_pincode.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="vendorForm.controls.bussiness_pincode.errors.required">PO Box No is required</div>
+								</div>	
+							
 						</div>
 						<div class="col-md-3">
-							<div class="form-group">
-								<label for="company">Bussiness City</label>
-								<input class="form-control" id="company" placeholder="Enter Bussiness City" type="text"
-									[(ngModel)]="vendorData.bussiness_city">
-							</div>
+								<label for="company">Country</label>
+								<input class="form-control" id="company" placeholder="Enter Country" type="text"
+									[(ngModel)]="vendorData.bussiness_country" formControlName="bussiness_country" [ngClass]="{'is-invalid':(submitted && vendorForm.controls.bussiness_country.errors&&vendorForm.controls.bussiness_country.errors.required)}"  />
+								<div *ngIf="submitted && vendorForm.controls.bussiness_country.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="vendorForm.controls.bussiness_country.errors.required">Country is required</div>
+								</div>	
+							
 						</div>
+
 						<div class="col-md-3">
-							<div class="form-group">
-								<label for="company">Bussiness Country</label>
-								<input class="form-control" id="company" placeholder="Enter Bussiness Country"
-									type="text" [(ngModel)]="vendorData.bussiness_country">
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="company">Bussiness Pincode</label>
-								<input class="form-control" id="company" placeholder="Enter Bussiness Pincode"
-									type="text" [(ngModel)]="vendorData.bussiness_pincode">
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
 								<label for="company">Bank Name</label>
-								<input class="form-control" id="company" placeholder="Enter Bank  Name" type="text"
-									[(ngModel)]="vendorData.bank_name">
-							</div>
+								<input class="form-control" id="company" placeholder="Enter Bank Name" type="text"
+									[(ngModel)]="vendorData.bank_name" formControlName="bank_name" [ngClass]="{'is-invalid':(submitted && vendorForm.controls.bank_name.errors&&vendorForm.controls.bank_name.errors.required)}"  />
+								<div *ngIf="submitted && vendorForm.controls.bank_name.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="vendorForm.controls.bank_name.errors.required">Bank Name is required</div>
+								</div>	
+							
 						</div>
 						<div class="col-md-3">
-							<div class="form-group">
-								<label for="company">Bank Account Holder Name</label>
-								<input class="form-control" id="company" placeholder="Enter Bank Account Holder Name"
-									type="text" [(ngModel)]="vendorData.account_holder_name">
-							</div>
+								<label for="company">Account Holder Name</label>
+								<input class="form-control" id="company" placeholder="Enter Account Holder Name"
+									type="text" [(ngModel)]="vendorData.account_holder_name" formControlName="account_holder_name" [ngClass]="{'is-invalid':(submitted && vendorForm.controls.account_holder_name.errors&&vendorForm.controls.account_holder_name.errors.required)}"  />
+								<div *ngIf="submitted && vendorForm.controls.account_holder_name.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="vendorForm.controls.account_holder_name.errors.required">Account Holder Name is required</div>
+								</div>	
+							
 						</div>
 						<div class="col-md-3">
-							<div class="form-group">
-								<label for="company">Bank Account Number</label>
-								<input class="form-control" id="company" placeholder="Enter Bank Account Number"
-									type="text" [(ngModel)]="vendorData.account_number">
-							</div>
+								<label for="company">Account Number</label>
+								<input class="form-control" id="company" placeholder="Enter Account Number" type="text"
+									[(ngModel)]="vendorData.account_number" formControlName="account_number" [ngClass]="{'is-invalid':(submitted && vendorForm.controls.account_number.errors&&vendorForm.controls.account_number.errors.required)}"  />
+								<div *ngIf="submitted && vendorForm.controls.account_number.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="vendorForm.controls.account_number.errors.required">Account Number is required</div>
+								</div>	
+							
 						</div>
+						<div class="col-md-3">
+								<label for="company">IBAN Number</label>
+								<input class="form-control" id="ifsc_code" placeholder="Enter IBAN Number" type="text"
+									[(ngModel)]="vendorData.ifsc_code" formControlName="ifsc_code" [ngClass]="{'is-invalid':(submitted && vendorForm.controls.ifsc_code.errors&&vendorForm.controls.ifsc_code.errors.required)}"  />
+								<div *ngIf="submitted && vendorForm.controls.ifsc_code.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="vendorForm.controls.ifsc_code.errors.required">IBAN Number is required</div>
+								</div>	
+							
+						</div>
+						<div class="col-md-3">
+								<label for="company">Branch</label>
+								<input class="form-control" id="bank_branch" placeholder="Enter Branch" type="text"
+									[(ngModel)]="vendorData.bank_branch" formControlName="bank_branch" [ngClass]="{'is-invalid':(submitted && vendorForm.controls.bank_branch.errors&&vendorForm.controls.bank_branch.errors.required)}"  />
+								<div *ngIf="submitted && vendorForm.controls.bank_branch.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="vendorForm.controls.bank_branch.errors.required">Branch is required</div>
+								</div>	
+						
+						</div>
+						<div class="col-md-3">
+								<label for="company">VAT Number</label>
+								<input class="form-control" id="company" placeholder="Enter VAT Number" type="text"
+									[(ngModel)]="vendorData.vat_number" formControlName="vat_number" [ngClass]="{'is-invalid':(submitted && vendorForm.controls.vat_number.errors&&vendorForm.controls.vat_number.errors.required)}"  />
+								<div *ngIf="submitted && vendorForm.controls.vat_number.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="vendorForm.controls.vat_number.errors.required">First Name is required</div>
+								</div>	
+							
+						</div>
+
+						<div class="col-md-3">
+								<label for="company">CR Number</label>
+								<input class="form-control" id="cr_number" placeholder="Enter CR Number" type="text"
+									[(ngModel)]="vendorData.cr_number" formControlName="cr_number" [ngClass]="{'is-invalid':(submitted && vendorForm.controls.cr_number.errors&&vendorForm.controls.cr_number.errors.required)}"  />
+								<div *ngIf="submitted && vendorForm.controls.cr_number.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="vendorForm.controls.cr_number.errors.required">CR Nuumber is required</div>
+								</div>	
+							
+						</div>
+
+						<!-- 
 						<div class="col-md-3">
 							<div class="form-group">
 								<label for="company">Bank Area</label>
@@ -133,57 +232,64 @@
 									[(ngModel)]="vendorData.bank_area">
 							</div>
 						</div>
+						
 						<div class="col-md-3">
 							<div class="form-group">
-								<label for="company">Bank Branch</label>
-								<input class="form-control" id="bank_branch" placeholder="Enter Bank Branch" type="text"
-									[(ngModel)]="vendorData.bank_branch">
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="company">Bank City </label>
-								<input class="form-control" id="bank_city" placeholder="Enter Bank City" type="text"
+								<label for="company">City </label>
+								<input class="form-control" id="bank_city" placeholder="Enter City" type="text"
 									[(ngModel)]="vendorData.bank_city">
 							</div>
 						</div>
+					 -->
+
 						<div class="col-md-3">
-							<div class="form-group">
-								<label for="company">Bank IFSC code</label>
-								<input class="form-control" id="ifsc_code" placeholder="Enter Bank IFSC code"
-									type="text" [(ngModel)]="vendorData.ifsc_code">
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="company">Cr Number</label>
-								<input class="form-control" id="cr_number" placeholder="Enter Cr Number" type="text"
-									[(ngModel)]="vendorData.cr_number">
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="company">VAT Number</label>
-								<input class="form-control" id="company" placeholder="Enter VAT Number" type="text"
-									name="vat_number" [(ngModel)]="vendorData.vat_number">
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="company">Comission</label>
+								<label for="company">Commission</label>
 								<input class="form-control" id="commission_to_admin" placeholder="Enter Commission"
-									type="text" [(ngModel)]="vendorData.commission_to_admin">
-							</div>
+									type="text" [(ngModel)]="vendorData.commission_to_admin" formControlName="commission_to_admin" [ngClass]="{'is-invalid':(submitted && vendorForm.controls.commission_to_admin.errors&&vendorForm.controls.commission_to_admin.errors.required)}"  />
+								<div *ngIf="submitted && vendorForm.controls.commission_to_admin.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="vendorForm.controls.commission_to_admin.errors.required">Commission is required</div>
+								</div>								
 						</div>
 					</div>
-					<div class="row">
+
+					<div class="row form-group">
+						<div class="col-md-9" *ngIf="activeImageUrl">
+							<img [src]="activeImageUrl" width="800" height="600" />
+						</div>
+						<div class="col-md-3">
+							<img *ngIf="activeImageUrl != vendorData.image_one && !!vendorData.image_one"
+								(click)="activeImageUrl = vendorData.image_one" [src]="vendorData.image_one" width="200"
+								height="200" />
+							<img *ngIf="activeImageUrl != vendorData.image_two && !!vendorData.image_two"
+								(click)="activeImageUrl = vendorData.image_two" [src]="vendorData.image_two" width="200"
+								height="200" />
+							<img *ngIf="activeImageUrl != vendorData.image_three && !!vendorData.image_three"
+								(click)="activeImageUrl = vendorData.image_three" [src]="vendorData.image_three"
+								width="200" height="200" />
+							<img *ngIf="activeImageUrl != vendorData.image_four && !!vendorData.image_four"
+								(click)="activeImageUrl = vendorData.image_four" [src]="vendorData.image_four"
+								width="200" height="200" />
+						</div>
+						<!-- <div class="col-md-3" *ngIf="vendorData.image_three">
+							<img [src]="vendorData.image_three" width="200" height="200" />
+						</div>
+						<div class="col-md-3" *ngIf="vendorData.image_four">
+							<img [src]="vendorData.image_four" width="200" height="200" />
+						</div> -->
+
+					</div>
+					<br />
+
+					<div class="row form-group">
 						<div class="col-md-6">
-							<button class="btn btn-success" type="submit" (click)="updateVendorbyId1()">Update Vendor
+							<button class="btn btn-primary vendor-button" type="submit"
+								(click)="updateVendorbyId1()">Update
 							</button>
 						</div>
-					</div>
+					</div>					
+				 </form>
 				</div>
-
+				
 			</div>
 
 		</div>

@@ -46,7 +46,7 @@
 
                             <tr
                                 *ngFor="let cat of staffData |orderBy: key : reverse| paginate: { itemsPerPage: 10, currentPage: p }|filter:filter;let i = index">
-                                <td>{{i +1}}</td>
+                                <td>{{((p-1)*10)+(i +1)}}</td>
                                 <td>{{cat.name}}</td>
                                 <td>{{cat.email}}</td>
                                 <td>{{cat.mobile_number}}</td>

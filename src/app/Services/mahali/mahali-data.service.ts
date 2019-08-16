@@ -572,6 +572,13 @@ export class AppService {
     headers = headers.append('Content-Type', 'application/json; charset=utf-8');
     return this.http.put(AppSettings.updateVendorById + "/" + venId, params, { headers: headers })
   }
+
+  updateUserbyId(params, userId){
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.put(AppSettings.userUpdateData + "/" + userId, params, { headers: headers })
+  }
   getUserOrdByVenId(venId) {
     var headers: HttpHeaders = new HttpHeaders;
     headers = headers.append('Accept', 'application/json, text/plain, */*');
@@ -1049,6 +1056,30 @@ export class AppService {
     return this.http.get(`${AppSettings.getallwholesalerproductsforapprovalByCatId}/${categoryId}`, { headers: headers });
   }
 
+  adminproductbulkupload(file){
+    let formData: FormData = new FormData();
+    formData.append('excelFile', file);
+
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    return this.http.post(AppSettings.adminproductbulkupload, formData, { headers: headers });
+  }
+  vendorbulkupload(file){
+    let formData: FormData = new FormData();
+    formData.append('excelFile', file);
+
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    return this.http.post(AppSettings.vendorbulkupload, formData, { headers: headers });
+  }
+  wholesalerbulkupload(file){
+    let formData: FormData = new FormData();
+    formData.append('excelFile', file);
+
+    var headers: HttpHeaders = new HttpHeaders;
+    headers = headers.append('Accept', 'application/json, text/plain, */*');
+    return this.http.post(AppSettings.wholesalerbulkupload, formData, { headers: headers });
+  }
   // deleteVendorbyId(id) {
   //     const headers = new Headers({ 'Content-Type': "application/JSON" });
   //     return this.http.delete(AppSettings.deleteVendorById + id, { headers: headers })

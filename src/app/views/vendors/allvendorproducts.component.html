@@ -4,6 +4,12 @@
             <div class="card pt-5 mt-5">
                 <div class="container">
                     <div class="row">
+					<div class="col-lg-12" *ngIf="showSuccessAlert">
+					<div class="alert alert-success"><i class="fa fa-check-circle fa-fw"></i>Status Updated Successfully.</div>
+					</div>
+					<div class="col-lg-12" *ngIf="showErrorAlert">
+					<div class="alert alert-danger"><i class="fa fa-exclamation-triangle fa-fw"></i>Something went wrong. please try again</div>
+					</div>
                         <div class="col-lg-6">
                             <h1>Products List </h1>
                         </div>

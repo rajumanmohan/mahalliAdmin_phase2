@@ -1,3 +1,4 @@
+
 <div class="animated fadeIn">
   <!--/.row-->
 
@@ -5,80 +6,147 @@
 
   <div class="card-group mb-4">
     <div class="card" *ngIf="role=='Admin'">
-      <div class="card-body" routerLink="/userslist">
-        <div class="h1 text-muted text-right mb-4">
-          <i class="icon-people"></i>
-        </div>
-        <div style="display: block; position: absolute; margin-top: -68px; text-align: center;">
-          <div class="h4 mb-0">{{Count.userscount}}</div>
-          <small class="text-muted text-uppercase font-weight-bold">Users</small>
-        </div>
 
-        <div style="text-align: center;display: inline-block;padding-right: 76px;">
-          <div class="h4 mb-0">{{Count.usersActive}}</div>
-          <small class="text-muted text-uppercase font-weight-bold">Active</small>
-        </div>
-        <div style="text-align: center;display: inline-block;">
-          <div class="h4 mb-0">{{Count.usersInActive}}</div>
-          <small class="text-muted text-uppercase font-weight-bold">Inactive</small>
-        </div>
+        <div class="card-body" routerLink="/userslist">
 
-        <div class="progress progress-xs mt-3 mb-0">
-          <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-            aria-valuemax="100"></div>
+          <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-6">
+              
+                  </div>
+                  <div class="col-md-6" style="float:right;">
+                      <div class="h1 text-muted text-right mb-4">
+                          <i class="icon-people"></i>
+                        </div>
+                    </div>
+            </div>
+          </div>
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="col-md-6"  style="float:left;">
+                          <div class="h4 mb-0">{{Count.usersActive}}</div>
+                          <small class="text-muted text-uppercase font-weight-bold">Active</small>
+                    </div>
+                    <div class="col-md-6"  style="float:left;">
+                        <div class="h4 mb-0">{{Count.usersInActive}}</div>
+                        <small class="text-muted text-uppercase font-weight-bold">Inactive</small>
+                      </div>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="progress progress-xs mt-3 mb-0">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
+                          aria-valuemax="100"></div>
+                      </div>
+                </div>
+              </div>
+
+              <div class="row" style="margin-top: 20px;">
+                  <div class="col-md-12 text-center">
+                      <div class="h4 mb-0">{{Count.userscount}}</div>
+                     <small class="text-muted text-uppercase font-weight-bold">Users</small>
+                  </div>
+                </div>
         </div>
-      </div>
     </div>
     <div class="card" *ngIf="role=='Admin'">
-      <div class="card-body" routerLink="/vendorslist">
-        <div class="h1 text-muted text-right mb-4">
-          <i class="icon-people"></i>
-          <div class="h4 mb-0"></div>
+
+        <div class="card-body" routerLink="/vendorslist">
+
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="col-md-6">
+                
+                    </div>
+                    <div class="col-md-6" style="float:right;">
+                        <div class="h1 text-muted text-right mb-4">
+                            <i class="icon-people"></i>
+                          </div>
+                      </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="col-md-6" style="float:left;">
+                      <div class="h4 mb-0">{{Count.activevenders}}</div>
+                      <small class="text-muted text-uppercase font-weight-bold">Active</small>
+                    </div>
+                    <div class="col-md-6" style="float:left;">
+                        <div class="h4 mb-0">{{Count.inactivevenders}}</div>
+            <small class="text-muted text-uppercase font-weight-bold">Inactive</small>
+                      </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="progress progress-xs mt-3 mb-0">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25"
+                        aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+              </div>
+          </div>
+
+          <div class="row text-center" style="margin-top:20px;">
+              <div class="col-md-12">
+                  <div class="h4 mb-0">{{Count.venders}}</div>
+            <small class="text-muted text-uppercase font-weight-bold">Vendors</small>
+              </div>
+          </div>
         </div>
 
-        <div style="display: block; position: absolute; margin-top: -68px; text-align: center;">
-          <div class="h4 mb-0">{{Count.venders}}</div>
-          <small class="text-muted text-uppercase font-weight-bold">Vendors</small>
-        </div>
 
-        <div style="text-align: center;display: inline-block;padding-right: 76px;">
-          <div class="h4 mb-0">{{Count.activevenders}}</div>
-          <small class="text-muted text-uppercase font-weight-bold">Active</small>
-        </div>
-        <div style="text-align: center;display: inline-block;">
-          <div class="h4 mb-0">{{Count.inactivevenders}}</div>
-          <small class="text-muted text-uppercase font-weight-bold">Inactive</small>
-        </div>
-        <div class="progress progress-xs mt-3 mb-0">
-          <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25"
-            aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-      </div>
     </div>
     <div class="card" *ngIf="role=='Admin'">
-      <div class="card-body" routerLink="/wholeseller">
-        <div class="h1 text-muted text-right mb-4">
-          <i class="icon-people"></i>
-          <div class="h4 mb-0"></div>
-        </div>
-        <div style="display: block; position: absolute; margin-top: -68px; text-align: center;">
-          <div class="h4 mb-0">{{Count.wholeseller}}</div>
-          <small class="text-muted text-uppercase font-weight-bold">Wholesellers</small>
+
+        <div class="card-body" routerLink="/wholeseller">
+
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="col-md-6" style="float:left;">
+                      <div class="h4 mb-0">{{wholeSalerCommision}}</div>
+                      <small class="text-muted text-uppercase font-weight-bold">Wholesaler Commision</small>
+                    </div>
+                    <div class="col-md-6" style="float:right;">
+                        <div class="h1 text-muted text-right mb-4">
+                            <i class="icon-people"></i>
+                          </div>
+                      </div>
+              </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-6" style="float:left">
+                        <div class="h4 mb-0">{{Count.activewholesallers}}</div>
+                         <small class="text-muted text-uppercase font-weight-bold">Active</small>
+                      </div>
+                      <div class="col-md-6" style="float:left">
+                           <div class="h4 mb-0">{{Count.inactivewholesallers}}</div>
+                          <small class="text-muted text-uppercase font-weight-bold">Inactive</small>
+                        </div>
+                </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="progress progress-xs mt-3 mb-0">
+                          <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                  </div>
+                </div>
+
+                <div class="row text-center" style="margin-top:20px;">
+                    <div class="col-md-12">
+                        <div class="h4 mb-0">{{Count.wholeseller}}</div>
+                        <small class="text-muted text-uppercase font-weight-bold">Wholesalers</small>
+                    </div>
+                  </div>          
         </div>
 
-        <div style="text-align: center;display: inline-block;padding-right: 76px;">
-          <div class="h4 mb-0">{{Count.activewholesallers}}</div>
-          <small class="text-muted text-uppercase font-weight-bold">Active</small>
-        </div>
-        <div style="text-align: center;display: inline-block;">
-          <div class="h4 mb-0">{{Count.inactivewholesallers}}</div>
-          <small class="text-muted text-uppercase font-weight-bold">Inactive</small>
-        </div>
-        <div class="progress progress-xs mt-3 mb-0">
-          <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25"
-            aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-      </div>
     </div>
     <div class="card" *ngIf="role=='Admin'">
       <div class="card-body" routerLink="/userslist/userorders">
@@ -96,13 +164,18 @@
     </div>
     <div class="card" *ngIf="role=='Admin'">
       <div class="card-body" routerLink="/vendorslist/vendororders">
+        <div class="h4 mb-0">{{vendorCommision}}</div>
+        <small class="text-muted text-uppercase font-weight-bold">Vendor Commision</small>
         <div class="h1 text-muted text-right mb-4">
           <i class="icon-basket-loaded"></i>
 
         </div>
-        <div class="h4 mb-0">{{Count.venderorders}}<span style="float:right;" class="h4 mb-0"> BD:
+        <div class="h4 mb-0" style="margin-top: -12%;">{{Count.venderorders}}<span style="float:right;" class="h4 mb-0"> BD:
             {{Count.vendorcarttotal}}</span></div>
         <small class="text-muted text-uppercase font-weight-bold">Vendor Orders</small>
+
+        
+
         <div class="progress progress-xs mt-3 mb-0">
           <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
             aria-valuemax="100"></div>
@@ -155,6 +228,7 @@
         <div class="h1 text-muted text-right mb-4">
           <i class="icon-basket-loaded"></i>
         </div>
+
         <div class="h4 mb-0">{{wholeCount.products}}</div>
         <small class="text-muted text-uppercase font-weight-bold">Wholesaler Products</small>
         <div class="progress progress-xs mt-3 mb-0">
@@ -232,7 +306,7 @@
     <div class="card-body">
       <div class="row">
         <div class="col-sm-5">
-          <h4 class="card-title mb-0">Whole Salers / Vendor</h4>
+          <h4 class="card-title mb-0">Wholesalers / Vendors</h4>
           <div class="small text-muted">July 2019</div>
         </div>
         <div class="col-sm-7 d-none d-md-block">
@@ -266,7 +340,7 @@
     <div class="card-footer">
       <div class="row text-center">
         <div class="col-sm-12 col-md mb-sm-2 mb-0">
-          <div class="text-muted">Total Wholesaler </div>
+          <div class="text-muted">Total Wholesalers </div>
           <strong>{{userWholesaleCount}} </strong>
           <div class="progress progress-xs mt-2">
             <div class="progress-bar bg-success" role="progressbar" style="width: 40%" aria-valuenow="40"
@@ -274,7 +348,7 @@
           </div>
         </div>
         <div class="col-sm-12 col-md mb-sm-2 mb-0">
-          <div class="text-muted">Total Vendor </div>
+          <div class="text-muted">Total Vendors </div>
           <strong>{{vendorWholesaleCount}} </strong>
           <div class="progress progress-xs mt-2">
             <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0"
@@ -415,6 +489,7 @@
       <div class="row">
         <div class="col-lg-6">
           <h4 class="card-title mb-0">Users</h4>
+          <button type="button" class="btn btn-primary mb-3" routerLink="/userslist">View More</button>
         </div>
       </div>
       <table class="table">
@@ -439,9 +514,9 @@
             <td>{{item.last_name }}</td>
             <td>{{item.email}}</td>
             <td>{{item.mobile_number}} </td>
-            <th>
+            <!-- <th>
               <button type="button" class="btn btn-primary mb-3">View More</button>
-            </th>
+            </th> -->
           </tr>
         </tbody>
       </table>
@@ -461,6 +536,7 @@
       <div class="row">
         <div class="col-lg-6">
           <h4 class="card-title mb-0">Sellers</h4>
+          <button type="button" class="btn btn-primary mb-3" routerlink="/vendorslist">View More</button>
         </div>
       </div>
       <table class="table">
@@ -485,9 +561,9 @@
             <td>{{item.last_name }}</td>
             <td>{{item.email}}</td>
             <td>{{item.mobile_number}} </td>
-            <th>
+            <!-- <th>
               <button type="button" class="btn btn-primary mb-3">View More</button>
-            </th>
+            </th> -->
           </tr>
         </tbody>
       </table>
@@ -507,6 +583,8 @@
       <div class="row">
         <div class="col-lg-6">
           <h4 class="card-title mb-0">WholeSellers</h4>
+          <button type="button" class="btn btn-primary mb-3" routerlink="/wholeseller">View More</button>
+          
         </div>
       </div>
       <table class="table">
@@ -531,9 +609,9 @@
             <td>{{item.last_name }}</td>
             <td>{{item.email}}</td>
             <td>{{item.mobile_number}} </td>
-            <th>
+            <!-- <th>
               <button type="button" class="btn btn-primary mb-3">View More</button>
-            </th>
+            </th> -->
           </tr>
         </tbody>
       </table>
@@ -554,6 +632,7 @@
       <div class="row">
         <div class="col-lg-6">
           <h4 class="card-title mb-0">Categories </h4>
+          <button type="button" class="btn btn-primary mb-3" routerlink="/Category/categories">View More</button>
         </div>
       </div>
       <table class="table">
@@ -579,9 +658,9 @@
             </td>
             <td><img alt="item.category_name" class="img-avatar" [src]="item.image_url"></td>
 
-            <th>
+            <!-- <th>
               <button type="button" class="btn btn-primary mb-3">View More</button>
-            </th>
+            </th> -->
           </tr>
         </tbody>
       </table>
@@ -602,6 +681,7 @@
       <div class="row">
         <div class="col-lg-6">
           <h4 class="card-title mb-0">Products </h4>
+          <button type="button" class="btn btn-primary mb-3" routerlink="/widgets">View More</button>
         </div>
       </div>
       <table class="table">
@@ -634,9 +714,9 @@
             </td>
             <td><img alt="item.product_name" class="img-avatar" [src]="item.Img"></td>
 
-            <th>
+            <!-- <th>
               <button type="button" class="btn btn-primary mb-3">View More</button>
-            </th>
+            </th> -->
           </tr>
         </tbody>
       </table>
@@ -656,6 +736,7 @@
       <div class="row">
         <div class="col-lg-6">
           <h4 class="card-title mb-0">Coupons </h4>
+          <button type="button" class="btn btn-primary mb-3" routerlink="/coupons">View More</button>
         </div>
       </div>
       <table class="table">
@@ -699,9 +780,9 @@
               {{item.end_date}}
             </td>
 
-            <th>
+            <!-- <th>
               <button type="button" class="btn btn-primary mb-3">View More</button>
-            </th>
+            </th> -->
           </tr>
         </tbody>
       </table>
@@ -724,28 +805,22 @@
       <div class="row">
         <div class="col-lg-6">
           <h4 class="card-title mb-0">Vendor Orders </h4>
+          <button type="button" class="btn btn-primary mb-3" routerlink="/vendorslist/vendororders">View More</button>
+
         </div>
       </div>
       <table class="table">
         <thead>
           <tr>
             <th>S No</th>
-            <th (click)="sort(voucher_code)">Voucher Code
+            <th (click)="sort(order_id)">Order Id
               <span><i class="fa fa-sort" aria-hidden="true"></i></span>
             </th>
-            <th (click)="sort(total_count)">Total Count
+            <th (click)="sort(ordered_on)">Ordered Date & Time
               <span><i class="fa fa-sort" aria-hidden="true"></i></span>
             </th>
-            <th (click)="sort(available_count)">Available Count
+            <th (click)="sort(Final_amount)">Total Amount
               <span><i class="fa fa-sort" aria-hidden="true"></i></span>
-            </th>
-            <th (click)="sort(start_date)">Start Date
-              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
-            </th>
-            <th (click)="sort(end_date)">End Date
-              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
-            </th>
-            <th>Image
             </th>
 
 
@@ -753,23 +828,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of CouponData|orderBy: key : reverse ;let i = index">
+          <tr *ngFor="let item of vendorOrdersData|orderBy: key : reverse ;let i = index">
             <td>{{i+1}}</td>
-            <td>{{item.voucher_code}}</td>
-            <td>{{item.total_count}} </td>
-            <td>
-              {{item.available_count}}
-            </td>
-            <td>
-              {{item.start_date}}
-            </td>
-            <td>
-              {{item.end_date}}
-            </td>
+            <td>{{item.order_id}}</td>
+            <td>{{item.ordered_on}}</td>
+            <td>{{item.Final_amount}} </td>
 
-            <th>
-              <button type="button" class="btn btn-primary mb-3">View More</button>
-            </th>
           </tr>
         </tbody>
       </table>
@@ -794,52 +858,36 @@
       <div class="row">
         <div class="col-lg-6">
           <h4 class="card-title mb-0">User Orders </h4>
+          <button type="button" class="btn btn-primary mb-3" routerlink="/userslist/userorders">View More</button>
+
         </div>
       </div>
       <table class="table">
         <thead>
           <tr>
             <th>S No</th>
-            <th (click)="sort(voucher_code)">Voucher Code
+            <th (click)="sort(order_id)">Order Id
               <span><i class="fa fa-sort" aria-hidden="true"></i></span>
             </th>
-            <th (click)="sort(total_count)">Total Count
+            <th (click)="sort(ordered_on)">Ordered Date & Time
               <span><i class="fa fa-sort" aria-hidden="true"></i></span>
             </th>
-            <th (click)="sort(available_count)">Available Count
+            <th (click)="sort(Final_amount)">Total Amount
               <span><i class="fa fa-sort" aria-hidden="true"></i></span>
             </th>
-            <th (click)="sort(start_date)">Start Date
-              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
-            </th>
-            <th (click)="sort(end_date)">End Date
-              <span><i class="fa fa-sort" aria-hidden="true"></i></span>
-            </th>
-            <th>Image
-            </th>
+
 
 
             <th></th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of CouponData|orderBy: key : reverse ;let i = index">
+          <tr *ngFor="let item of userOrdersData|orderBy: key : reverse ;let i = index">
             <td>{{i+1}}</td>
-            <td>{{item.voucher_code}}</td>
-            <td>{{item.total_count}} </td>
-            <td>
-              {{item.available_count}}
-            </td>
-            <td>
-              {{item.start_date}}
-            </td>
-            <td>
-              {{item.end_date}}
-            </td>
+            <td>{{item.order_id}}</td>
+            <td>{{item.ordered_on}} </td>
+            <td>{{item.Final_amount}} </td>
 
-            <th>
-              <button type="button" class="btn btn-primary mb-3">View More</button>
-            </th>
           </tr>
         </tbody>
       </table>

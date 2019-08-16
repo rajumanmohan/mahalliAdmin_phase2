@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       // swal("test","","success")
       if (resp.status == 200) {
         // this.toastr.success("Hello, I'm the toastr message.");
-        Swal.fire(resp.message, '', "success");
+        //Swal.fire(resp.message, '', "success");
         sessionStorage.setItem("role", resp.role);
         sessionStorage.setItem("profile", JSON.stringify(resp.row));
         if (resp.role == "wholesaler") {

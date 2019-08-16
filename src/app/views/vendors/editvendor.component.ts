@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 declare let swal: any;
 
 import { Router, ActivatedRoute } from '@angular/router';
@@ -17,8 +19,11 @@ export class EditvendorComponent implements OnInit {
   mobile_number;
   email;
   commission_to_admin;
+  activeImageUrl = null;
+  vendorForm: FormGroup;
+  submitted = false;
   // vendorData=[]
-  constructor(public router: Router, private appService: AppService, private route: ActivatedRoute) {
+  constructor(public router: Router, private appService: AppService, private route: ActivatedRoute,private formBuilder:FormBuilder) {
     this.route.queryParams.subscribe(params => {
       this.vendorId = params.vendorId
     });
@@ -28,6 +33,33 @@ export class EditvendorComponent implements OnInit {
     this.router.navigate(['/vendorslist']);
   }
   ngOnInit() {
+	  let vald={
+			 first_name: ['', Validators.required],
+			 last_name:  ['',Validators.required],
+			 email: ['', Validators.required],
+			 mobile_number: ['', Validators.required],
+			 bussiness_name: ['', Validators.required],
+			 bussiness_from_time: ['', Validators.required],
+			 bussiness_end_time: ['', Validators.required],
+			 bussiness_houseno: ['', Validators.required],
+			 Road_No: ['', Validators.required],
+			 Block_No: ['', Validators.required],
+			 bussiness_area: ['', Validators.required],
+			 bussiness_city: ['', Validators.required],
+			 bussiness_pincode: ['', Validators.required],
+			 bussiness_country: ['', Validators.required],
+			 bank_name: ['', Validators.required],
+			 account_holder_name: ['', Validators.required],
+			 account_number: ['', Validators.required],
+			 ifsc_code: ['', Validators.required],
+			 bank_branch: ['', Validators.required],
+			 vat_number: ['', Validators.required],
+			 cr_number: ['', Validators.required],
+			 commission_to_admin: ['', Validators.required]
+			 
+		 };	   
+		   
+		   this.vendorForm = this.formBuilder.group(vald);
     this.getVendors();
   }
   getVendors() {
@@ -36,6 +68,20 @@ export class EditvendorComponent implements OnInit {
       for (var i = 0; i < this.vendors.length; i++) {
         if (this.vendorId == this.vendors[i].id) {
           this.vendorData = this.vendors[i];
+
+          if (!!this.vendorData.image_one) {
+            this.activeImageUrl = this.vendorData.image_one;
+          }
+          else if (!!this.vendorData.image_two) {
+            this.activeImageUrl = this.vendorData.image_two;
+          }
+          else if (!!this.vendorData.image_three) {
+            this.activeImageUrl = this.vendorData.image_three;
+          }
+          else if (!!this.vendorData.image_four) {
+            this.activeImageUrl = this.vendorData.image_four;
+          }
+
           // this.first_name = this.vendors[i].first_name;
           // this.last_name = this.vendors[i].last_name;
           // this.mobile_number = this.vendors[i].mobile_number;
@@ -68,6 +114,10 @@ export class EditvendorComponent implements OnInit {
   vat_number;
   // mobile_number;
   updateVendorbyId1() {
+	  this.submitted = true;
+	if (this.vendorForm.invalid) {
+        return;
+    }
     var params = {
       "id": this.vendorId,
       'first_name': this.vendorData.first_name,
@@ -115,7 +165,9 @@ export class EditvendorComponent implements OnInit {
       // role: "vendor"
       // shop_status: "1"
       // time: ""
-      "vat_number": this.vendorData.vendorDatavat_number
+      "vat_number": this.vendorData.vendorDatavat_number,
+      "Road_No": this.vendorData.Road_No,
+      "Block_No": this.vendorData.Block_No
     }
     this.appService.updateVendorbyId(params, this.vendorId).subscribe((resp: any) => {
       if (resp.status == 200) {

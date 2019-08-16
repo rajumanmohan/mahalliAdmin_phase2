@@ -2,6 +2,7 @@ import { Component, OnDestroy, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { navItems } from '../../_nav';
 import { Router, NavigationExtras } from '@angular/router';
+import { HTTPStatus } from '../../httplistener.service';
 
 
 @Component({
@@ -13,8 +14,10 @@ export class DefaultLayoutComponent implements OnDestroy {
   public sidebarMinimized = true;
   private changes: MutationObserver;
   public element: HTMLElement;
-  constructor(public router: Router, @Inject(DOCUMENT) _document?: any) {
-
+  loaderVisible=false;
+ 
+  constructor(private httpStatus: HTTPStatus,public router: Router, @Inject(DOCUMENT) _document?: any) {
+ this.httpStatus.getHttpStatus().subscribe((status: boolean) => {this.loaderVisible = status;});
     this.changes = new MutationObserver((mutations) => {
       this.sidebarMinimized = _document.body.classList.contains('sidebar-minimized');
     });
@@ -76,17 +79,18 @@ export class DefaultLayoutComponent implements OnDestroy {
         //   icon: 'icon-user'
         // },
         {
-          name: 'Wholeseller',
+          name: 'Wholesaler',
           url: '/wholeseller',
           icon: 'icon-user',
           children: [
             {
-          name: 'Wholeseller ',
+          name: 'Wholesaler ',
           url: '/wholeseller',
           icon: 'icon-user',
-          children: [ 
+          // children: [ 
+            },
             {
-              name: 'Wholeseller List',
+              name: 'Wholesaler List',
               url: '/wholeseller',
               icon: 'icon-user',
             },
@@ -94,10 +98,10 @@ export class DefaultLayoutComponent implements OnDestroy {
               name: 'Products for Approval',
               url: '/wholeseller/allwholesellerporducts',
               icon: 'fa fa-cart-plus ',
-            }]
-        },
+            },
+      
             {
-                    name: 'Wholeseller Commision',
+                    name: 'Wholesaler Commission',
                     url: '/commission/wholeseller',
                     icon: 'fa fa-money',
                   },
@@ -202,7 +206,7 @@ export class DefaultLayoutComponent implements OnDestroy {
           icon: 'fa fa-file-text-o',
           children: [
             {
-              name: 'About Mahali',
+              name: 'About Mahalli',
               url: '/content',
               icon: 'fa fa-file-text-o',
             },
@@ -526,7 +530,7 @@ export class DefaultLayoutComponent implements OnDestroy {
           icon: 'fa fa-file-text-o',
           children: [
             {
-              name: 'About Mahali',
+              name: 'About Mahalli',
               url: '/content',
               icon: 'fa fa-file-text-o',
             },

@@ -13,6 +13,6 @@ export class AddbrandbannersComponent implements OnInit {
     this.router.navigate(['/buttons/brandbanner']);
   }
   ngOnInit() {
+	  
   }
-
 }

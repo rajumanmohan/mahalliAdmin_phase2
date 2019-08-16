@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppService } from './../../services/mahali/mahali-data.service';
 import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 declare let swal: any;
 
 // import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
@@ -25,7 +26,9 @@ export class AddsubbannerComponent implements OnInit {
     img;
     title;
     mainCat1;
-    constructor(private appService: AppService, public router: Router, private route: ActivatedRoute) {
+	categoryForm: FormGroup;
+  submitted = false;
+    constructor(private appService: AppService, public router: Router, private route: ActivatedRoute,private formBuilder:FormBuilder) {
         this.route.queryParams.subscribe(params => {
             this.id = params.id,
                 this.subCa = params.subCat,
@@ -48,6 +51,17 @@ export class AddsubbannerComponent implements OnInit {
         this.router.navigate(['/Category/subcategories']);
     }
     ngOnInit() {
+		let vald={
+      mainCat1: ['', Validators.required],
+      subCa: ['', Validators.required],
+	  textarea:['',Validators.required],
+	  img:[]
+    }
+		if(this.action === 'addsub'){
+			vald.img=['',Validators.required];
+		}
+		this.categoryForm = this.formBuilder.group(vald);
+		
         if (this.actionType === 'ecom') {
             this.getEcomCat();
             this.title = "Add Ecommerce Subcategory";
@@ -116,6 +130,10 @@ export class AddsubbannerComponent implements OnInit {
     }
     image;
     insertSubCat() {
+		this.submitted = true;
+	if (this.categoryForm.invalid) {
+        return;
+    }
         // this.spinnerService.show();
         var data = {
             'sub_category_name': this.subCa,
@@ -131,6 +149,10 @@ export class AddsubbannerComponent implements OnInit {
         })
     }
     updateSubCat() {
+		this.submitted = true;
+	if (this.categoryForm.invalid) {
+        return;
+    }
         // this.spinnerService.show();
         var data = {
             'id': this.id,

@@ -10,16 +10,23 @@
               <h1>Total Coupons </h1>
             </div>
             <div class="col-lg-6 text-right">
-              <button type="button" class="btn  btn-primary mb-3" (click)="addcoupon()">Add Coupons</button>
+              <button type="button" class="btn  btn-primary mb-3" (click)="addcoupon()">Add Coupons</button>&nbsp;
+			   <button type="button" class="btn  btn-warning mb-3" (click)="exportToExcel()">Export</button>
             </div>
           </div>
           <div class="row">
-            <div class="col-sm-12">
+		  <div class="col-sm-6">
+              <div class="form-group">
+                <input type="number" class="form-control"  placeholder="Items Per Page" [(ngModel)]="itemsPerPage">
+              </div>
+            </div>
+            <div class="col-sm-6">
               <div class="form-group">
                 <input type="text" class="form-control" id="ccnumber" placeholder="Search" [(ngModel)]="filter">
               </div>
-            </div>
+            </div>			
           </div>
+		 
           <!--/.row-->
         </div>
 
@@ -28,30 +35,28 @@
             <thead>
               <tr>
                 <th>S No</th>
-                <th (click)="sort(voucher_code)">Coupon Code <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+                <th (click)="sort(voucher_code)">Offer Title <span><i class="fa fa-sort" aria-hidden="true"></i></span>
                 </th>
-                <th (click)="sort(discount_type)">Discount Type <span><i class="fa fa-sort"
+                <th (click)="sort(discount_percentage)">Discount % <span><i class="fa fa-sort"
                       aria-hidden="true"></i></span></th>
-                <th (click)="sort(discount_amount)">Amount <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+                <th (click)="sort(discount_amount)">Start Date & Time <span><i class="fa fa-sort" aria-hidden="true"></i></span>
                 </th>
-                <th (click)="sort(discount_percentage)">Percentage <span><i class="fa fa-sort"
+                <th (click)="sort(discount_percentage)">End Date & Time <span><i class="fa fa-sort"
                       aria-hidden="true"></i></span></th>
-                <th (click)="sort(total_count)">Total Count <span><i class="fa fa-sort" aria-hidden="true"></i></span>
-                </th>
-                <th (click)="sort(minimum_value)">Up To <span><i class="fa fa-sort" aria-hidden="true"></i></span></th>
+                <th (click)="sort(total_count)">Status <span><i class="fa fa-sort" aria-hidden="true"></i></span>
+                </th>                
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
               <tr
-                *ngFor="let coupons of coupons|orderBy: key : reverse| paginate: { itemsPerPage: 10, currentPage: p }|filter:filter;let i = index">
+                *ngFor="let coupons of coupons|orderBy: key : reverse| paginate: { itemsPerPage: itemsPerPage?itemsPerPage:10, currentPage: p }|filter:filter;let i = index">
                 <td>{{coupons.indexValue +1}}</td>
                 <td>{{coupons.voucher_code}}</td>
-                <td>{{coupons.discount_type===1?'Percentage':'Flat' }}</td>
-                <td>{{coupons.discount_amount}}</td>
                 <td>{{coupons.discount_percentage}}</td>
-                <td>{{coupons.total_count}}</td>
-                <td>{{coupons.minimum_value}}</td>
+                <td>{{coupons.start_date}}</td>
+                <td>{{coupons.end_date}}</td>
+                <td>{{coupons.status?cupons.status:'-'}}</td>
                 <td class="edit-buttons">
                   <a><i class="fa fa-pencil-square-o fa-lg " (click)="editOffer(coupons.id)"></i></a>
                   <a><i class="fa fa-trash fa-lg" aria-hidden="true" (click)="deleteVoucher(coupons.id)"></i></a>

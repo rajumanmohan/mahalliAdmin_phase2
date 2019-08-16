@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 // import { Router } from '@angular/router';
 import { AppService } from './../../services/mahali/mahali-data.service';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
+import { ExcelService } from './../../services/excel.service';
 
 @Component({
   templateUrl: 'chartjs.component.html'
 })
 export class ChartJSComponent implements OnInit {
-  constructor(public router: Router, private appService: AppService, private route: ActivatedRoute) { }
-  coupons = [];
+  constructor(public router: Router, private appService: AppService, private route: ActivatedRoute,private excelservice:ExcelService) { }
+  coupons = [];  
+  itemsPerPage=10;
   ngOnInit() {
     this.getCoupons();
   }
@@ -17,6 +19,9 @@ export class ChartJSComponent implements OnInit {
   sort(key) {
     this.key = key;
     this.reverse = !this.reverse;
+  }
+  exportToExcel(){
+	  this.excelservice.exportAsExcelFile(this.coupons,'Cupons');
   }
   addcoupon() {
     this.router.navigate(['/coupons/addcoupon']);

@@ -77,7 +77,7 @@ export const routes: Routes = [
       },
       {
         path: 'dashboard',
-        loadChildren: './views/dashboard/dashboard.module#DashboardModule',
+        loadChildren: './views/dashboard/dashboard.module#DashboardModule'		
         // onSameUrlNavigation: 'reload'
       },
       {

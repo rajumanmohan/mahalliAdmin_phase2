@@ -4,6 +4,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
@@ -35,8 +36,9 @@ import { Ng2OrderModule } from 'ng2-order-pipe';
 
 // services
 import { AppService } from './services/mahali/mahali-data.service';
-import { HttpClientModule } from '@angular/common/http';
+//import { HttpClientModule } from '@angular/common/http';
 import { CKEditorModule } from 'ng2-ckeditor';
+import { HTTPListener, HTTPStatus } from './httplistener.service';
 
 // import swal from 'sweetalert';
 // import swal from 'sweetalert';
@@ -113,7 +115,11 @@ import { WholesalerApprovalComponent } from './views/wholesaler-approval/wholesa
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  }, AppService, ExcelService],
+  }, AppService, ExcelService,HTTPStatus,{
+      provide: HTTP_INTERCEPTORS,
+      useClass: HTTPListener,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

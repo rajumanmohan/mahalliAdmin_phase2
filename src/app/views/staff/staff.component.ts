@@ -13,6 +13,7 @@ export class StaffComponent implements OnInit {
 
   }
   key: string = 'name';
+  p=1;
   reverse: boolean = true;
   addstaff(Id) {
     let navigationExtras: NavigationExtras = {

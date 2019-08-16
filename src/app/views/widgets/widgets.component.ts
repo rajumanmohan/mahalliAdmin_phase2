@@ -1,20 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { getStyle } from '@coreui/coreui/dist/js/coreui-utilities';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
 import { Router } from '@angular/router';
 import { AppService } from './../../services/mahali/mahali-data.service';
 import { NavigationEnd, NavigationExtras } from '@angular/router';
+import { ExcelService } from '../../services/excel.service';
+declare let jsPDF;
+
 
 @Component({
   templateUrl: 'widgets.component.html'
 })
 export class WidgetsComponent implements OnInit {
-  constructor(public router: Router, private appService: AppService) { }
+  constructor(public router: Router, private appService: AppService, private excelService: ExcelService) { }
   showGroceryProds;
   key: string = 'name';
   reverse: boolean = true;
   categories = [];
   subCategories = [];
+  selectedFile: any;
 
   sort(key) {
     this.key = key;
@@ -104,6 +108,84 @@ getProductsBySubCategoryId(subCategoryId){
   this.appService.prodSub(subCategoryId).subscribe((resp: any) => {
     this.product = resp.products;
   })
+}
+
+exportAsXLSX(): void {
+  var tempProductList = JSON.parse(JSON.stringify( this.product));
+  tempProductList.filter(x=> {delete x.category_id; delete x.subcategory_id; delete x.subsubcategory_id; delete x.sku_images; 
+    delete x.indexValue;});
+
+  if(tempProductList.length > 0)
+    this.excelService.exportAsExcelFile(tempProductList, 'Mahalli');
+}
+
+exportAsPdf() {
+  var tempProductList = JSON.parse(JSON.stringify( this.product));
+  
+  tempProductList.filter(x=> {delete x.category_id; delete x.subcategory_id; delete x.subsubcategory_id; delete x.sku_images; 
+    delete x.indexValue;});
+
+    if(tempProductList.length == 0){
+      return false;
+    }
+
+  let fields = Object.keys(tempProductList[0]);
+  console.log('fields', fields);
+  let tableCol = [];
+  for (let f of fields) {
+    tableCol.push({ title: f, dataKey: f });
+  }
+
+  var doc = new jsPDF('l', 'pt', [1200, 500]);
+ 
+  doc.setFontSize(12);
+  doc.text('Reports', 40, 20);
+  doc.setFontSize(10);
+  doc.autoTable(tableCol, tempProductList, {
+    columnStyles: {
+      'id': {columnWidth: 30},
+      'description': {columnWidth: 200},
+      'skuImg': {columnWidth: 150},
+      'organic': {columnWidth: 50},
+      'status': {columnWidth: 50},
+      'country': {columnWidth: 60}
+      // etc
+    },
+    printHeaders: true, startY: 40, headerStyles: { fillColor: [100] }
+  });
+  doc.save('product_report_' + new Date());
+}
+
+onFileSelect(event){
+  this.selectedFile = null;
+  if(!!event.target && !!event.target.files[0]){
+    if(event.target.files[0].name.split('.')[1] != 'xlsx'){
+      alert('aceepts only xlsx formatted files');
+      return false;
+    }
+    this.selectedFile = event.target.files[0];
+  }
+}
+
+onImportClick(){
+  if(!this.selectedFile){
+    alert('Please choose file to continue');
+    return false;
+  }
+
+  this.appService.adminproductbulkupload(this.selectedFile)
+  .subscribe((resp: any) => {
+      if (resp.status === 200) {
+        this.selectedFile = null;
+        alert('bulk upload is successful');
+      }
+      else {
+
+      }
+  },
+      error => {
+          console.log(error, "error");
+      })
 }
 
 

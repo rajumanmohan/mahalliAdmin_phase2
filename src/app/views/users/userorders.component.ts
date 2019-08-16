@@ -63,6 +63,37 @@ export class UserordersComponent implements OnInit {
   exportAsXLSX(): void {
     this.excelService.exportAsExcelFile(this.userOrds, 'Mahalli');
   }
+
+  exportAsPdf() {
+
+    
+    var tempUserOrderList = JSON.parse(JSON.stringify( this.userOrds));
+    tempUserOrderList.filter(x=> {delete x.user_id; delete x.vendor_id; delete x.delivery_address_id; delete x.delivery_slot_id; 
+      delete x.status; delete x.indexValue});
+   
+      if(tempUserOrderList.length == 0){
+        return false;
+      }
+  
+    let fields = Object.keys(tempUserOrderList[0]);
+    console.log('fields', fields);
+    let tableCol = [];
+    for (let f of fields) {
+      tableCol.push({ title: f, dataKey: f });
+    }
+  
+    var doc = new jsPDF('l', 'pt', [1200, 500]);
+   
+    doc.setFontSize(12);
+    doc.text('Reports', 40, 20);
+    doc.setFontSize(10);
+    doc.autoTable(tableCol, tempUserOrderList, {
+    
+      printHeaders: true, startY: 40, headerStyles: { fillColor: [100] }
+    });
+    doc.save('user_order_report_' + new Date());
+  }
+
   onDateChanged(date) {
     this.fromDate = date.formatted;
     // console.log(date)

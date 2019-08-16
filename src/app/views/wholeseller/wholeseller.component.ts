@@ -11,6 +11,10 @@ declare let swal: any;
 })
 export class WholesellerComponent implements OnInit {
   roletype;
+  selectedFile=null;
+  showSuccessAlert=false;
+  showErrorAlert=false;
+  showImportForm=false;
   constructor(public router: Router, private appService: AppService) {
 
   }
@@ -71,6 +75,63 @@ export class WholesellerComponent implements OnInit {
     }
     this.router.navigate(['wholeseller/addwholeseller'], navigationExtras);
   }
+onFileSelect(event){
+  this.selectedFile = null;
+  if(!!event.target && !!event.target.files[0]){
+    if(event.target.files[0].name.split('.')[1] != 'xlsx'){
+      alert('aceepts only xlsx formatted files');
+      return false;
+    }
+    this.selectedFile = event.target.files[0];
+  }
+}
 
+onImportClick(){
+  if(!this.selectedFile){
+    alert('Please choose file to continue');
+    return false;
+  }
 
+  this.appService.wholesalerbulkupload(this.selectedFile)
+  .subscribe((resp: any) => {
+      if (resp.status === 200) {
+        this.selectedFile = null;   
+		this.showImportForm=!this.showImportForm;
+		this.showSuccessAlert=true;
+		setTimeout(()=>{
+			this.showSuccessAlert=false;
+		},2000);
+      }
+      else {
+		this.showErrorAlert=true;
+		setTimeout(()=>{
+			this.showErrorAlert=false;
+		},2000);
+      }
+  },
+      error => {
+          console.log(error, "error");
+      })
+}
+  onWholesellerStatusChange(event, vendorId) {
+    var requestObj = {
+      IsActive: event.currentTarget.value
+    }
+
+    this.appService.updateVendorbyId(requestObj, vendorId).subscribe((resp: any) => {
+      if (resp.status == 200) {
+		  this.showSuccessAlert=true;
+		  setTimeout(()=>{
+			  this.showSuccessAlert=false;
+		  },2000);
+        //swal('update vendor successfully', '', 'success');
+       
+      }else{
+		  this.showErrorAlert=true;
+		  setTimeout(()=>{
+			  this.showErrorAlert=false;
+		  },2000);
+	  }
+    })
+  }  
 }

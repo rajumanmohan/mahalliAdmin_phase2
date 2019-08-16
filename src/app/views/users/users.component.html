@@ -4,12 +4,20 @@
             <div class="card pt-5 mt-5">
                 <div class="container">
                     <div class="row">
+					<div class="col-lg-12" *ngIf="showSuccessAlert">
+					<div class="alert alert-success"><i class="fa fa-check-circle fa-fw"></i>Status Updated Successfully.</div>
+					</div>
+					<div class="col-lg-12" *ngIf="showErrorAlert">
+					<div class="alert alert-danger"><i class="fa fa-exclamation-triangle fa-fw"></i>Something went wrong. please try again</div>
+					</div>
                         <div class="col-lg-6">
                             <h1>Users List </h1>
                         </div>
                         <div class="col-lg-6 text-right">
-                            <button type="button" class="btn  btn-primary mb-3" (click)="exporttoexcel()">Export To
+                            <button type="button" class="btn  btn-primary mb-3" (click)="exportAsXLSX()">Export To
                                 Excel</button>
+                                <button type="button" class="btn  btn-primary mb-3" (click)="exportAsPdf()">Export To
+                                        Pdf</button>
                         </div>
                     </div>
                     <div class="row">
@@ -36,6 +44,7 @@
                                             aria-hidden="true"></i></span></th>
                                 <th (click)="sort(email)">Email <span><i class="fa fa-sort"
                                             aria-hidden="true"></i></span></th>
+                                            <th>Status</th>
                                 <!-- <th>Action</th> -->
                             </tr>
                         </thead>
@@ -47,6 +56,12 @@
                                 <td>{{item.last_name}}</td>
                                 <td>{{item.mobile_number}}</td>
                                 <td>{{item.email}}</td>
+                                <td>  
+                                     <select class="form-control" (change)="onUserStatusChange($event, item.reg_id)">
+                                        <option [value]="1" [selected]="item.IsActive">Active</option>
+                                        <option [value]="0" [selected]="!item.IsActive">Inactive</option>
+                                    </select>
+                                </td>
                                 <!-- <td class="edit-buttons" (click)="view(item.reg_id)"> <a><i
                                             class="fa fa-pencil-square-o fa-lg "
                                             (click)="editOffer(coupons.id)"></i></a>

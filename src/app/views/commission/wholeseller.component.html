@@ -49,9 +49,9 @@
                                 </td>
                                 <td>{{data.created_on}}</td>
                                 <td>
-                                    <select (change)="onStatusChange($event,data)">
-                                        <option [selected]="data.is_paid == '0'" value="1">Not Paid</option>
-                                        <option [selected]="data.is_paid == '1'" value="2">Paid</option>
+                                    <select class="form-control" (change)="onStatusChange($event,data)">
+                                        <option [selected]="data.is_paid == '0'" value="0">Not Paid</option>
+                                        <option [selected]="data.is_paid == '1'" value="1">Paid</option>
                                     </select>
                                 </td>
                             </tr>

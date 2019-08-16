@@ -8,6 +8,7 @@ import { VendororderdetailsComponent } from './vendororderdetails.component';
 import { FormsModule } from '@angular/forms';
 import { EditvendorComponent } from './editvendor.component';
 import { MyDatePickerModule } from 'mydatepicker';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SafePipeModule } from 'safe-pipe';
@@ -20,7 +21,7 @@ import { AllvendorproductsComponent } from './allvendorproducts.component';
 @NgModule({
   declarations: [VendorsComponent, VendorproductsComponent, VendorordersComponent, VendororderdetailsComponent, EditvendorComponent, AllvendorproductsComponent],
   imports: [
-    CommonModule, VendorsRoutingModule, FormsModule, NgxPaginationModule, SafePipeModule, Ng2OrderModule, Ng2SearchPipeModule,MyDatePickerModule
+    CommonModule, VendorsRoutingModule, FormsModule, NgxPaginationModule, SafePipeModule, Ng2OrderModule, Ng2SearchPipeModule,MyDatePickerModule,ReactiveFormsModule
   ]
 })
 export class VendorsModule { }

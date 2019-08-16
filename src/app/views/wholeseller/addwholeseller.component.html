@@ -8,34 +8,44 @@
                     <button (click)="backtowholeseller()" class="btn  btn-primary text-right float-right ">Back</button>
                 </div>
                 <div class="card-body">
-                    <form>
-
-                    </form>
+                    <form [formGroup]="wholesellerForm">
                     <!-- <div class="row"> -->
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="firstname">First Name :</label>
-                                <input class="form-control" type="text" [(ngModel)]="first_name" name="first_name" />
+                                <input class="form-control" type="text" [(ngModel)]="first_name" formControlName="first_name" [ngClass]="{'is-invalid':(submitted && wholesellerForm.controls.first_name.errors&&wholesellerForm.controls.first_name.errors.required)}"  />
+								<div *ngIf="submitted && wholesellerForm.controls.first_name.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="wholesellerForm.controls.first_name.errors.required">First name is required</div>
+								</div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="firstname">Last Name :</label>
-                                <input class="form-control" type="text" [(ngModel)]="last_name" name="last_name" />
+                                <input class="form-control" type="text" [(ngModel)]="last_name" formControlName="last_name" [ngClass]="{'is-invalid':(submitted && wholesellerForm.controls.last_name.errors&&wholesellerForm.controls.last_name.errors.required)}"  />
+								<div *ngIf="submitted && wholesellerForm.controls.last_name.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="wholesellerForm.controls.last_name.errors.required">Last name is required</div>
+								</div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="firstname">Phone Number :</label>
-                                <input myNumberOnly class="form-control" type="text" [(ngModel)]="mobile"
-                                    name="mobile" />
+                                <input myNumberOnly class="form-control" type="text" [(ngModel)]="mobile" 
+                                    formControlName="mobile" [ngClass]="{'is-invalid':(submitted && wholesellerForm.controls.mobile.errors&&wholesellerForm.controls.mobile.errors.required)}"  />
+								<div *ngIf="submitted && wholesellerForm.controls.mobile.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="wholesellerForm.controls.mobile.errors.required">Mobile Number is required</div>
+								</div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="firstname">Email :</label>
-                                <input class="form-control" type="email" [(ngModel)]="email" name="email" />
+                                <input class="form-control" type="email" [(ngModel)]="email" formControlName="email" [ngClass]="{'is-invalid':(submitted && wholesellerForm.controls.email.errors&&wholesellerForm.controls.email.errors.required)}"  />
+								<div *ngIf="submitted && wholesellerForm.controls.email.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="wholesellerForm.controls.email.errors.required">Email is required</div>
+								</div>
                             </div>
                         </div>
                     </div>
@@ -44,28 +54,40 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="firstname">Password :</label>
-                                <input class="form-control" type="password" [(ngModel)]="password" name="password" />
+                                <input class="form-control" type="password" [(ngModel)]="password" formControlName="password" [ngClass]="{'is-invalid':(submitted && wholesellerForm.controls.password.errors&&wholesellerForm.controls.password.errors.required)}"  />
+								<div *ngIf="submitted && wholesellerForm.controls.password.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="wholesellerForm.controls.password.errors.required">Password is required</div>
+								</div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="firstname">Bussiness Name :</label>
                                 <input class="form-control" type="text" [(ngModel)]="bussiness_name"
-                                    name="business_name" />
+                                   formControlName="bussiness_name" [ngClass]="{'is-invalid':(submitted && wholesellerForm.controls.bussiness_name.errors&&wholesellerForm.controls.bussiness_name.errors.required)}"  />
+								<div *ngIf="submitted && wholesellerForm.controls.bussiness_name.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="wholesellerForm.controls.bussiness_name.errors.required">Business name is required</div>
+								</div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="firstname">Building/Shop/Office Number :</label>
                                 <input class="form-control" type="text" [(ngModel)]="bussiness_houseno"
-                                    name="business_houseno" />
+                                    formControlName="bussiness_houseno" [ngClass]="{'is-invalid':(submitted && wholesellerForm.controls.bussiness_houseno.errors&&wholesellerForm.controls.bussiness_houseno.errors.required)}"  />
+								<div *ngIf="submitted && wholesellerForm.controls.bussiness_houseno.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="wholesellerForm.controls.bussiness_houseno.errors.required">Building/Shop/Office Number is required</div>
+								</div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="firstname">Road Number :</label>
                                 <input class="form-control" type="text" [(ngModel)]="bussiness_address"
-                                    name="business_address" />
+                                    formControlName="bussiness_address" [ngClass]="{'is-invalid':(submitted && wholesellerForm.controls.bussiness_address.errors&&wholesellerForm.controls.bussiness_address.errors.required)}"  />
+								<div *ngIf="submitted && wholesellerForm.controls.bussiness_address.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="wholesellerForm.controls.bussiness_address.errors.required">Road Number is required</div>
+								</div>
                             </div>
                         </div>
                     </div>
@@ -75,14 +97,20 @@
                             <div class="form-group">
                                 <label for="firstname"> Area :</label>
                                 <input class="form-control" type="text" [(ngModel)]="bussiness_area"
-                                    name="bussiness_area" />
+                                    formControlName="bussiness_area" [ngClass]="{'is-invalid':(submitted && wholesellerForm.controls.bussiness_area.errors&&wholesellerForm.controls.bussiness_area.errors.required)}"  />
+								<div *ngIf="submitted && wholesellerForm.controls.bussiness_area.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="wholesellerForm.controls.bussiness_area.errors.required">Area is required</div>
+								</div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="firstname">Bussiness Country :</label>
                                 <input class="form-control" type="text" [(ngModel)]="bussiness_country"
-                                    name="business_country" />
+                                   formControlName="bussiness_country" [ngClass]="{'is-invalid':(submitted && wholesellerForm.controls.bussiness_country.errors&&wholesellerForm.controls.bussiness_country.errors.required)}"  />
+								<div *ngIf="submitted && wholesellerForm.controls.bussiness_country.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="wholesellerForm.controls.bussiness_country.errors.required">Business country is required</div>
+								</div>
                             </div>
                         </div>
 
@@ -90,14 +118,20 @@
                             <div class="form-group">
                                 <label for="firstname">Bussiness City :</label>
                                 <input class="form-control" type="text" [(ngModel)]="bussiness_city"
-                                    name="bussiness_city" />
+                                   formControlName="bussiness_city" [ngClass]="{'is-invalid':(submitted && wholesellerForm.controls.bussiness_city.errors&&wholesellerForm.controls.bussiness_city.errors.required)}"  />
+								<div *ngIf="submitted && wholesellerForm.controls.bussiness_city.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="wholesellerForm.controls.bussiness_city.errors.required">Business city is required</div>
+								</div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="firstname">Po Box Number :</label>
                                 <input class="form-control" type="text" [(ngModel)]="bussiness_pincode"
-                                    name="bussiness_pincode" />
+                                   formControlName="bussiness_pincode" [ngClass]="{'is-invalid':(submitted && wholesellerForm.controls.bussiness_pincode.errors&&wholesellerForm.controls.bussiness_pincode.errors.required)}"  />
+								<div *ngIf="submitted && wholesellerForm.controls.bussiness_pincode.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="wholesellerForm.controls.bussiness_pincode.errors.required">Po Box Number is required</div>
+								</div>
                             </div>
                         </div>
 
@@ -108,27 +142,39 @@
                             <div class="form-group">
                                 <label for="firstname">Account Holder Name :</label>
                                 <input class="form-control" type="text" [(ngModel)]="account_holder_name"
-                                    name="account_holder_name" />
+                                   formControlName="account_holder_name" [ngClass]="{'is-invalid':(submitted && wholesellerForm.controls.account_holder_name.errors&&wholesellerForm.controls.account_holder_name.errors.required)}"  />
+								<div *ngIf="submitted && wholesellerForm.controls.account_holder_name.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="wholesellerForm.controls.account_holder_name.errors.required">Account Holder name is required</div>
+								</div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="firstname">Account Number :</label>
                                 <input myNumberOnly class="form-control" type="text" [(ngModel)]="account_number"
-                                    name="account_number" />
+                                   formControlName="account_number" [ngClass]="{'is-invalid':(submitted && wholesellerForm.controls.account_number.errors&&wholesellerForm.controls.account_number.errors.required)}"  />
+								<div *ngIf="submitted && wholesellerForm.controls.account_number.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="wholesellerForm.controls.account_number.errors.required">Account Number is required</div>
+								</div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="firstname">Bank Name :</label>
-                                <input class="form-control" type="text" [(ngModel)]="bank_name" name="bank_name" />
+                                <input class="form-control" type="text" [(ngModel)]="bank_name" formControlName="bank_name" [ngClass]="{'is-invalid':(submitted && wholesellerForm.controls.bank_name.errors&&wholesellerForm.controls.bank_name.errors.required)}"  />
+								<div *ngIf="submitted && wholesellerForm.controls.bank_name.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="wholesellerForm.controls.bank_name.errors.required">Bank name is required</div>
+								</div>
                             </div>
                         </div>
 
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="firstname">Branch Name :</label>
-                                <input class="form-control" type="text" [(ngModel)]="bank_branch" name="bank_branch" />
+                                <input class="form-control" type="text" [(ngModel)]="bank_branch" formControlName="bank_branch" [ngClass]="{'is-invalid':(submitted && wholesellerForm.controls.bank_branch.errors&&wholesellerForm.controls.bank_branch.errors.required)}"  />
+								<div *ngIf="submitted && wholesellerForm.controls.bank_branch.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="wholesellerForm.controls.bank_branch.errors.required">Branch name is required</div>
+								</div>
                             </div>
                         </div>
                     </div>
@@ -138,14 +184,20 @@
                             <div class="form-group">
                                 <label for="firstname">IBAN Code :</label>
                                 <input myNumberOnly class="form-control" type="text" [(ngModel)]="ifsc_code"
-                                    name="ifsc_code" />
+                                   formControlName="ifsc_code" [ngClass]="{'is-invalid':(submitted && wholesellerForm.controls.ifsc_code.errors&&wholesellerForm.controls.ifsc_code.errors.required)}"  />
+								<div *ngIf="submitted && wholesellerForm.controls.ifsc_code.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="wholesellerForm.controls.ifsc_code.errors.required">IBAN Code is required</div>
+								</div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="firstname">Commision :</label>
                                 <input myNumberOnly class="form-control" type="text" [(ngModel)]="commission_to_admin"
-                                    name="commission_to_admin" />
+                                    formControlName="commission_to_admin" [ngClass]="{'is-invalid':(submitted && wholesellerForm.controls.commission_to_admin.errors&&wholesellerForm.controls.commission_to_admin.errors.required)}"  />
+								<div *ngIf="submitted && wholesellerForm.controls.commission_to_admin.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="wholesellerForm.controls.commission_to_admin.errors.required">Commision is required</div>
+								</div>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -154,8 +206,11 @@
                                 <!-- <kendo-timepicker [(value)]="from_date" name="from_date"
                                                 [(ngModel)]="from_date">
                                             </kendo-timepicker> -->
-                                <input type="time" class="form-control" name="Enter open Time" [(ngModel)]="from_date"
-                                    (change)="valuechange($event)">
+                                <input type="time" class="form-control"  [(ngModel)]="from_date"
+                                    (change)="valuechange($event)" formControlName="from_date" [ngClass]="{'is-invalid':(submitted && wholesellerForm.controls.from_date.errors&&wholesellerForm.controls.from_date.errors.required)}"  />
+								<div *ngIf="submitted && wholesellerForm.controls.from_date.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="wholesellerForm.controls.from_date.errors.required">Open Time is required</div>
+								</div>
                             </div>
                         </div>
 
@@ -174,7 +229,10 @@
                                                                         [(ngModel)]="to_date" name="to_date">
                                                                     </kendo-timepicker> -->
                                 <input type="time" class="form-control" name="Enter Close Time" [(ngModel)]="to_date"
-                                    name="to_date" (change)="close()">
+                                    (change)="close()" formControlName="to_date" [ngClass]="{'is-invalid':(submitted && wholesellerForm.controls.to_date.errors&&wholesellerForm.controls.to_date.errors.required)}"  />
+								<div *ngIf="submitted && wholesellerForm.controls.to_date.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="wholesellerForm.controls.to_date.errors.required">Close Time is required</div>
+								</div>
                             </div>
                         </div>
                     </div>
@@ -184,14 +242,20 @@
                             <div class="form-group">
                                 <label for="firstname">VAT Number :</label>
                                 <input myNumberOnly class="form-control" type="text" [(ngModel)]="vat_number"
-                                    name="ifsc_code" />
+                                    formControlName="vat_number" [ngClass]="{'is-invalid':(submitted && wholesellerForm.controls.vat_number.errors&&wholesellerForm.controls.vat_number.errors.required)}"  />
+								<div *ngIf="submitted && wholesellerForm.controls.vat_number.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="wholesellerForm.controls.vat_number.errors.required">VAT Number is required</div>
+								</div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="firstname">CR Number :</label>
                                 <input myNumberOnly class="form-control" type="text" [(ngModel)]="cr_number"
-                                    name="ifsc_code" />
+                                    formControlName="cr_number" [ngClass]="{'is-invalid':(submitted && wholesellerForm.controls.cr_number.errors&&wholesellerForm.controls.cr_number.errors.required)}"  />
+								<div *ngIf="submitted && wholesellerForm.controls.cr_number.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="wholesellerForm.controls.cr_number.errors.required">CR Number is required</div>
+								</div>
                             </div>
                         </div>
 
@@ -341,6 +405,7 @@
                                 Wholeseller</button>
                         </div>
                     </div>
+					</form>
                 </div>
             </div>
         </div>

@@ -63,7 +63,7 @@
             <tbody>
               <tr
                 *ngFor="let subCat of subCategory|orderBy: key : reverse| paginate: { itemsPerPage: 10, currentPage: p }|filter:filter;let i = index">
-                <td>{{subCat.indexValue +1}}</td>
+                <td>{{((p-1)*10)+(i+1)}}</td>
                 <td>{{subCat.category_name}}</td>
                 <td>{{subCat.sub_category_name}}</td>
                 <td><img alt="admin@bootstrapmaster.com" class="img-avatar" [src]="subCat.image "></td>

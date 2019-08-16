@@ -14,7 +14,7 @@ import { IfStmt } from '@angular/compiler';
 
 
 @Component({
-  templateUrl: 'dashboard.component.html'
+  templateUrl: 'dashboard.component.html',
 })
 export class DashboardComponent implements OnInit {
   @ViewChild(BaseChartDirective, { read: true, static: false }) chart: BaseChartDirective;
@@ -28,6 +28,10 @@ export class DashboardComponent implements OnInit {
   public navItems = navItems;
   public mainChartLegend = false;
   public mainChartType = 'line';
+
+  public vendorCommision: any;
+  public wholeSalerCommision: any;
+
   barChartDataRes: any
   wholeSaleDataRes: any;
   userRes: any;
@@ -193,7 +197,7 @@ export class DashboardComponent implements OnInit {
       this.getSellers10();
       this.getProductsLatest10();
       this.getCoupnsData10();
-     
+
       this.getProductCatsData();
     } else if (sessionStorage.role == 'vendor') {
       this.getvendorCount();
@@ -207,6 +211,9 @@ export class DashboardComponent implements OnInit {
 
   getGraphData() {
     this.appService.getGraph({ year: this.year }).subscribe((res: any) => {
+      res.useroders.filter(x=>x.month = x.month -1);
+      res.venderoders.filter(x=>x.month = x.month -1);
+
       this.barChartDataRes = res;
       console.log("this.barChartDataRes..", this.barChartDataRes)
       this.yearly()
@@ -217,8 +224,10 @@ export class DashboardComponent implements OnInit {
 
   // Wholesale Graph 
   getWholeSaleGraphData() {
-
     this.appService.getWholeSaleGraph({ year: this.year }).subscribe((res: any) => {
+      res.vendordata.filter(x=>x.month = x.month -1);
+      res.wholesalerdata.filter(x=>x.month = x.month -1);
+      
       this.wholeSaleDataRes = res;
       console.log("this.wholeSaleDataRes", this.wholeSaleDataRes)
       this.yearly();
@@ -229,6 +238,8 @@ export class DashboardComponent implements OnInit {
   // User Graph
   getUserData() {
     this.appService.getUserSaleGraph({ year: this.year }).subscribe((res: any) => {
+      res.userdata.filter(x=>x.month = x.month -1);
+
       this.userRes = res;
       console.log(this.userRes)
       this.yearly();
@@ -348,12 +359,12 @@ export class DashboardComponent implements OnInit {
   getUserOrdersLatest10() {
     this.appService.getUserOrders().subscribe((res: any) => {
 
-      if (res.data) {
-        if (res.data.length > 10) {
-          this.userOrdersData = res.data.splice(0, 10);
+      if (res.order) {
+        if (res.order.length > 10) {
+          this.userOrdersData = res.order.splice(0, 10);
         }
         else {
-          this.userOrdersData = res.data;
+          this.userOrdersData = res.order;
         }
         console.log("userordersdata" + this.userOrdersData);
       }
@@ -365,14 +376,14 @@ export class DashboardComponent implements OnInit {
   }
 
   getVendorOrdersLatest10() {
-    this.appService.vendorOrders().subscribe((res: any) => {
+    this.appService.getAllVendorOrds().subscribe((res: any) => {
 
-      if (res.data) {
-        if (res.data.length > 10) {
-          this.vendorOrdersData = res.data.splice(0, 10);
+      if (res.Orders) {
+        if (res.Orders.length > 10) {
+          this.vendorOrdersData = res.Orders.splice(0, 10);
         }
         else {
-          this.vendorOrdersData = res.data;
+          this.vendorOrdersData = res.Orders;
         }
         console.log("vendorOrders" + this.vendorOrdersData);
       }
@@ -445,6 +456,9 @@ export class DashboardComponent implements OnInit {
   //get Products and Cats Data
   getProductCatsData() {
     this.appService.getProductCatsData({ year: this.year }).subscribe((res: any) => {
+      res.categoriesdetails.filter(x=>x.month = x.month -1)
+      res.productdetails.filter(x=>x.month = x.month -1)
+
       this.productCatsData = res;
       console.log("this.productCatsData", this.productCatsData)
       this.yearly()
@@ -456,6 +470,8 @@ export class DashboardComponent implements OnInit {
     this.appService.getAdminCount().subscribe((resp: any) => {
       console.log('admin count', resp.data);
       this.Count = resp.data;
+      this.vendorCommision=resp.data.vendor_commission;
+      this.wholeSalerCommision=resp.data.wholesaller_commission;
       // this.userCount = res.json().data.users;
     })
   }
@@ -790,10 +806,15 @@ export class DashboardComponent implements OnInit {
       this.barChartDataRes.venderoders = [];
     }
 
+ 
+
     for (let data of (this.barChartDataRes || {}).useroders) {
+    
+
       if (!monthUserData[this.mlist[data.month]]) {
         monthUserData[this.mlist[data.month]] = 0;
       }
+      
       this.userCount += data.order_count
       monthUserData[this.mlist[data.month]] += data.order_count;
     }
@@ -958,12 +979,12 @@ export class DashboardComponent implements OnInit {
 
     this.mainProductCatsData = [{
       data: catGraphValues,
-      label: 'catagiries',
+      label: 'Categories',
       borderWidth: 0
     },
     {
       data: productGraphValues,
-      label: 'product',
+      label: 'Product',
       borderWidth: 0
     }];
   }

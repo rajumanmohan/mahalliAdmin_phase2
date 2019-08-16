@@ -19,6 +19,8 @@ export class AllvendorproductsComponent implements OnInit {
   }
   vendorProds = [];
   Status = [];
+  showSuccessAlert=false;
+  showErrorAlert=false;
   ngOnInit() {
     this.Status = ["Approve", "Disapprove"];
     this.getVendorProducts();
@@ -42,8 +44,17 @@ export class AllvendorproductsComponent implements OnInit {
     this.appService.acceptProduct(venId, inData).subscribe((res: any) => {
       if (res.status === "200") {
         // swal(res.message, "", "success");
+		 this.showSuccessAlert=true;
+		  setTimeout(()=>{
+			  this.showSuccessAlert=false;
+		  },2000);
         this.getVendorProducts();
-      }
+      }else{
+		   this.showErrorAlert=true;
+		  setTimeout(()=>{
+			  this.showErrorAlert=false;
+		  },2000);
+	  }
     })
   }
 }

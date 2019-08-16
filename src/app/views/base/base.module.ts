@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { CardsComponent } from './cards.component';
 
 // Forms Component
@@ -61,6 +61,7 @@ import { AddsubsubcatComponent } from './addsubsubcat.component';
   imports: [
     CommonModule,
     FormsModule,
+	ReactiveFormsModule,
     BaseRoutingModule,
     BsDropdownModule.forRoot(),
     TabsModule,

@@ -51,9 +51,9 @@
                                 </td>
                                 <td>{{data.created_on}}</td>
                                 <td>
-                                    <select (change)="onStatusChange($event,data)">
-                                        <option [selected]="data.is_paid == '0'" value="1">Not Paid</option>
-                                        <option [selected]="data.is_paid == '1'" value="2">Paid</option>
+                                    <select (change)="onStatusChange($event,data)" class="form-control">
+                                        <option [selected]="data.is_paid == '0'" value="0">Not Paid</option>
+                                        <option [selected]="data.is_paid == '1'" value="1">Paid</option>
                                     </select>
                                 </td>
                             </tr>
@@ -82,7 +82,7 @@
                         <form>
                             <div class="form-row ">
                                 <div class="form-group col-md-12 ">
-                                    <select (change)="onFilterStatChange($event,data)">
+                                    <select class="form-control" (change)="onFilterStatChange($event,data)">
                                         <option value="1">Not Paid</option>
                                         <option value="2">Paid</option>
                                     </select>

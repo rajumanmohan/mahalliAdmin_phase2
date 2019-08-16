@@ -8,20 +8,21 @@
                     <button (click)="backtosubcat()" class="btn  btn-primary text-right float-right ">Back</button>
                 </div>
                 <div class="card-body">
-                    <form>
-
-                    </form>
+                   <form [formGroup]="categoryForm">
                     <div class="row">
                         <div class="form-group col-sm-6">
                             <label for="firstname">Category</label>
                             <div class="form-group">
                                 <select class="form-control border-primary" id="exampleSelectPrimary"
-                                    [(ngModel)]="mainCat" name="mainCat" (change)="showSubcats($event.target.value)">
+                                    [(ngModel)]="mainCat" (change)="showSubcats($event.target.value)" formControlName="mainCat" [ngClass]="{'is-invalid':(submitted && categoryForm.controls.mainCat.errors&&categoryForm.controls.mainCat.errors.required)}">
                                     <option value="" disabled selected hidden>Select category</option>
                                     <option *ngFor="let cat of category" [value]="cat.category_name">
                                         {{cat.category_name}}
                                     </option>
                                 </select>
+								<div *ngIf="submitted && categoryForm.controls.mainCat.errors" class="invalid-feedback" style="display:block">
+								<div *ngIf="categoryForm.controls.mainCat.errors.required">Category is required</div>
+							</div>
                             </div>
                         </div>
                     </div>
@@ -30,34 +31,46 @@
                         <div class="form-group col-sm-6">
                             <label for="firstname">Sub Category Name</label>
                             <select class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="subName"
-                                name="subName" (change)="changeSubcats1($event.target.value)">
+                               formControlName="subName" [ngClass]="{'is-invalid':(submitted && categoryForm.controls.subName.errors&&categoryForm.controls.subName.errors.required)}" (change)="changeSubcats1($event.target.value)">
                                 <option value="" disabled selected hidden>Select subcategory</option>
                                 <option *ngFor="let sub of subData" [value]="sub.sub_category_name">
                                     {{sub.sub_category_name}}
                                 </option>
                             </select>
+							<div *ngIf="submitted && categoryForm.controls.subName.errors" class="invalid-feedback" style="display:block">
+								<div *ngIf="categoryForm.controls.subName.errors.required">Sub category is required</div>
+							</div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-sm-6">
                             <label for="company">Sub Sub Category name</label>
                             <input type="text" class="form-control" id="city" placeholder="Sub Sub Category Name"
-                                [(ngModel)]="subsubCa" name="subsubCa">
+                                [(ngModel)]="subsubCa" formControlName="subsubCa" [ngClass]="{'is-invalid':(submitted &&categoryForm.controls.subsubCa.errors&&categoryForm.controls.subsubCa.errors.required)}">
+								<div *ngIf="submitted && categoryForm.controls.subsubCa.errors" class="invalid-feedback" style="display:block">
+								<div *ngIf="categoryForm.controls.subsubCa.errors.required">Sub Sub category name is required</div>
+								</div>
                         </div>
                     </div>
                     <!--/.row-->
                     <div class="row">
                         <div class="form-group col-sm-6">
                             <label for="textarea-input">Description</label>
-                            <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control"
-                                [(ngModel)]="textarea" name="textarea" placeholder="Description.."></textarea>
+                            <textarea id="textarea-input"  rows="9" class="form-control"
+                                [(ngModel)]="textarea" formControlName="textarea" [ngClass]="{'is-invalid':(submitted &&categoryForm.controls.textarea.errors&&categoryForm.controls.textarea.errors.required)}" placeholder="Description.."></textarea>
+								<div *ngIf="submitted && categoryForm.controls.textarea.errors" class="invalid-feedback" style="display:block">
+								<div *ngIf="categoryForm.controls.textarea.errors.required">Description is required</div>
+								</div>
                         </div>
                     </div>
 
                     <div class="form-group col-sm-6">
                         <label class="" for="file-input">Sub Sub Category image</label>
-                        <input class="form-control" type="file" accept="image/*" (change)="changeListener($event)"
-                            [(ngModel)]="img" name="img">
+                        <input class="form-control" type="file" accept="image/*" (change)="changeListener($event)" [(ngModel)]="img" formControlName="img" [ngClass]="{'is-invalid':(submitted &&categoryForm.controls.img&& categoryForm.controls.img.errors&&categoryForm.controls.img.errors.required)}">
+							
+							<div *ngIf="submitted &&categoryForm.controls.img&& categoryForm.controls.img.errors" class="invalid-feedback" style="display:block">
+								<div *ngIf="categoryForm.controls.img.errors.required">Sub Sub Category image is required</div>
+								</div>
                         <div *ngIf="image">
                             <img src="{{image}}" alt="" width="100" height="100"
                                 style="border: solid 1px;margin-top: 2%;">
@@ -81,6 +94,7 @@
                             <button class="btn btn-success" (click)="insertSubsubCat()">Add Banner</button>
                         </div>
                     </div> -->
+					</form>
                 </div>
             </div>
         </div>

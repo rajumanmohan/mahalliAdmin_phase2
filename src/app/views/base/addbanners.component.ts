@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppService } from './../../services/mahali/mahali-data.service';
 import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 declare let swal: any;
 
 @Component({
@@ -25,7 +27,9 @@ export class AddbannersComponent implements OnInit {
   showCat;
   title;
   cattitle;
-  constructor(public router: Router, private appService: AppService, private route: ActivatedRoute) {
+   categoryForm: FormGroup;
+  submitted = false;
+  constructor(public router: Router, private appService: AppService, private route: ActivatedRoute,private formBuilder:FormBuilder) {
     this.route.queryParams.subscribe(params => {
       this.catname = params.name
       this.id = params.id
@@ -41,7 +45,7 @@ export class AddbannersComponent implements OnInit {
       this.addcat = false;
       this.input = this.catname;
       this.textarea = this.des;
-      this.catImg = this.pic;
+	  this.catImg = this.pic;
       this.cattitle = "Edit Category"
     }
   }
@@ -49,11 +53,20 @@ export class AddbannersComponent implements OnInit {
   data = [];
   category = [];
   ngOnInit() {
+	  	 let vald={
+			 input: ['', Validators.required],
+			 catImg: [],
+			 textarea:['',Validators.required]
+		 }
+		   if (this.catname === '' || this.id === undefined) {
+			 vald.catImg=['', Validators.required];
+		   }
+		   
+		   this.categoryForm = this.formBuilder.group(vald);
     if (this.type === "grocery") {
       this.title = "Add Grocery Category";
     } else {
       this.title = "Add Ecommerce Category";
-
     }
   }
   backtobanner() {
@@ -64,6 +77,10 @@ export class AddbannersComponent implements OnInit {
     // if (this.strImage = this.textarea === '') {
     //     swal("Required filelds are missing", "", "warning");
     // }
+	this.submitted = true;
+	if (this.categoryForm.invalid) {
+        return;
+    }
     var data = {
       'name': name,
       'image': this.strImage,
@@ -91,6 +108,10 @@ export class AddbannersComponent implements OnInit {
   }
   //update category
   updateCat(name) {
+	  this.submitted = true;
+	if (this.categoryForm.invalid) {
+        return;
+    }
     // this.spinnerService.show();
     var data = {
       'name': name,

@@ -4,6 +4,8 @@ import { AppService } from './../../services/mahali/mahali-data.service';
 import { Router } from '@angular/router';
 // import { AppService } from './../../services/mahali/mahali-data.service';
 import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 declare let swal: any;
 
 @Component({
@@ -29,7 +31,9 @@ export class AddsubsubcatComponent implements OnInit {
   subCat;
   subData = [];
   subName;
-  constructor(private appService: AppService, public route: ActivatedRoute, public router: Router) {
+  categoryForm: FormGroup;
+  submitted = false;
+  constructor(private appService: AppService, public route: ActivatedRoute, public router: Router,private formBuilder:FormBuilder) {
     this.route.queryParams.subscribe(params => {
       this.id = params.id,
         this.subCat = params.subCat,
@@ -54,6 +58,17 @@ export class AddsubsubcatComponent implements OnInit {
 
   }
   ngOnInit() {
+	  let vald={
+      mainCat: ['', Validators.required],
+      subName: ['', Validators.required],
+	  subsubCa:['',Validators.required],
+	  textarea:['',Validators.required],
+	  img:[]
+    }
+		if(this.action !== 'editsub'){
+			vald.img=['',Validators.required];
+		}
+		this.categoryForm = this.formBuilder.group(vald);
     // this.getCat();
     this.getSubCats();
   }
@@ -143,7 +158,10 @@ export class AddsubsubcatComponent implements OnInit {
     // "Image": ,
     //       "description": "kikui",
     //       "type": "0"
-
+this.submitted = true;
+	if (this.categoryForm.invalid) {
+        return;
+    }
     var data = {
       'sub_category_id': this.subCat,
       'category_id': this.mainCatId,
@@ -161,6 +179,10 @@ export class AddsubsubcatComponent implements OnInit {
     })
   }
   updateSubCat() {
+	  this.submitted = true;
+	if (this.categoryForm.invalid) {
+        return;
+    }
     // this.spinnerService.show();
     var data = {
       'sub_category_id': this.subCat,

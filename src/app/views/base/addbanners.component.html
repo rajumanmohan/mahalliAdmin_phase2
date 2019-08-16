@@ -8,14 +8,15 @@
                     <button (click)="backtobanner()" class="btn  btn-primary text-right float-right ">Back</button>
                 </div>
                 <div class="card-body">
-                    <form>
-
-                    </form>
+                    <form [formGroup]="categoryForm">
                     <div class="form-group row">
                         <div class="col-md-6">
                             <label for="company">Category name</label>
-                            <input type="text" class="form-control" id="city" placeholder="Category Name"
-                                [(ngModel)]="input" name="input">
+                            <input type="text" class="form-control" [ngClass]="{'is-invalid':(submitted && categoryForm.controls.input.errors&&categoryForm.controls.input.errors.required)}" id="city" placeholder="Category Name"
+                                [(ngModel)]="input" formControlName="input">
+								<div *ngIf="submitted && categoryForm.controls.input.errors" class="invalid-feedback" style="display:block">
+									<div *ngIf="categoryForm.controls.input.errors.required">Category name is required</div>
+								</div>
                         </div>
 
                     </div>
@@ -32,10 +33,12 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label" for="file-input">Category Image</label>
                         <div class="col-md-3">
-                            <input type="file" id="file-input" name="file-input" accept="image/*"
-                                (change)="changeListener($event)" [(ngModel)]="catImg" name="catImg">
+                            <input type="file" id="file-input" name="file-input" accept="image/*" [ngClass]="{'is-invalid':(submitted && categoryForm.controls.catImg&&categoryForm.controls.catImg.errors&&categoryForm.controls.catImg.errors.required)}"
+                                (change)="changeListener($event)" [(ngModel)]="catImg" formControlName="catImg">
                         </div>
-
+						<div *ngIf="submitted &&categoryForm.controls.catImg&& categoryForm.controls.catImg.errors" class="invalid-feedback col-md-12" style="display:block">
+							<div *ngIf="categoryForm.controls.catImg.errors.required">Category image is required</div>
+						</div>
 
                     </div>
                     <div class="row">
@@ -46,7 +49,7 @@
                             </div>
                             <div class="form-group">
                                 <img src="{{catImg}}" alt="" width="100" height="100"
-                                    style="border: solid 1px;margin-top: 2%;">
+                                    style="border: solid 1px;margin-top: 2%;">	   
                             </div>
                         </div>
                     </div>
@@ -54,7 +57,10 @@
                     <div class="form-group row">
                         <div class="col-md-6">
                             <label for="company">Description</label>
-                            <textarea [(ngModel)]="textarea" name="textarea" class="form-control"></textarea>
+                            <textarea [(ngModel)]="textarea" formControlName="textarea" class="form-control" [ngClass]="{'is-invalid':(submitted && categoryForm.controls.textarea.errors&&categoryForm.controls.textarea.errors.required)}"></textarea>
+							<div *ngIf="submitted && categoryForm.controls.textarea.errors" class="invalid-feedback" style="display:block">
+        <div *ngIf="categoryForm.controls.textarea.errors.required">Description is required</div>
+      </div>
                         </div>
                     </div>
                     <div class="row">
@@ -68,6 +74,7 @@
 
                         </div>
                     </div>
+					 </form>
                 </div>
             </div>
         </div>

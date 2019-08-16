@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppService } from './../../services/mahali/mahali-data.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 declare var $: any;
 declare let swal: any;
 declare var jsPDF: any;
@@ -16,7 +18,9 @@ export class AddwholesellerComponent implements OnInit {
     sellerId;
     selerProId;
     roletype;
-    constructor(public router: Router, private appService: AppService, private route: ActivatedRoute) {
+	wholesellerForm: FormGroup;
+	submitted = false;
+    constructor(public router: Router, private appService: AppService, private route: ActivatedRoute,private formBuilder:FormBuilder) {
 
         this.route.queryParams.subscribe(params => {
             this.sellerId = params.sellerId
@@ -32,8 +36,7 @@ export class AddwholesellerComponent implements OnInit {
     backtowholeseller() {
         this.router.navigate(['/wholeseller']);
     }
-    ngOnInit() {
-    }
+    
     bussiness_name;
     bussiness_houseno;
     bussiness_address;
@@ -56,6 +59,34 @@ export class AddwholesellerComponent implements OnInit {
     bank_name;
     bank_branch;
     ifsc_code;
+	
+	ngOnInit() {
+		let vald={
+			first_name:['',Validators.required],
+			last_name:['',Validators.required],
+			mobile:['',Validators.required],
+			email:['',Validators.required],
+			password:['',Validators.required],
+			bussiness_name:['',Validators.required],
+			bussiness_houseno:['',Validators.required],
+			bussiness_address:['',Validators.required],
+			bussiness_area:['',Validators.required],
+			bussiness_country:['',Validators.required],
+			bussiness_city:['',Validators.required],
+			bussiness_pincode:['',Validators.required],
+			account_holder_name:['',Validators.required],
+			account_number:['',Validators.required],
+			bank_name:['',Validators.required],
+			bank_branch:['',Validators.required],
+			ifsc_code:['',Validators.required],
+			commission_to_admin:['',Validators.required],
+			from_date:['',Validators.required],
+			to_date:['',Validators.required],
+			vat_number:['',Validators.required],
+			cr_number:['',Validators.required]
+		};	
+		this.wholesellerForm = this.formBuilder.group(vald);
+    }
     getLocation(getCallFun) {
         let _self = this;
         var geocoder = new google.maps.Geocoder();
@@ -72,6 +103,10 @@ export class AddwholesellerComponent implements OnInit {
     vat_number;
     cr_number;
     addWholeSeller() {
+		 this.submitted = true;
+	if (this.wholesellerForm.invalid) {
+        return;
+    }
         let _self = this;
         // var geocoder = new google.maps.Geocoder();
         // var address = this.bussiness_area;
@@ -193,7 +228,10 @@ export class AddwholesellerComponent implements OnInit {
         })
     }
     updateWholeSeller() {
-
+ this.submitted = true;
+	if (this.wholesellerForm.invalid) {
+        return;
+    }
         var data = {
             "first_name": this.first_name,
             "last_name": this.last_name,
